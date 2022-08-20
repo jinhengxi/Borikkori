@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 import BestCarousel from '../components/main/BestCarousel';
+import Lovers from '../components/main/Lovers';
+import NewCarousel from '../components/main/NewCarousel';
 
 export default function Home() {
   return (
@@ -8,6 +10,9 @@ export default function Home() {
       <MainTitle>Best 레시피</MainTitle>
       <BestCarousel />
       <MainTitle>New 레시피</MainTitle>
+      <NewCarousel/>
+      <MainTitle>추천 러버스</MainTitle>
+      <Lovers/>
     </Container>
   );
 }
