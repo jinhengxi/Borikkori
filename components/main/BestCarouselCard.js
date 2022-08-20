@@ -4,18 +4,18 @@ import Image from 'next/image';
 function BestCarouselCard() {
   return (
     <Container>
-      <BestCard>
+      <BestCardImgOpacity>
         <Image
           src="/images/음식.jpg"
           alt="bestRecipeImg"
           width={233}
           height={307}
         />
-      </BestCard>
+      </BestCardImgOpacity>
       <CardProfile>
         <Image src="/images/음식.jpg" alt="ProfileImg" width={44} height={44} />
         &nbsp;&nbsp;
-        <Image src="/images/등급.png" alt="Grad" width={12} height={12} />
+        <Image src="/images/grade.png" alt="Grade" width={17} height={17} />
         <Nickname>tokkichef</Nickname>
       </CardProfile>
       <CardContent>
@@ -34,7 +34,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const BestCard = styled.div`
+const BestCardImgOpacity = styled.div`
   position: relative;
 
   img {
@@ -99,5 +99,6 @@ const Content = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   white-space: normal;
+  line-height: 1.2;
   font-size: ${props => props.theme.fontSizes.base};
 `;

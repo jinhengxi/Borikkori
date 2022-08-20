@@ -1,21 +1,11 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 
+import useFetch from '../../hooks/useFetch';
 import BestCarouselCard from './BestCarouselCard';
 
 function BestCarousel() {
-  const [bestRecipes, setBestRecipes] = useState();
-
-  useEffect(() => {
-    fetch('data/DATA.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setBestRecipes(data);
-      });
-  }, []);
+  const [bestRecipes] = useFetch('data/DATA.json');
 
   const settings = {
     dots: false,
@@ -27,9 +17,7 @@ function BestCarousel() {
   return (
     <StyledSlider {...settings}>
       {bestRecipes?.map(bestRecipe => (
-        <BestCard key={bestRecipe}>
-          <BestCarouselCard bestRecipe={bestRecipe} />
-        </BestCard>
+          <BestCarouselCard key={bestRecipe.id} bestRecipe={bestRecipe} />
       ))}
     </StyledSlider>
   );
@@ -57,19 +45,13 @@ const StyledSlider = styled(Slider)`
 
   .slick-prev {
     top: 45%;
-    left: 40px;
+    left: 35px;
     z-index: 1;
   }
 
   .slick-next {
     top: 45%;
-    right: 40px;
+    right: 60px;
     z-index: 1;
   }
-`;
-
-const BestCard = styled.div`
-  width: 223px;
-  height: 307px;
-  margin: 0 13px;
 `;
