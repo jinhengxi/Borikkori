@@ -72,5 +72,4 @@ const BestCard = styled.div`
   width: 223px;
   height: 307px;
   margin: 0 13px;
-  cursor: pointer;
 `;
