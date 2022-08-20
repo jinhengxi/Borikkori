@@ -44,13 +44,13 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-prev {
-    top: 40%;
+    top: 35%;
     left: 30px;
     z-index: 1;
   }
 
   .slick-next {
-    top: 40%;
+    top: 35%;
     right: 35px;
     z-index: 1;
   }
