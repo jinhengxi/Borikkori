@@ -10,21 +10,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
@@ -35,21 +35,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="/images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
@@ -60,21 +60,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="/images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
@@ -85,21 +85,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="/images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
@@ -110,21 +110,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="/images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
@@ -135,21 +135,21 @@ const bestRecipe = () => {
           <BestInfoDiv>
             <BestIconsWrapper>
               <Views>
-                <InfoIcons src="/assets/images/BestViews.png" />
+                <InfoIcons src="/images/BestViews.png" />
                 <span>1021</span>
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/BestLikes.png" />
+                <InfoIcons src="/images/BestLikes.png" />
                 <span>1512</span>
               </Likes>
               <Comments>
-                <CommentsIcon src="/assets/images/BestComments.png" />
+                <CommentsIcon src="/images/BestComments.png" />
                 <span>1313</span>
               </Comments>
             </BestIconsWrapper>
             <UserInfo>
-              <UserIcon src="assets/images/userIcon.png" />
-              <UserRank src="assets/images/userRank.png" />
+              <UserIcon src="/images/userIcon.png" />
+              <UserRank src="/images/userRank.png" />
               <UserName>tokkichef</UserName>
             </UserInfo>
             <BestName>요리제목</BestName>
