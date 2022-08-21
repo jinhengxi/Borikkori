@@ -1,0 +1,81 @@
+[
+    {
+        "id": 0,
+        "name": "TIGER",
+        "price": "40,000",
+        "categoey": "PUZZLE",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 1.5,
+        "like": true
+    },
+    {
+        "id": 1,
+        "name": "CROCS",
+        "price": "3,000",
+        "categoey": "LEGO",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 4,
+        "like": false
+    },
+    {
+        "id": 2,
+        "name": "LION",
+        "price": "13,500",
+        "categoey": "DOLL",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 6,
+        "like": false
+    },
+    {
+        "id": 3,
+        "name": "TIGER NOTE",
+        "price": "4,000",
+        "categoey": "CAR",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 13,
+        "like": false
+    },
+    {
+        "id": 4,
+        "name": "TIGER",
+        "price": "40,000",
+        "categoey": "PUZZLE",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 1.5
+    },
+    {
+        "id": 5,
+        "name": "CROCS",
+        "price": "3,000",
+        "categoey": "LEGO",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/image1.jpeg",
+        "age": 4,
+        "like": false
+    },
+    {
+        "id": 6,
+        "name": "LION",
+        "price": "13,500",
+        "categoey": "DOLL",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 6,
+        "like": false
+    },
+    {
+        "id": 7,
+        "name": "TIGER NOTE",
+        "price": "4,000",
+        "categoey": "CAR",
+        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
+        "hoverImg": "/images/음식.jpeg",
+        "age": 13,
+        "like": false
+    }
+]

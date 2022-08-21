@@ -3,12 +3,14 @@ import { RecoilRoot } from 'recoil';
 
 import GlobalStyle from '../styles/global-styles';
 import theme from '../styles/theme';
+import Nav from '../components/Navbar';
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <RecoilRoot>
+      <Nav/>
         <Component {...pageProps} />
       </RecoilRoot>
     </ThemeProvider>

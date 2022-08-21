@@ -1,13 +1,16 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const GlobalStyle = createGlobalStyle`
     ${reset}
     * {
         box-sizing: border-box;
     }
     body{
-        padding: 0;
-        margin: 0;
+        width: 1050px;
+        margin: auto;
         font-family: 'Noto Sans KR', sans-serif;
     };
     button{
