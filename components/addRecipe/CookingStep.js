@@ -13,6 +13,7 @@ function CookingStep() {
           <StepContent placeholder="내용을 입력하세요." />
         </AddContent>
       </StepBox>
+      <AddBtn>﹢추가</AddBtn>
     </Container>
   );
 }
@@ -22,11 +23,13 @@ export default CookingStep;
 const Container = styled.div`
   width: 100%;
   margin-bottom: 50px;
+  text-align: center;
 `;
 
 const CookingStepTitle = styled.div`
   margin-left: 50px;
   margin-bottom: 20px;
+  text-align: start;
   font-size: ${props => props.theme.fontSizes.xl};
   font-weight: ${props => props.theme.fontWeights.bold};
 `;
@@ -69,6 +72,7 @@ const AddContent = styled.div`
 `;
 
 const CountStep = styled.div`
+  text-align: start;
   padding-bottom: 10px;
   font-size: ${props => props.theme.fontSizes.titleSize};
   font-weight: ${props => props.theme.fontWeights.bold};
@@ -84,3 +88,17 @@ const StepContent = styled.textarea`
   font-size: ${props => props.theme.fontSizes.xl};
 `;
 
+const AddBtn = styled.button`
+  width: 128px;
+  height: 50px;
+  margin: 30px auto;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: ${props => props.theme.fontSizes.xl};
+  background-color: ${props => props.theme.colors.lightPurple};
+
+  &:active {
+    background-color: ${props => props.theme.colors.neonPurple};
+  }
+`;

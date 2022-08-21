@@ -40,6 +40,7 @@ const Hash = styled.div`
   background-color: ${props => props.theme.colors.gray};
   border-radius: 50px;
   ${props => props.theme.flex.flexBox()};
+  cursor: pointer;
 `;
 
 const HashInput = styled.input`
