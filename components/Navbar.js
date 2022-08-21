@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
 const Nav = () => {
+  const router = useRouter();
+  console.log(router);
   return (
     <Navbar>
       <NavbarWrapper>
@@ -148,11 +151,35 @@ const Nav = () => {
             <span>카테고리</span>
           </CategoryDiv>
           <MenuDiv>
-            <span>베스트</span>
-            <span>컬리의레시피</span>
-            <span>회원레시피</span>
-            <span>리뷰</span>
-            <span>컬리팁</span>
+            {router.pathname === '/bestRecipe' ? (
+              <BestRecipe>베스트</BestRecipe>
+            ) : (
+              <span onClick={() => router.push('/bestRecipe')}>베스트</span>
+            )}
+            {router.pathname === '/kurlyRecipe' ? (
+              <KurlyRecipe>컬리의레시피</KurlyRecipe>
+            ) : (
+              <span onClick={() => router.push('/kurlyRecipe')}>
+                컬리의레시피
+              </span>
+            )}
+            {router.pathname === '/userRecipe' ? (
+              <UserRecipe>회원 레시피</UserRecipe>
+            ) : (
+              <span onClick={() => router.push('/userRecipe')}>
+                회원 레시피
+              </span>
+            )}
+            {router.pathname === '/review' ? (
+              <Review>리뷰</Review>
+            ) : (
+              <span onClick={() => router.push('/review')}>리뷰</span>
+            )}
+            {router.pathname === '/kurlyTip' ? (
+              <KurlyTip>컬리팁</KurlyTip>
+            ) : (
+              <span onClick={() => router.push('/kurlyTip')}>컬리팁</span>
+            )}
           </MenuDiv>
           <DeliveryBtn>샛별/낯 배송안내</DeliveryBtn>
         </NavBotDiv>
@@ -249,10 +276,10 @@ const SearchInput = styled.input`
 `;
 
 const SearchIcon = styled.img`
-  position: absolute;
+  position: relative;
   width: 18px;
   height: 18px;
-  right: 550px;
+  right: 35px;
 `;
 
 const KirmuBtn = styled.button`
@@ -279,6 +306,44 @@ const MenuDiv = styled.div`
   align-items: center;
   justify-content: space-around;
   font-weight: bold;
+
+  span {
+    cursor: pointer;
+    &:hover {
+      color: #5f0080;
+      border-bottom: 1px solid #5f0080;
+    }
+  }
+`;
+
+const BestRecipe = styled.span`
+  cursor: pointer;
+  color: #5f0080;
+  border-bottom: 1px solid #5f0080;
+`;
+
+const KurlyRecipe = styled.span`
+  cursor: pointer;
+  color: #5f0080;
+  border-bottom: 1px solid #5f0080;
+`;
+
+const UserRecipe = styled.span`
+  cursor: pointer;
+  color: #5f0080;
+  border-bottom: 1px solid #5f0080;
+`;
+
+const Review = styled.span`
+  cursor: pointer;
+  color: #5f0080;
+  border-bottom: 1px solid #5f0080;
+`;
+
+const KurlyTip = styled.span`
+  cursor: pointer;
+  color: #5f0080;
+  border-bottom: 1px solid #5f0080;
 `;
 
 const DeliveryBtn = styled.button`

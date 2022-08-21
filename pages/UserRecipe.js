@@ -110,9 +110,14 @@ const CategoryDiv = styled.p`
   height: 19px;
   font-size: 15px;
   font-weight: bold;
-
   text-align: center;
   color: #a3a3a3;
+  cursor: pointer;
+
+  &:hover {
+    color: #b69aca;
+    border-bottom: 2px solid #b69aca;
+  }
 `;
 
 const RecipeSubCategory = styled.div`
@@ -129,10 +134,15 @@ const CategoryBtn = styled.button`
   height: 28px;
   font-size: 12px;
   font-weight: bold;
-
   background-color: white;
   border: 1px solid #f0f0ef;
   color: #a3a3a3;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #b69aca;
+    color: white;
+  }
 `;
 
 const RecipeFilter = styled.div`
@@ -156,9 +166,16 @@ const FilterBtn = styled.button`
   height: 28px;
   background-color: white;
   border: none;
+  border-radius: 5px;
   color: #a3a3a3;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #a3a3a3;
+    color: white;
+  }
 `;
 
 const WriterWrapper = styled.div`
@@ -301,7 +318,7 @@ const RecipeSearch = styled.div`
 const SearchInput = styled.input`
   width: 186px;
   height: 26px;
-  border: 1px solid #795b8f;
+  border: 2px solid #795b8f;
   border-radius: 5px;
   margin: 0 19px;
 `;
