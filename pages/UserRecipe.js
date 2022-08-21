@@ -16,19 +16,14 @@ const UserRecipe = () => {
     <UserRecipeWrapper>
       <RecipeTitle>회원레시피</RecipeTitle>
       <RecipeCategory>
-        <CategoryDiv>전체보기</CategoryDiv>
-        <CategoryDiv>한식</CategoryDiv>
-        <CategoryDiv>중식</CategoryDiv>
-        <CategoryDiv>일식</CategoryDiv>
-        <CategoryDiv>양식</CategoryDiv>
-        <CategoryDiv>그외</CategoryDiv>
+        {RECIPE_CATEGORIES.map(data => (
+          <CategoryDiv key={data.id}>{data.name}</CategoryDiv>
+        ))}
       </RecipeCategory>
       <RecipeSubCategory>
-        <CategoryBtn>전체보기</CategoryBtn>
-        <CategoryBtn>메인요라</CategoryBtn>
-        <CategoryBtn>밑반찬</CategoryBtn>
-        <CategoryBtn>간식</CategoryBtn>
-        <CategoryBtn>안주</CategoryBtn>
+        {RECIPE_SUBCATEGORIES.map(data => (
+          <CategoryBtn key={data.id}>{data.name}</CategoryBtn>
+        ))}
       </RecipeSubCategory>
       <RecipeFilter>
         <FilterWrapper>
@@ -44,12 +39,13 @@ const UserRecipe = () => {
         {recipeData.map(recipe => (
           <RecipeCard key={recipe.id}>
             <RecipeImg src={recipe.foodImage} />
+
+            <RecipeName>{recipe.foodTitle}</RecipeName>
             <UserId>
               <UserIcon src={recipe.userIcon} />
               <UserRank src={recipe.userRank} />
               <UserProfile>{recipe.userId}</UserProfile>
             </UserId>
-            <RecipeName>{recipe.foodTitle}</RecipeName>
             <RecipeInfo>
               <Views>
                 <InfoIcons src="/assets/images/Views.png" />
@@ -69,12 +65,12 @@ const UserRecipe = () => {
       </RecipeList>
       <RecipePaginate>Pagination</RecipePaginate>
       <RecipeSearch>
-        <select>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
-        <SearchInput />
+        <SearchSelect>
+          <option>글제목</option>
+          <option>내용</option>
+          <option>작성자</option>
+        </SearchSelect>
+        <SearchInput placeholder="검색어를 입력해주세요" />
       </RecipeSearch>
     </UserRecipeWrapper>
   );
@@ -226,21 +222,22 @@ const UserId = styled.div`
   height: 20.45px;
   display: flex;
   align-items: center;
-  margin: 5px 0;
+  margin: 8px 0;
+  margin-bottom: 10px;
 `;
 
 const UserIcon = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 2px;
+  margin-right: 5px;
 `;
 
 const UserRank = styled.img`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  margin-right: 2px;
+  margin-right: 5px;
 `;
 
 const UserProfile = styled.span`
@@ -253,8 +250,8 @@ const UserProfile = styled.span`
 const RecipeName = styled.p`
   width: 270px;
   height: 20px;
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 22px;
   margin: 8px 0;
 `;
 
@@ -317,8 +314,65 @@ const RecipeSearch = styled.div`
 
 const SearchInput = styled.input`
   width: 186px;
-  height: 26px;
+  height: 36px;
   border: 2px solid #795b8f;
   border-radius: 5px;
   margin: 0 19px;
 `;
+
+const SearchSelect = styled.select`
+  width: 98px;
+  height: 36px;
+  border: 2px solid #795b8f;
+  border-radius: 5px;
+`;
+
+const RECIPE_CATEGORIES = [
+  {
+    id: 1,
+    name: '전체보기',
+  },
+  {
+    id: 2,
+    name: '한식',
+  },
+  {
+    id: 3,
+    name: '중식',
+  },
+  {
+    id: 4,
+    name: '일식',
+  },
+  {
+    id: 5,
+    name: '양식',
+  },
+  {
+    id: 6,
+    name: '그외',
+  },
+];
+
+const RECIPE_SUBCATEGORIES = [
+  {
+    id: 1,
+    name: '전체보기',
+  },
+  {
+    id: 2,
+    name: '메인요리',
+  },
+  {
+    id: 3,
+    name: '밑반찬',
+  },
+  {
+    id: 4,
+    name: '간식',
+  },
+  {
+    id: 5,
+    name: '안주',
+  },
+];

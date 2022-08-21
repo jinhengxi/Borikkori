@@ -4,7 +4,41 @@ import styled from 'styled-components';
 
 const Nav = () => {
   const router = useRouter();
-  console.log(router);
+  const BestRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/bestRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/bestRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const KurlyRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/kurlyRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/kurlyRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const UserRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/userRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/userRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const Review = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/review' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/review'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const KurlyTip = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/kurlyTip' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/kurlyTip'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
   return (
     <Navbar>
       <NavbarWrapper>
@@ -151,35 +185,17 @@ const Nav = () => {
             <span>카테고리</span>
           </CategoryDiv>
           <MenuDiv>
-            {router.pathname === '/bestRecipe' ? (
-              <BestRecipe>베스트</BestRecipe>
-            ) : (
-              <span onClick={() => router.push('/bestRecipe')}>베스트</span>
-            )}
-            {router.pathname === '/kurlyRecipe' ? (
-              <KurlyRecipe>컬리의레시피</KurlyRecipe>
-            ) : (
-              <span onClick={() => router.push('/kurlyRecipe')}>
-                컬리의레시피
-              </span>
-            )}
-            {router.pathname === '/userRecipe' ? (
-              <UserRecipe>회원 레시피</UserRecipe>
-            ) : (
-              <span onClick={() => router.push('/userRecipe')}>
-                회원 레시피
-              </span>
-            )}
-            {router.pathname === '/review' ? (
-              <Review>리뷰</Review>
-            ) : (
-              <span onClick={() => router.push('/review')}>리뷰</span>
-            )}
-            {router.pathname === '/kurlyTip' ? (
-              <KurlyTip>컬리팁</KurlyTip>
-            ) : (
-              <span onClick={() => router.push('/kurlyTip')}>컬리팁</span>
-            )}
+            <BestRecipe onClick={() => router.push('/bestRecipe')}>
+              베스트
+            </BestRecipe>
+            <KurlyRecipe onClick={() => router.push('/kurlyRecipe')}>
+              컬리의레시피
+            </KurlyRecipe>
+            <UserRecipe onClick={() => router.push('/userRecipe')}>
+              회원 레시피
+            </UserRecipe>
+            <Review onClick={() => router.push('/review')}>리뷰</Review>
+            <KurlyTip onClick={() => router.push('/kurlyTip')}>컬리팁</KurlyTip>
           </MenuDiv>
           <DeliveryBtn>샛별/낯 배송안내</DeliveryBtn>
         </NavBotDiv>
@@ -314,36 +330,6 @@ const MenuDiv = styled.div`
       border-bottom: 1px solid #5f0080;
     }
   }
-`;
-
-const BestRecipe = styled.span`
-  cursor: pointer;
-  color: #5f0080;
-  border-bottom: 1px solid #5f0080;
-`;
-
-const KurlyRecipe = styled.span`
-  cursor: pointer;
-  color: #5f0080;
-  border-bottom: 1px solid #5f0080;
-`;
-
-const UserRecipe = styled.span`
-  cursor: pointer;
-  color: #5f0080;
-  border-bottom: 1px solid #5f0080;
-`;
-
-const Review = styled.span`
-  cursor: pointer;
-  color: #5f0080;
-  border-bottom: 1px solid #5f0080;
-`;
-
-const KurlyTip = styled.span`
-  cursor: pointer;
-  color: #5f0080;
-  border-bottom: 1px solid #5f0080;
 `;
 
 const DeliveryBtn = styled.button`
