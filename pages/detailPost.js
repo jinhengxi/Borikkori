@@ -43,6 +43,7 @@ margin-bottom: 100px;
 const UserPostCard = styled.div`
 margin-top: 50px;
 width: 330px;
+cursor: pointer;
 `;
 
 const UserPostImg = styled.img`

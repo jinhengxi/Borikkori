@@ -114,6 +114,7 @@ border-color : ${props => props.active? 'rgb(182,154, 202)' : 'rgb(230, 228, 225
 padding:16px;
 color: ${props => props.active? 'rgb(182,154, 202)' : 'rgb(230, 228, 225)'};
 font-weight:bold;
+cursor: pointer;
 `;
 
 
