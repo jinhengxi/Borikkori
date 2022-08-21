@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import styled from 'styled-components'
 
-function DetailPost () {
+const DetailPost = () => {
   
     const [userDetailPost, setUserDetailPost] = useState();
 
@@ -9,7 +9,7 @@ function DetailPost () {
         fetch('data/UserDetailData.json', {
           method: 'GET',
         })
-          .then(data => data.json())
+          .then(res => res.json())
           .then(data => {
             setUserDetailPost(data);
           });

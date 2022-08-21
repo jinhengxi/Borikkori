@@ -4,14 +4,13 @@ import DetailPost from './detailPost';
 import DetailReview from './detailReview';
 
 
-function UserDetailPage () {
+const UserDetailPage = () => {
     const [catagoryList,setCatagoryList] = useState(1);
   
     const list = {
         1:   <DetailPost/>,
         2:  <DetailReview/>
       };
-
 
   return (
     <UserDetail>
