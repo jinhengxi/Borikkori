@@ -9,6 +9,7 @@ function CoverImg() {
         업로드 해주세요.
       </Explanation>
       <AddImg>커버 사진 추가</AddImg>
+      
     </Container>
   );
 }
@@ -18,6 +19,7 @@ export default CoverImg;
 const Container = styled.div`
   width: 100%;
   height: 440px;
+  margin-top: 30px;
   ${props => props.theme.flex.flexBox('column')};
   background-color: #f4f3f2;
 `;
