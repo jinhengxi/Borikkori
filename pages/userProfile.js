@@ -98,7 +98,7 @@ color: 20px;
 const ActionIcons= styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 110px;`;
+    margin-top: 120px;`;
 
 const WatchBox = styled.div`
     display: flex;
@@ -148,6 +148,7 @@ font-size: 40px;
 font-weight: bold;
 color: #393939;
 margin-bottom: 20px;
+margin-top: 70px;
 `;
 
 const CookContent = styled.div`

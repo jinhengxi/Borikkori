@@ -12,6 +12,9 @@ const RecipeDetail = () => {
   return (
     <RecipeDetailWrapper>
       <UserProfile/>
+      <CookingSteps/>
+      <DetailComment/>
+      <SimilarCasousel/>
     </RecipeDetailWrapper>
   )
 }
