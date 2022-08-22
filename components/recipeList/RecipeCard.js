@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const RecipeCard = ({ data }) => {
   const { foodImage, foodTitle, views, likes, comments } = data;
+
   return (
     <RecipeCardWrapper>
       <RecipeImg src={foodImage} />
