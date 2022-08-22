@@ -1,16 +1,18 @@
 import { useState} from 'react';
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
 import DetailPost from './detailPost';
 import DetailReview from './detailReview';
 
 
 const UserDetailPage = () => {
-    const [catagoryList,setCatagoryList] = useState(1);
+  const router = useRouter();
+    // const [catagoryList,setCatagoryList] = useState(1);
   
-    const list = {
-        1:   <DetailPost/>,
-        2:  <DetailReview/>
-      };
+    // const list = {
+    //     1:   <DetailPost/>,
+    //     2:  <DetailReview/>
+    //   };
 
   return (
     <UserDetail>
@@ -28,15 +30,17 @@ const UserDetailPage = () => {
 </ProfileTextBox>
     </ProfileBox>
     <UserCategory>
-        {CATAGORY_LIST.map(({id, title})=>(
+        {/* {CATAGORY_LIST.map(({id, title})=>(
             <UserRecipe key={id}
             onClick={() => setCatagoryList(id)}
             active={catagoryList === id}
-            >{title}</UserRecipe>
+            >{title}(100)</UserRecipe>
         ))}
-    
+     */}
+
+
     </UserCategory>
-  {list[catagoryList]}
+  {/* {list[catagoryList]} */}
     </DetailWrapper>
     </UserDetail>
   )
