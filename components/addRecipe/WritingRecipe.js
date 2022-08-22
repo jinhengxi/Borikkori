@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
-function writingRecipe() {
+function writingRecipe({ handleWritingRecipe }) {
   return (
-    <Container>
-      <RecipeTitle placeholder='레시피 제목을 입력하세요.' />
-      <RecipeContent placeholder='레시피 소개 내용을 작성하세요.'/>
+    <Container onChange={handleWritingRecipe}>
+      <RecipeTitle
+        name="title"
+        type="text"
+        placeholder="레시피 제목을 입력하세요."
+      />
+      <RecipeContent
+        name="content"
+        type="text"
+        placeholder="레시피 소개 내용을 작성하세요."
+      />
     </Container>
   );
 }
