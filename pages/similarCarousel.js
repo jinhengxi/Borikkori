@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Slider from "react-slick";
-import SimilarCarouselCard from './SimilarCarouselCard';
+import SimilarCarouselCard from './similarCarouselCard';
+import { GrPrevious, GrNext } from 'react-icons/gr';
 
 
-
-const SimilarCasousel = () => {
+const SimilarCarousels = () => {
 
     const [simillar, setSimillar] = useState();
 
@@ -27,6 +27,8 @@ const SimilarCasousel = () => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
+        nextArrow: <GrNext />,
+        prevArrow: <GrPrevious />,
       };
       
     return (
@@ -63,16 +65,20 @@ const StyledSlider = styled(Slider)`
     }
   }
 
-  .slick-prev {
+  .slick-prev, .slick-next{
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
     top: 45%;
-    left: 26px;
-    z-index: 1;
-  }
-
-  .slick-next {
-    top: 45%;
-    right:  55px;
-    z-index: 1;
+    width: 30px;
+    height: 100px;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
   }
 `;
 
@@ -111,4 +117,4 @@ width: 100%;
 
 `;
 
-export default SimilarCasousel;
+export default SimilarCarousels;

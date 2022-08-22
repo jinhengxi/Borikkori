@@ -2,16 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import CookingSteps from './CookingSteps'
 import DetailComment from './DetailComment'
-import FoodInfo from './FoodInfo'
+import Igredient from './ingredient'
 
 import RecipeCarousel from './RecipeCarousel'
-import SimilarCasousel from './SimilarCasousel'
+import SimilarCasousel from './similarCarousel'
 import UserProfile from './UserProfile'
 
 const RecipeDetail = () => {
   return (
     <RecipeDetailWrapper>
       <UserProfile/>
+      <Igredient/>
+      <RecipeCarousel/>
       <CookingSteps/>
       <DetailComment/>
       <SimilarCasousel/>

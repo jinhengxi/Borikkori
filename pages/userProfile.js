@@ -63,6 +63,7 @@ const UserProfile = () => {
 const UserProfiles = styled.div`
   width:1050px;
   margin-top: 20px;
+  margin-bottom: 100px;
 `;
 
 const FoodThumb = styled.img`
