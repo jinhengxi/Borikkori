@@ -19,7 +19,7 @@ const BestRecipe = () => {
     <BestWrapper>
       <BestTitle>BEST</BestTitle>
       <BestImgWrapper>
-        {bestRecipes.map(data => (
+        {bestRecipes?.map(data => (
           <BestImgDiv key={data.id} data={data} />
         ))}
       </BestImgWrapper>

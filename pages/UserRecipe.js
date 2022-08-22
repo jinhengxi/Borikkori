@@ -48,15 +48,15 @@ const UserRecipe = () => {
             </UserId>
             <RecipeInfo>
               <Views>
-                <InfoIcons src="/assets/images/Views.png" />
+                <InfoIcons src="/images/Views.png" />
                 {recipe.views}
               </Views>
               <Likes>
-                <InfoIcons src="/assets/images/Likes.png" />
+                <InfoIcons src="/images/Likes.png" />
                 {recipe.likes}
               </Likes>
               <Comments>
-                <InfoIcons src="/assets/images/Comments.png" />
+                <InfoIcons src="/images/Comments.png" />
                 {recipe.comments}
               </Comments>
             </RecipeInfo>

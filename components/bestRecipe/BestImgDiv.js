@@ -59,6 +59,7 @@ const BestImgWrapper = styled.div`
   margin: 10px;
   display: flex;
   cursor: pointer;
+  border-radius: 10px;
   background-size: 200%;
   background-image: url(${props => props.recipeImg});
   background-position: center;
@@ -79,7 +80,8 @@ const BestImgWrapper = styled.div`
 `;
 
 const BestInfoDiv = styled.div`
-  padding: 50px 40px;
+  padding: 30px 40px;
+  border-radius: 10px;
   height: 470px;
   width: 470px;
   display: flex;
