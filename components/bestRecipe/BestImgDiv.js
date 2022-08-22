@@ -6,7 +6,6 @@ const BestImgDiv = ({ data }) => {
   const { views, likes, comments } = information;
   const { icon, rank, nickname } = user;
 
-  console.log(user);
   return (
     <BestImgWrapper recipeImg={recipeImg}>
       <BestInfoDiv>

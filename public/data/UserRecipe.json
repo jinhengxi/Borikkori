@@ -1,0 +1,101 @@
+[
+    {
+        "id": 0,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "제육볶음",
+        "views" : 200,
+        "likes" : 30,
+        "comments": 25
+    },
+    {
+        "id": 1,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "오징어볶음",
+        "views" : 300,
+        "likes" : 23,
+        "comments": 31  
+    },
+    {
+        "id": 2,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "생선구이",
+        "views" : 420,
+        "likes" : 12,
+        "comments": 35
+    },
+    {
+        "id": 3,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "감자탕",
+        "views" : 253,
+        "likes" : 25,
+        "comments": 13
+    },
+    {
+        "id": 4,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "닭도리탕",
+        "views" : 315,
+        "likes" : 21,
+        "comments": 41
+    },
+    {
+        "id": 5,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "김치찌개",
+        "views" : 135,
+        "likes" : 13,
+        "comments": 55
+    },
+    {
+        "id": 6,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "초밥",
+        "views" : 123,
+        "likes" : 24,
+        "comments": 13
+    },
+    {
+        "id": 7,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "계란말이",
+        "views" : 354,
+        "likes" : 20,
+        "comments": 15
+    }, 
+    {
+        "id": 8,
+        "userId": "tokkichef",
+        "userIcon": "assets/images/userIcon.png",
+        "userRank": "assets/images/userRank.png",
+        "foodImage": "assets/images/Food.png",
+        "foodTitle": "된장찌개",
+        "views" : 135,
+        "likes" : 24,
+        "comments": 53
+    }
+]
