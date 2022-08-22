@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Pagination from '../components/Pagination';
 
 const UserRecipe = () => {
+  const [limit, setLimit] = useState(9);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
   const [recipeData, setRecipeData] = useState([]);
   useEffect(() => {
     fetch('data/UserRecipe.json', {
@@ -36,10 +40,9 @@ const UserRecipe = () => {
         </WriterWrapper>
       </RecipeFilter>
       <RecipeList>
-        {recipeData.map(recipe => (
+        {recipeData.slice(offset, offset + limit).map(recipe => (
           <RecipeCard key={recipe.id}>
             <RecipeImg src={recipe.foodImage} />
-
             <RecipeName>{recipe.foodTitle}</RecipeName>
             <UserId>
               <UserIcon src={recipe.userIcon} />
@@ -63,7 +66,14 @@ const UserRecipe = () => {
           </RecipeCard>
         ))}
       </RecipeList>
-      <RecipePaginate>Pagination</RecipePaginate>
+      <RecipePaginate>
+        <Pagination
+          total={recipeData.length}
+          limit={limit}
+          page={page}
+          setPage={setPage}
+        />
+      </RecipePaginate>
       <RecipeSearch>
         <SearchSelect>
           <option>글제목</option>
@@ -298,7 +308,7 @@ const InfoIcons = styled.img`
 const RecipePaginate = styled.div`
   width: 1050px;
   height: 29px;
-  margin-top: 51px;
+  margin: 40px 0;
   display: flex;
   justify-content: center;
   align-items: center;
