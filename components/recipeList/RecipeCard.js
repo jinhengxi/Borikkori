@@ -11,15 +11,15 @@ const RecipeCard = ({ data }) => {
       <RecipeName>{foodTitle}</RecipeName>
       <RecipeInfo>
         <Views>
-          <InfoIcons src="/assets/images/Views.png" />
+          <InfoIcons src="/images/Views.png" />
           {views}
         </Views>
         <Likes>
-          <InfoIcons src="/assets/images/Likes.png" />
+          <InfoIcons src="/images/Likes.png" />
           {likes}
         </Likes>
         <Comments>
-          <InfoIcons src="/assets/images/Comments.png" />
+          <InfoIcons src="/images/Comments.png" />
           {comments}
         </Comments>
       </RecipeInfo>
