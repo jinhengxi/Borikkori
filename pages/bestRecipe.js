@@ -18,6 +18,7 @@ const BestRecipe = () => {
   return (
     <BestWrapper>
       <BestTitle>BEST</BestTitle>
+
       <BestImgWrapper>
         {bestRecipes?.map(data => (
           <BestImgDiv key={data.id} data={data} />
