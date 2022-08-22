@@ -1,0 +1,13 @@
+{
+    "result":
+    {
+        "id":1,
+        "thumbnail":"",
+        "name":"보리꼬리",
+        "rating_id":1,
+        "rating_name":"더퍼플",
+        "rating_mark_image":"/images/LevelPurple.png",
+        "recipe_count":4,
+        "review_count":4
+    }
+}

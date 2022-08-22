@@ -1,47 +1,64 @@
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import styled from 'styled-components'
-import { useRouter } from 'next/router'
 import DetailPost from './detailPost';
 import DetailReview from './detailReview';
 
 
 const UserDetailPage = () => {
-  const router = useRouter();
-    // const [catagoryList,setCatagoryList] = useState(1);
-  
-    // const list = {
-    //     1:   <DetailPost/>,
-    //     2:  <DetailReview/>
-    //   };
+ 
+  const [categoryList,setCategoryList] = useState(true);
+  const [userInfoList, setUserInfoList] = useState();
+
+  useEffect(() => {
+    fetch('data/Userdata.json', {
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(data => {
+        setUserInfoList(data.result);
+      });
+  }, []);
+
+
+  const activeReview = () => {
+    setCategoryList(true);
+  };
+
+  const activeRecipe = () => {
+    setCategoryList(false);
+  };
+
 
   return (
+    
     <UserDetail>
-        <DetailWrapper>
-    <ProfileBox>
-        <ProfileImgWrapper>
-<ProfileImg src='/images/UserProfile.png'/>
-</ProfileImgWrapper>
-<ProfileTextBox>
-<UserId>보리꼬리</UserId>
-<LevelBox>
-<LevelLogo src='/images/LevelPurple.png'/>
-<UserLevel>더퍼플</UserLevel>
-</LevelBox>
-</ProfileTextBox>
-    </ProfileBox>
-    <UserCategory>
-        {/* {CATAGORY_LIST.map(({id, title})=>(
-            <UserRecipe key={id}
-            onClick={() => setCatagoryList(id)}
-            active={catagoryList === id}
-            >{title}(100)</UserRecipe>
-        ))}
-     */}
-
-
-    </UserCategory>
-  {/* {list[catagoryList]} */}
-    </DetailWrapper>
+      {userInfoList && (
+      <DetailWrapper>
+      <ProfileBox>
+          <ProfileImgWrapper>
+  <ProfileImg src='/images/UserProfile.png'/>
+  </ProfileImgWrapper>
+  <ProfileTextBox>
+  <UserId>{userInfoList.name}</UserId>
+  <LevelBox>
+  <LevelLogo src={userInfoList.rating_mark_image}/>
+  <UserLevel>{userInfoList.rating_name}</UserLevel>
+  </LevelBox>
+  </ProfileTextBox>
+      </ProfileBox>
+      <UserCategory>
+  
+       <UserRecipe active={categoryList} onClick={activeReview} >
+      작성레시피({userInfoList.recipe_count})
+       </UserRecipe>
+       <UserReview active={categoryList} onClick={activeRecipe}>
+      작성후기({userInfoList.review_count})
+       </UserReview>
+      </UserCategory>
+    {categoryList=== true?  <DetailPost/> : <DetailReview/> }
+      </DetailWrapper>
+      )}
+  
     </UserDetail>
   )
 }
@@ -114,22 +131,23 @@ width: 350px;
 justify-content: center;
 display: flex;
 border-top: 2px solid ;
-border-color : ${props => props.active? 'rgb(182,154, 202)' : 'rgb(230, 228, 225)'};
+border-color : ${props => props.active === true ?    'rgb(182,154, 202)':'rgb(230, 228, 225)'};
 padding:16px;
-color: ${props => props.active? 'rgb(182,154, 202)' : 'rgb(230, 228, 225)'};
+color: ${props => props.active === true ?  'rgb(182,154, 202)' : 'rgb(230, 228, 225)'  };
 font-weight:bold;
 cursor: pointer;
 `;
 
+const UserReview = styled.div`
+width: 350px;
+justify-content: center;
+display: flex;
+border-top: 2px solid ;
+border-color : ${props => props.active  === false?  'rgb(182,154, 202)' : 'rgb(230, 228, 225)' };
+padding:16px;
+color: ${props => props.active  === false ?  'rgb(182,154, 202)' : 'rgb(230, 228, 225)' };
+font-weight:bold;
+cursor: pointer;
+`;
 
-const CATAGORY_LIST = [
-    {
-      id: 1,
-      title: '작성 레시피',
-    },
-    {
-      id: 2,
-      title: '작성 후기',
-    },
-]
 export default UserDetailPage
