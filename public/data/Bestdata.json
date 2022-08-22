@@ -1,0 +1,112 @@
+[
+    {
+        "id": 0,
+        "recipeName": "쌀국수",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식.jpg",
+        "user": {
+            "id": 0,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id": 0,
+            "views": 1021,
+            "likes": 1512,
+            "comments": 1313
+        }
+    },
+    {
+        "id": 1,
+        "recipeName": "닭갈비",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식1.png",
+        "user": {
+            "id": 1,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id": 1,
+            "views": 1241,
+            "likes": 1346,
+            "comments": 1222
+        }
+    },
+    {
+        "id": 2,
+        "recipeName": "칼국수",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식2.png",
+        "user": {
+            "id": 2,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id":2,
+            "views": 1021,
+            "likes": 1512,
+            "comments": 1313
+        }
+    },
+    {
+        "id": 3,
+        "recipeName": "짜장면",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식3.png",
+        "user": {
+            "id": 3,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id": 3,
+            "views": 1021,
+            "likes": 1512,
+            "comments": 1313
+        }
+    },
+    {
+        "id": 4,
+        "recipeName": "평양냉면",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식4.png",
+        "user": {
+            "id": 4,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id": 4,
+            "views": 1021,
+            "likes": 1512,
+            "comments": 1313
+        }
+    },
+    {
+        "id": 5,
+        "recipeName": "김치우동",
+        "recipeDesc": "정말 맛있어요~!",
+        "recipeImg": "images/음식5.png",
+        "user": {
+            "id": 5,
+            "icon": "images/userIcon.png",
+            "rank": "images/userRank.png",
+            "nickname": "tokkichef"
+        },
+        "information": {
+            "id":0,
+            "views": 1021,
+            "likes": 1512,
+            "comments": 1313
+        }
+    }
+    
+   
+]
