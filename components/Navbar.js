@@ -87,8 +87,8 @@ const Nav = () => {
           </KurlyDiv>
           <SearchDiv>
             <SearchInput placeholder="검색어를 입력해 주세요." />
-            <SearchIcon src="/assets/images/Search.png" />
-            <KirmuBtn>커뮤니티</KirmuBtn>
+            <SearchIcon src="/images/Search.png" />
+            <KirmuBtn onClick={() => router.push('/')}>커뮤니티</KirmuBtn>
           </SearchDiv>
           <IconDiv>
             <Icons>

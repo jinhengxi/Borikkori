@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import RecipeCard from '../components/recipeList/RecipeCard';
 
-const UserRecipe = () => {
+const KurlyRecipe = () => {
   const [recipeData, setRecipeData] = useState([]);
   useEffect(() => {
     fetch('data/UserRecipe.json', {
@@ -12,9 +13,10 @@ const UserRecipe = () => {
         setRecipeData(data);
       });
   }, []);
+
   return (
     <UserRecipeWrapper>
-      <RecipeTitle>회원레시피</RecipeTitle>
+      <RecipeTitle>컬리의레시피</RecipeTitle>
       <RecipeCategory>
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv key={data.id}>{data.name}</CategoryDiv>
@@ -31,37 +33,11 @@ const UserRecipe = () => {
           <FilterBtn>추천순</FilterBtn>
           <FilterBtn>조회순</FilterBtn>
         </FilterWrapper>
-        <WriterWrapper>
-          <WriteBtn>글쓰기</WriteBtn>
-        </WriterWrapper>
       </RecipeFilter>
       <RecipeList>
-        {recipeData.map(recipe => (
-          <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.foodImage} />
-
-            <RecipeName>{recipe.foodTitle}</RecipeName>
-            <UserId>
-              <UserIcon src={recipe.userIcon} />
-              <UserRank src={recipe.userRank} />
-              <UserProfile>{recipe.userId}</UserProfile>
-            </UserId>
-            <RecipeInfo>
-              <Views>
-                <InfoIcons src="/assets/images/Views.png" />
-                {recipe.views}
-              </Views>
-              <Likes>
-                <InfoIcons src="/assets/images/Likes.png" />
-                {recipe.likes}
-              </Likes>
-              <Comments>
-                <InfoIcons src="/assets/images/Comments.png" />
-                {recipe.comments}
-              </Comments>
-            </RecipeInfo>
-          </RecipeCard>
-        ))}
+        {recipeData?.map(data => {
+          <RecipeCard key={data.id} data={data} />;
+        })}
       </RecipeList>
       <RecipePaginate>Pagination</RecipePaginate>
       <RecipeSearch>
@@ -76,7 +52,7 @@ const UserRecipe = () => {
   );
 };
 
-export default UserRecipe;
+export default KurlyRecipe;
 
 const UserRecipeWrapper = styled.div`
   width: 1050px;
@@ -174,22 +150,6 @@ const FilterBtn = styled.button`
   }
 `;
 
-const WriterWrapper = styled.div`
-  width: 73px;
-  height: 28px;
-`;
-
-const WriteBtn = styled.button`
-  width: 73px;
-  height: 28px;
-  background-color: #795b8f;
-  color: white;
-  font-size: 12px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-`;
-
 const RecipeList = styled.div`
   width: 1050px;
   display: flex;
@@ -198,107 +158,10 @@ const RecipeList = styled.div`
   flex-wrap: wrap;
 `;
 
-const RecipeCard = styled.div`
-  width: 305px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #e0ddda;
-  border-radius: 5px;
-  margin: 22px;
-  cursor: pointer;
-`;
-
-const RecipeImg = styled.img`
-  margin: 16px;
-  margin-bottom: 10px;
-  width: 271px;
-  height: 271px;
-  background-size: cover;
-`;
-
-const UserId = styled.div`
-  width: 271px;
-  height: 20.45px;
-  display: flex;
-  align-items: center;
-  margin: 8px 0;
-  margin-bottom: 10px;
-`;
-
-const UserIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 5px;
-`;
-
-const UserRank = styled.img`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 5px;
-`;
-
-const UserProfile = styled.span`
-  width: 60px;
-  height: 11px;
-  font-size: 14px;
-  font-weight: bold;
-`;
-
-const RecipeName = styled.p`
-  width: 270px;
-  height: 20px;
-  font-weight: 600;
-  font-size: 22px;
-  margin: 8px 0;
-`;
-
-const RecipeInfo = styled.div`
-  width: 271px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  font-size: 10px;
-  color: #a3a3a3;
-`;
-
-const Views = styled.div`
-  width: 40px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Likes = styled.div`
-  width: 40px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Comments = styled.div`
-  width: 40px;
-  height: 20px;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-`;
-
-const InfoIcons = styled.img`
-  width: 12px;
-  height: 12px;
-  margin-right: 3px;
-`;
-
 const RecipePaginate = styled.div`
   width: 1050px;
   height: 29px;
-  margin-top: 51px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
