@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useState } from 'react';
 
 function RecipeItem() {
-  //   document.body.style.overflow = "hidden";
+  const [isModal, setIsModal] = useState(false);
+
+  const handleModalOn = ()=>{
+    setIsModal(true)
+    document.body.style.overflow = "hidden";
+  }
+
+  const handleModalOff = ()=>{
+    setIsModal(false)
+    document.body.style.overflow = 'unset';
+  }
+
   return (
     <Container>
       <RecipeItemTitle>Recipe Items</RecipeItemTitle>
       <CardBox>
         <RecipeItemCard>
-          <AddBtn>+</AddBtn>
+          <AddBtn onClick={handleModalOn}>+</AddBtn>
         </RecipeItemCard>
         <RecipeItemCard>
           <RemoveBtn>X</RemoveBtn>
@@ -24,7 +36,7 @@ function RecipeItem() {
           </ItemInfo>
         </RecipeItemCard>
       </CardBox>
-      <Modal>
+      <Modal isModal={isModal}>
         <ModalBody>
           <ModalTitle>Recipe Items</ModalTitle>
           <InputBox>
@@ -54,7 +66,7 @@ function RecipeItem() {
             </RecipeItemCard>
           </ModalItem>
           <ModalBtns>
-            <CancelBtn>취소하기</CancelBtn>
+            <CancelBtn onClick={handleModalOff}>취소하기</CancelBtn>
             <SaveBtn>저장하기</SaveBtn>
           </ModalBtns>
         </ModalBody>
@@ -143,7 +155,7 @@ const Modal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   ${props => props.theme.flex.flexBox()};
   z-index: 999;
-  display: none;
+  display: ${({ isModal }) => (isModal ? 'flex' : 'none')};
 `;
 
 const ModalBody = styled.div`

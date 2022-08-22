@@ -1,6 +1,14 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 
 function CoverImg() {
+  const imgRef = useRef();
+
+  const handleFileUpload = () => {
+    imgRef.current.click();
+  };
+
+
   return (
     <Container>
       <Explanation>
@@ -8,8 +16,8 @@ function CoverImg() {
         <br />
         업로드 해주세요.
       </Explanation>
-      <AddImg>커버 사진 추가</AddImg>
-      
+      <AddImg onClick={handleFileUpload}>커버 사진 추가</AddImg>
+      <FileInput type='file' accept='image/*' ref={imgRef}/>
     </Container>
   );
 }
@@ -19,7 +27,7 @@ export default CoverImg;
 const Container = styled.div`
   width: 100%;
   height: 440px;
-  margin-top: 30px;
+  margin-top: 10px;
   ${props => props.theme.flex.flexBox('column')};
   background-color: #f4f3f2;
 `;
@@ -30,7 +38,7 @@ const Explanation = styled.div`
   font-size: ${props => props.theme.fontSizes.small};
 `;
 
-const AddImg = styled.button`
+const AddImg = styled.div`
   width: 168px;
   height: 55px;
   margin-top: 15px;
@@ -39,8 +47,14 @@ const AddImg = styled.button`
   border-radius: 5px;
   color: ${props => props.theme.colors.white};
   font-size: ${props => props.theme.fontSizes.base};
+  ${props => props.theme.flex.flexBox()};
+  cursor: pointer;
 
   &:active {
     background-color: #969696;
   }
 `;
+
+const FileInput = styled.input`
+  display: none;
+`

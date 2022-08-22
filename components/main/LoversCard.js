@@ -14,7 +14,6 @@ function LoversCard() {
           />
           <CardNickName>
             <Nickname>tokkichef</Nickname>
-
             <Image src="/images/grade.png" alt="Grade" width={10} height={10} />
           </CardNickName>
         </CardContent>
@@ -40,6 +39,7 @@ const LoversCards = styled.div`
 
 const CardContent = styled.div`
   padding: 15px 0;
+  cursor: pointer;
 
   img {
     border-radius: 50%;
