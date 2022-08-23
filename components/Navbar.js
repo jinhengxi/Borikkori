@@ -20,8 +20,8 @@ const Nav = () => {
   `;
   const UserRecipe = styled.span`
     cursor: pointer;
-    color: ${router.pathname === '/userRecipe' ? '#5f0080' : 'black'};
-    border-bottom: ${router.pathname === '/userRecipe'
+    color: ${router.pathname === '/UserRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/UserRecipe'
       ? '1px solid #5f0080'
       : 'none'};
   `;
@@ -191,7 +191,7 @@ const Nav = () => {
             <KurlyRecipe onClick={() => router.push('/kurlyRecipe')}>
               컬리의레시피
             </KurlyRecipe>
-            <UserRecipe onClick={() => router.push('/userRecipe')}>
+            <UserRecipe onClick={() => router.push('/UserRecipe')}>
               회원 레시피
             </UserRecipe>
             <Review onClick={() => router.push('/review')}>리뷰</Review>

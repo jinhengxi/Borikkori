@@ -96,7 +96,7 @@ const KurlyRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
@@ -107,7 +107,7 @@ const KurlyRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
               router.push({ query: { ...router.query, sub: data.value } })
             }
@@ -121,7 +121,7 @@ const KurlyRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
                 router.push({ query: { ...router.query, sort: data.value } })
               }

@@ -8,7 +8,7 @@ const UserRecipe = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const [recipeData, setRecipeData] = useState([]);
-  const [searchOption, setSearchOption] = useState('제목');
+  const [searchOption, setSearchOption] = useState(1);
   const [searchText, setSearchText] = useState('');
 
   const router = useRouter();
@@ -19,26 +19,20 @@ const UserRecipe = () => {
   };
 
   const onSubmit = e => {
-    router.push({ query: { tag: searchOption, search: searchText } });
-
+    router.push({ query: { main: 1, tag: searchOption, search: searchText } });
     e.preventDefault();
   };
 
   useEffect(() => {
-    fetch('data/UserRecipe.json', {
+    fetch(`http://10.58.5.197:8000/recipe/4/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setRecipeData(data);
+        setRecipeData(data.result);
       });
-  }, []);
+  }, [router.query]);
 
-  const FilteredData = recipeData.filter(
-    data => typeof data.userId !== 'number'
-  );
-
-  console.log(FilteredData);
   const CategoryDiv = styled.p`
     width: 65px;
     height: 19px;
@@ -101,7 +95,7 @@ const UserRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
@@ -112,7 +106,7 @@ const UserRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
               router.push({ query: { ...router.query, sub: data.value } })
             }
@@ -126,7 +120,7 @@ const UserRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
                 router.push({ query: { ...router.query, sort: data.value } })
               }
@@ -327,6 +321,9 @@ const RecipeName = styled.p`
   font-weight: 600;
   font-size: 22px;
   margin: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const RecipeInfo = styled.div`
