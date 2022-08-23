@@ -88,7 +88,7 @@ const Nav = () => {
           <SearchDiv>
             <SearchInput placeholder="검색어를 입력해 주세요." />
             <SearchIcon src="/images/Search.png" />
-            <KirmuBtn>커뮤니티</KirmuBtn>
+            <KirmuBtn onClick={() => router.push('/')}>커뮤니티</KirmuBtn>
           </SearchDiv>
           <IconDiv>
             <Icons>
