@@ -1,19 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import styled from 'styled-components';
+import SubComment from './subComment';
 
 
 const DetailComment = () => {
 
+  const [commentDataList,setCommentDataList] = useState();  
+  useEffect(() => {
+    fetch('data/commentData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCommentDataList(data.result);
+      });
+  }, []);
+
+;
+
+
   const [input, setInput] = useState('');
   const [bChecked, setChecked] = useState(false);
   const [heartState,setHeartState] = useState(false);
+  const [talk,setTalk] = useState(false);
+  const [heartId, setHeartId] = useState();
+  const [commentId, setCommentId] = useState();
+  // const [talkToggle, setTalkToggle] = useState(); 
+
 
 const checkHandler = () => {
   setChecked(!bChecked);
 };
 
-const heartHandler = () => {
+const heartHandler = (id)=> {
   setHeartState(!heartState)
+  setHeartId(id)
+};
+
+
+const talkHandler = (id) => {
+  setTalk(!talk)
+  setCommentId(id)
 };
 
 const commentUpload = (input, bChecked) => {
@@ -35,72 +62,82 @@ const commentUpload = (input, bChecked) => {
     });
 };
 
+//좋아요 POST
+// const likeAction = ( xx) => {
+//   fetch(``, {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       likeAction:xx
+//     }),
+//   })
+//     .then((res) => {
+//       if (res.ok) {
+//         return res.json();
+//       }
+//     })
+//     .then((data) => {
+//       if (data) {
+//       }
+//     });
+// };
+
+//대댓글 
+// const commentAction = ( xx) => {
+//   fetch(``, {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       likeAction:xx
+//     }),
+//   })
+//     .then((res) => {
+//       if (res.ok) {
+//         return res.json();
+//       }
+//     })
+//     .then((data) => {
+//       if (data) {
+//       }
+//     });
+// };
+
+
     return (
-        <Comment>
+      <CommentWrapper>
+        {commentDataList &&  <Comment>
         <CommentTitles>Comment</CommentTitles>
-        <CommentBox>      
-          <CommentTop>
-          <CommentImg src='/images/프로필.png'/>
-          <CommentTextBox>
-            <Left>
-            <Lavel>댓글</Lavel>
-            <UserId>ssssssscscs</UserId>
-            </Left>
-            <Date>2022.05.09</Date>
-          </CommentTextBox>
-          </CommentTop>
-          <CommentContent>
-          닭 2마리해서 모든 양을 두배로 해보았어요. 제가 종이컵 1개를 200ml로 착각해서 국물이 너무 많았어요~ 중간에 좀 덜어놓고 했는데 그래서인지 살짝 싱거웠네요. 닭육질은 너무 부드러웠습니다. 닭 1마리 정량으로 조만간 다시 시도해볼 예정입니다. 맛있는 레시피 감사합니다 ^^ 
-          </CommentContent>
-          <CommentIconBox>
-            <HeartIconBox>
-              <HeartIcon src='/images/HeartGray.png'/>
-              <HeartNum>100</HeartNum>
-            </HeartIconBox>
-            <ComIconBox>
-              <ComIcon src='/images/TalkGray.png'/>
-              <ComNum>100</ComNum>
-            </ComIconBox>
-          </CommentIconBox>
-        </CommentBox>
-        <CommentBox>      
-          <CommentTop>
-          <CommentImg src='/images/프로필.png'/>
-          <CommentTextBox>
-            <Left>
-            <Lavel>댓글</Lavel>
-            <UserId>ssssssscscs</UserId>
-            </Left>
-            <Date>2022.05.09</Date>
-          </CommentTextBox>
-          </CommentTop>
-          <CommentContent>
-          닭 2마리해서 모든 양을 두배로 해보았어요. 제가 종이컵 1개를 200ml로 착각해서 국물이 너무 많았어요~ 중간에 좀 덜어놓고 했는데 그래서인지 살짝 싱거웠네요. 닭육질은 너무 부드러웠습니다. 닭 1마리 정량으로 조만간 다시 시도해볼 예정입니다. 맛있는 레시피 감사합니다 ^^ 
-          </CommentContent> 
-          <CommentIconBox>
-            <HeartIconBox>
-              <HeartIcon  src= {heartState ? '/images/HeartRed.png': '/images/HeartGray.png'  } 
-              onChange={heartHandler} onClick={()=>heartHandler}/>
-              <HeartNum >100</HeartNum>
-            </HeartIconBox>
-            <ComIconBox>
-              <ComIcon src='/images/TalkGray.png'/>
-              <ComNum>100</ComNum>
-            </ComIconBox>
-          </CommentIconBox>
-          <SubCommentBox>
-            <SubCommentIcon src='/images/subCommentGray.png'/>
-            <SubCommentWrapper>
-            <InfoBox>
-              <SubUserId>하이하이</SubUserId>
-              <SubComment>저도 한번 만들어 먹어봐야 겠어요~!</SubComment>
-            </InfoBox>
-            <UpLoadBox>
-              <CommentUpLoadInput/>
-              <SubUpLoadBtn>등록</SubUpLoadBtn>
-            </UpLoadBox>
-            </SubCommentWrapper>
-          </SubCommentBox>
+       
+        <CommentBox> 
+          {commentDataList?.map(({id,user_name,user_thumbnail,content,created_at,tag,liked})=>(
+             <ComWrap key={id}>
+               <CommentTop>
+               <CommentImg src={user_thumbnail}/>
+               <CommentTextBox>
+                 <Left>
+                  { tag ? <Lavel2>질문</Lavel2> : <Lavel>댓글</Lavel> }
+                 <UserId>{user_name}</UserId>
+                 </Left>
+                 <Date>{created_at}</Date>
+               </CommentTextBox>
+               </CommentTop>
+               <CommentContent>
+              {content}
+               </CommentContent> 
+               <CommentIconBox>
+                 <HeartIconBox>
+                   <HeartIcon src= {liked ? '/images/HeartPurple.png': '/images/HeartGray.png'  } 
+                    onClick={ () => { heartHandler(id) } }
+                    />
+                   <HeartNum>100</HeartNum>
+                 </HeartIconBox>
+                 <ComIconBox>
+                   <ComIcon  value={talk} src={id === commentId ?'/images/TalkBlue.png' : '/images/TalkGray.png' } onClick={()=>{ talkHandler(id);}}/>
+                   <ComNum>100</ComNum>
+                 </ComIconBox>
+               </CommentIconBox>
+               {id === commentId ?  <SubComment/>: '' }
+               </ComWrap>
+          ))}     
+       
         </CommentBox>
         <Upload>
         <LavelSelectBox>
@@ -114,9 +151,13 @@ const commentUpload = (input, bChecked) => {
             <CommentBtn onClick={()=>{commentUpload()}}>등록</CommentBtn>
           </WriteCommentBox>
           </Upload>
-      </Comment>
+      </Comment>}
+       
+      </CommentWrapper>
     );
 };
+
+const CommentWrapper = styled.div``;
 
 const Comment = styled.div`
   width:1050px;
@@ -128,6 +169,10 @@ const CommentTitles= styled.div`
 font-weight: bold;
 font-size: 24px;
 margin-bottom: 50px;
+`;
+
+const ComWrap= styled.div`
+
 `;
 
 
@@ -174,6 +219,17 @@ const Lavel= styled.div`
     color: #969696;
 `;
 
+const Lavel2= styled.div`
+    width: 66px;
+    height: 34px;
+    padding: 7px;
+    border: 1px solid #5F0080;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 16px;
+    margin-right: 10px;
+    color: #5F0080;
+`;
 const UserId= styled.div`
 font-size: 20px;
 font-weight: bold;
@@ -197,42 +253,6 @@ margin-left: 84px;
 margin-top: 30px;
 
 `;
-
-const SubCommentBox = styled.div`
-display: flex;
-margin-left: 84px;
-margin-top: 30px;
-`;
-
-const SubCommentIcon = styled.img`
-padding: 5px;
-width:30px;
-height:30px;
-margin-right: 10px;
-`;
-
-const SubCommentWrapper = styled.img`
-display: flex;
-flex-direction: column;
-`;
-const InfoBox = styled.div`
-padding: 10px;`;
-
-
-const SubUserId = styled.p``;
-
-
-const SubComment = styled.p``;
-
-
-const UpLoadBox = styled.div``;
-
-
-const CommentUpLoadInput = styled.input``;
-
-
-const SubUpLoadBtn = styled.button``;
-
 
 const HeartIconBox= styled.div`
 display: flex;
@@ -334,6 +354,9 @@ color: white;
 font-size: 16px;
 font-weight: bold;
 border-radius: 3px;
+:hover{
+  background-color: #B78FD5;
+}
 `;
 
 
