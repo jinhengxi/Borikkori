@@ -1,27 +1,51 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 
-function Ingredient() {
+function Ingredient({ handleNameIngredient,handleQuanIngredient, ingredient, setIngredient }) {
+  const pushId = useRef(ingredient.length);
+
+  const handleAddComponent = () => {
+    const addComponent = { id: pushId.current, name: '', quan: '' };
+    setIngredient(ingredient.concat(addComponent));
+    pushId.current += 1;
+  };
+
+  const handleRemoveComponent = id => {
+    let removeComponent = ingredient.filter(ingredient => ingredient.id !== id);
+    setIngredient(removeComponent);
+  };
+
   return (
     <Container>
       <IngredientTitle>Ingredient</IngredientTitle>
       <IngredientContent>
-        <IngredientInputBox>
-          <IngredientInput placeholder="예) 당근" />
-          <IngredientInput placeholder="예) 1개" />
-          <RemoveBtn>x</RemoveBtn>
-        </IngredientInputBox>
-        <IngredientInputBox>
-          <IngredientInput placeholder="예) 당근" />
-          <IngredientInput placeholder="예) 1개" />
-          <RemoveBtn>x</RemoveBtn>
-        </IngredientInputBox>
-        <IngredientInputBox>
-          <IngredientInput placeholder="예) 당근" />
-          <IngredientInput placeholder="예) 1개" />
-          <RemoveBtn>x</RemoveBtn>
-        </IngredientInputBox>
-        <AddBtn>+ 추가</AddBtn>
+        {ingredient.map(ingredient => (
+          <IngredientInputBox key={ingredient.id}>
+            <IngredientInput
+              onChange={e => handleNameIngredient(e, ingredient.id)}
+              name="name"
+              type="text"
+              placeholder="예) 당근"
+            />
+            <IngredientInput
+              onChange={e => handleQuanIngredient(e, ingredient.id)}
+              name="quan"
+              type="text"
+              placeholder="예) 1개"
+            />
+            <RemoveBtn
+              onClick={() => {
+                handleRemoveComponent(ingredient.id);
+              }}
+            >
+              x
+            </RemoveBtn>
+          </IngredientInputBox>
+        ))}
       </IngredientContent>
+      <AddBtnBox>
+        <AddBtn onClick={handleAddComponent}>+ 추가</AddBtn>
+      </AddBtnBox>
     </Container>
   );
 }
@@ -44,7 +68,6 @@ const IngredientContent = styled.div`
   width: 100%;
   max-height: 270px;
   padding: 45px;
-  margin-bottom: 50px;
   background-color: #f4f3f2;
   overflow-inline: inherit;
   ${props => props.theme.flex.flexBox('', '', '')};
@@ -78,13 +101,19 @@ const RemoveBtn = styled.button`
   }
 `;
 
+const AddBtnBox = styled.div`
+  ${props => props.theme.flex.flexBox()};
+`;
+
 const AddBtn = styled.button`
-  width: 70px;
-  height: 25px;
-  margin: 10px auto;
+  width: 128px;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   color: white;
   border: none;
   border-radius: 50px;
+  font-size: ${props => props.theme.fontSizes.xl};
   background-color: ${props => props.theme.colors.lightPurple};
 
   &:active {
