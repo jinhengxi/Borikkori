@@ -34,6 +34,11 @@ const UserRecipe = () => {
       });
   }, []);
 
+  const FilteredData = recipeData.filter(
+    data => typeof data.userId !== 'number'
+  );
+
+  console.log(FilteredData);
   const CategoryDiv = styled.p`
     width: 65px;
     height: 19px;
