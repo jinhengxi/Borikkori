@@ -1,23 +1,45 @@
 import { useRef } from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 
-function CoverImg() {
+function CoverImg({handleLoadCoverImg,coverImg}) {
   const imgRef = useRef();
 
   const handleFileUpload = () => {
     imgRef.current.click();
   };
 
+  // 파일 삭제
+  // const handleRemoveImg = () => {
+  //   URL.revokeObjectURL(imgFile);
+  //   setImgFile('');
+  // };
 
   return (
     <Container>
-      <Explanation>
-        추가하기 버튼으로 커버사진을
-        <br />
-        업로드 해주세요.
-      </Explanation>
-      <AddImg onClick={handleFileUpload}>커버 사진 추가</AddImg>
-      <FileInput type='file' accept='image/*' ref={imgRef}/>
+      {coverImg ? (
+        <Image
+          src={coverImg}
+          alt="RecipeCoverImg"
+          width={970}
+          height={440}
+        />
+      ) : (
+        <>
+          <Explanation>
+            추가하기 버튼으로 커버사진을
+            <br />
+            업로드 해주세요.
+          </Explanation>
+          <AddImg onClick={handleFileUpload}>커버 사진 추가</AddImg>
+        </>
+      )}
+      <FileInput
+        onChange={handleLoadCoverImg}
+        type="file"
+        accept="img/*"
+        ref={imgRef}
+      />
     </Container>
   );
 }
@@ -57,4 +79,4 @@ const AddImg = styled.div`
 
 const FileInput = styled.input`
   display: none;
-`
+`;

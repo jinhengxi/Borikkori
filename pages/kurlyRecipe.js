@@ -18,20 +18,20 @@ const KurlyRecipe = () => {
   };
 
   const onSubmit = e => {
-    router.push({ query: { tag: searchOption, search: searchText } });
+    router.push({ query: { main: 1, tag: searchOption, search: searchText } });
 
     e.preventDefault();
   };
   const [recipeData, setRecipeData] = useState([]);
   useEffect(() => {
-    fetch('data/UserRecipe.json', {
+    fetch(`http://10.58.5.197:8000/recipe/3/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setRecipeData(data);
+        setRecipeData(data.result);
       });
-  }, []);
+  }, [router.query]);
 
   const CategoryDiv = styled.p`
     width: 65px;
@@ -96,7 +96,7 @@ const KurlyRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
@@ -107,7 +107,7 @@ const KurlyRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
               router.push({ query: { ...router.query, sub: data.value } })
             }
@@ -121,7 +121,7 @@ const KurlyRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
                 router.push({ query: { ...router.query, sort: data.value } })
               }

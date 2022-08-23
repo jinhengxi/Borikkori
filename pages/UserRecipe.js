@@ -8,7 +8,7 @@ const UserRecipe = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const [recipeData, setRecipeData] = useState([]);
-  const [searchOption, setSearchOption] = useState('제목');
+  const [searchOption, setSearchOption] = useState(1);
   const [searchText, setSearchText] = useState('');
 
   const router = useRouter();
@@ -19,20 +19,19 @@ const UserRecipe = () => {
   };
 
   const onSubmit = e => {
-    router.push({ query: { tag: searchOption, search: searchText } });
-
+    router.push({ query: { main: 1, tag: searchOption, search: searchText } });
     e.preventDefault();
   };
 
   useEffect(() => {
-    fetch('data/UserRecipe.json', {
+    fetch(`http://10.58.5.197:8000/recipe/4/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setRecipeData(data);
+        setRecipeData(data.result);
       });
-  }, []);
+  }, [router.query]);
 
   const CategoryDiv = styled.p`
     width: 65px;
@@ -96,8 +95,8 @@ const UserRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
-            onClick={() => router.push({ query: { main: data.name } })}
+            data={data.value}
+            onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
           </CategoryDiv>
@@ -107,9 +106,9 @@ const UserRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
-              router.push({ query: { ...router.query, sub: data.name } })
+              router.push({ query: { ...router.query, sub: data.value } })
             }
           >
             {data.name}
@@ -121,9 +120,9 @@ const UserRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
-                router.push({ query: { ...router.query, sort: data.name } })
+                router.push({ query: { ...router.query, sort: data.value } })
               }
             >
               {data.name}
@@ -137,25 +136,25 @@ const UserRecipe = () => {
       <RecipeList>
         {recipeData.slice(offset, offset + limit).map(recipe => (
           <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.foodImage} />
-            <RecipeName>{recipe.foodTitle}</RecipeName>
+            <RecipeImg src={recipe.recipe_thumbnail} />
+            <RecipeName>{recipe.title}</RecipeName>
             <UserId>
-              <UserIcon src={recipe.userIcon} />
-              <UserRank src={recipe.userRank} />
-              <UserProfile>{recipe.userId}</UserProfile>
+              <UserIcon src={recipe.user_thumbnail} />
+              <UserRank src={recipe.rating_mark_image} />
+              <UserProfile>{recipe.user_name}</UserProfile>
             </UserId>
             <RecipeInfo>
               <Views>
                 <InfoIcons src="/images/Views.png" />
-                {recipe.views}
+                {recipe.hit}
               </Views>
               <Likes>
                 <InfoIcons src="/images/Likes.png" />
-                {recipe.likes}
+                {recipe.like_count}
               </Likes>
               <Comments>
                 <InfoIcons src="/images/Comments.png" />
-                {recipe.comments}
+                {recipe.comment_count}
               </Comments>
             </RecipeInfo>
           </RecipeCard>
@@ -172,7 +171,7 @@ const UserRecipe = () => {
       <RecipeSearch onSubmit={onSubmit}>
         <SearchSelect onChange={e => setSearchOption(e.target.value)}>
           {SEARCH_OPTIONS.map(data => (
-            <option key={data.id} value={data.name}>
+            <option key={data.id} value={data.value}>
               {data.name}
             </option>
           ))}
@@ -283,7 +282,7 @@ const RecipeImg = styled.img`
   margin-bottom: 10px;
   width: 271px;
   height: 271px;
-  background-size: cover;
+  object-fit: cover;
 `;
 
 const UserId = styled.div`
@@ -322,6 +321,9 @@ const RecipeName = styled.p`
   font-weight: 600;
   font-size: 22px;
   margin: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const RecipeInfo = styled.div`
@@ -423,26 +425,32 @@ const SearchIcon = styled(HiSearch)`
 const RECIPE_CATEGORIES = [
   {
     id: 1,
+    value: 1,
     name: '전체보기',
   },
   {
     id: 2,
+    value: 2,
     name: '한식',
   },
   {
     id: 3,
+    value: 3,
     name: '중식',
   },
   {
     id: 4,
+    value: 4,
     name: '일식',
   },
   {
     id: 5,
+    value: 5,
     name: '양식',
   },
   {
     id: 6,
+    value: 6,
     name: '그외',
   },
 ];
@@ -450,22 +458,27 @@ const RECIPE_CATEGORIES = [
 const RECIPE_SUBCATEGORIES = [
   {
     id: 1,
+    value: 1,
     name: '전체보기',
   },
   {
     id: 2,
+    value: 2,
     name: '메인요리',
   },
   {
     id: 3,
+    value: 3,
     name: '밑반찬',
   },
   {
     id: 4,
+    value: 4,
     name: '간식',
   },
   {
     id: 5,
+    value: 5,
     name: '안주',
   },
 ];
@@ -473,14 +486,17 @@ const RECIPE_SUBCATEGORIES = [
 const RECIPE_SORT = [
   {
     id: 1,
+    value: 1,
     name: '최신순',
   },
   {
     id: 2,
+    value: 2,
     name: '추천순',
   },
   {
     id: 3,
+    value: 3,
     name: '조회순',
   },
 ];
@@ -488,14 +504,22 @@ const RECIPE_SORT = [
 const SEARCH_OPTIONS = [
   {
     id: 1,
+    value: 1,
     name: '제목',
   },
   {
     id: 2,
+    value: 2,
     name: '내용',
   },
   {
     id: 3,
+    value: 3,
+    name: '제목+내용',
+  },
+  {
+    id: 4,
+    value: 4,
     name: '작성자',
   },
 ];
