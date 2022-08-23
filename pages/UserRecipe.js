@@ -47,6 +47,7 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
+      transition: all 0.3s ease-out;
       color: #b69aca;
       border-bottom: 2px solid #b69aca;
     }
@@ -65,6 +66,7 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
+      transition: all 0.3s ease-out;
       background-color: #b69aca;
       color: white;
     }
@@ -84,6 +86,7 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
+      transition: all 0.3s ease-out;
       background-color: #a3a3a3;
       color: white;
     }
@@ -276,6 +279,11 @@ const RecipeCard = styled.div`
   border-radius: 5px;
   margin: 22px;
   cursor: pointer;
+
+  &:hover {
+    transition: all 0.3s ease-out;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.08);
+  }
 `;
 
 const RecipeImg = styled.img`
