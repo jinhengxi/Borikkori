@@ -47,7 +47,6 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
-      transition: all 0.3s ease-out;
       color: #b69aca;
       border-bottom: 2px solid #b69aca;
     }
@@ -66,7 +65,6 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
-      transition: all 0.3s ease-out;
       background-color: #b69aca;
       color: white;
     }
@@ -86,7 +84,6 @@ const UserRecipe = () => {
     cursor: pointer;
 
     &:hover {
-      transition: all 0.3s ease-out;
       background-color: #a3a3a3;
       color: white;
     }
@@ -140,25 +137,25 @@ const UserRecipe = () => {
       <RecipeList>
         {recipeData.slice(offset, offset + limit).map(recipe => (
           <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.foodImage} />
-            <RecipeName>{recipe.foodTitle}</RecipeName>
+            <RecipeImg src={recipe.recipe_thumbnail} />
+            <RecipeName>{recipe.title}</RecipeName>
             <UserId>
-              <UserIcon src={recipe.userIcon} />
-              <UserRank src={recipe.userRank} />
-              <UserProfile>{recipe.userId}</UserProfile>
+              <UserIcon src={recipe.user_thumbnail} />
+              <UserRank src={recipe.rating_mark_image} />
+              <UserProfile>{recipe.user_name}</UserProfile>
             </UserId>
             <RecipeInfo>
               <Views>
                 <InfoIcons src="/images/Views.png" />
-                {recipe.views}
+                {recipe.hit}
               </Views>
               <Likes>
                 <InfoIcons src="/images/Likes.png" />
-                {recipe.likes}
+                {recipe.like_count}
               </Likes>
               <Comments>
                 <InfoIcons src="/images/Comments.png" />
-                {recipe.comments}
+                {recipe.comment_count}
               </Comments>
             </RecipeInfo>
           </RecipeCard>
@@ -279,11 +276,6 @@ const RecipeCard = styled.div`
   border-radius: 5px;
   margin: 22px;
   cursor: pointer;
-
-  &:hover {
-    transition: all 0.3s ease-out;
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.08);
-  }
 `;
 
 const RecipeImg = styled.img`
