@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const BestImgDiv = ({ data }) => {
   const {
     title,
-    recipeDesc,
+    intro,
     recipe_thumbnail,
     user_thumbnail,
     rating_mark_image,
@@ -37,7 +37,7 @@ const BestImgDiv = ({ data }) => {
           <UserName>{user_name}</UserName>
         </UserInfo>
         <BestName>{title}</BestName>
-        <BestDesc>{recipeDesc}</BestDesc>
+        <BestDesc>{intro}</BestDesc>
       </BestInfoDiv>
     </BestImgWrapper>
   );
@@ -47,18 +47,24 @@ export default BestImgDiv;
 
 const BestName = styled.p`
   margin: 10px 0;
-  width: 174px;
+  width: 400px;
   height: 28px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #d9d9d9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const BestDesc = styled.p`
-  width: 470px;
+  width: 400px;
   height: 41px;
   font-size: 18px;
   color: #d9d9d9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const BestImgWrapper = styled.div`
@@ -69,6 +75,7 @@ const BestImgWrapper = styled.div`
   cursor: pointer;
   border-radius: 10px;
   background-size: 200%;
+  object-fit: cover;
   background-image: url(${props => props.recipeImg});
   background-position: center;
   transition: background-size 0.3s ease;
