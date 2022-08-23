@@ -5,14 +5,14 @@ import { useState } from 'react';
 function RecipeItem() {
   const [isModal, setIsModal] = useState(false);
 
-  const handleModalOn = ()=>{
-    setIsModal(true)
-    document.body.style.overflow = "hidden";
-  }
-
   const handleModalOff = ()=>{
     setIsModal(false)
     document.body.style.overflow = 'unset';
+  }
+
+  const handleModalOn = ()=>{
+    setIsModal(true)
+    document.body.style.overflow = "hidden";
   }
 
   return (
