@@ -8,11 +8,10 @@ const UserRecipe = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const [recipeData, setRecipeData] = useState([]);
-  const [searchOption, setSearchOption] = useState('제목');
+  const [searchOption, setSearchOption] = useState(1);
   const [searchText, setSearchText] = useState('');
 
   const router = useRouter();
-  console.log(router);
   const offset = (page - 1) * limit;
 
   const handleSearch = e => {
@@ -20,13 +19,12 @@ const UserRecipe = () => {
   };
 
   const onSubmit = e => {
-    router.push({ query: { tag: searchOption, search: searchText } });
-
+    router.push({ query: { main: 1, tag: searchOption, search: searchText } });
     e.preventDefault();
   };
 
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/4/list?main=${router.query.main}`, {
+    fetch(`http://10.58.5.197:8000/recipe/4/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -35,11 +33,6 @@ const UserRecipe = () => {
       });
   }, [router.query]);
 
-  const FilteredData = recipeData.filter(
-    data => typeof data.userId !== 'number'
-  );
-
-  console.log(FilteredData);
   const CategoryDiv = styled.p`
     width: 65px;
     height: 19px;
