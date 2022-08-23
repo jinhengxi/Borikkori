@@ -1,40 +1,39 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const UserProfile = () => {
+const UserProfile = ({userRecipeInfo}) => {
+
     return (
         <UserProfiles>
-           
-            <ProfileBox>
-
+             {userRecipeInfo && (
+                <ProfileBox>
                 <IdBox>
-                <FoodThumb src="/images/음식.jpg"/>   
+                <FoodThumb src={userRecipeInfo.thumbnail}/>   
                 <InfoBox>
-                    <ProfileImg src="/images/프로필.png"/>
+                    <ProfileImg src={userRecipeInfo.user_thumbnail}/>
                     <UserInfoBox>
-                    <Level src="/images/Level.png"/>
-                    <UserId>tokkirabit</UserId>
+                    <Level src={userRecipeInfo.rating_mark_image}/>
+                    <UserId>{userRecipeInfo.name}</UserId>
                     </UserInfoBox>
                     </InfoBox>
                 </IdBox>
             <ActionIcons>
                 <WatchBox>
                     <WatchIcon src="/images/FaceGray.png"/>
-                    <Num>1000</Num>
+                    <Num>{userRecipeInfo.hit}</Num>
                 </WatchBox>
                 <HeartBox>
                     <HeartIcon src="/images/HeartGray.png"/>
-                    <Num>1000</Num>
+                    <Num>{userRecipeInfo.like_count}</Num>
                 </HeartBox>
                 <CommentBox>
                     <CommentIcon src="/images/TalkGray.png"/>
-                    <Num>1000</Num>
+                    <Num>{userRecipeInfo.comment_count}</Num>
                     </CommentBox>
             </ActionIcons>
 
              <ContentWrapper>
-                <CookTitle>맛있는 밑반찬 백종원 가지볶음</CookTitle>
-                <CookContent>여름에 많이 접할 수 있는가지는 장도 튼튼하게 해주고, 폴리페놀 성분이 있어 항암효과에도 탁월하구요,고혈압, 염증, 해열 치료에도 좋고, 비타민 함유량이 매우 높아 피로회복에도 효과가 뛰어나다고 합니다.</CookContent>
+                <CookTitle>{userRecipeInfo.tilte}</CookTitle>
+                <CookContent>{userRecipeInfo.intro}</CookContent>
            <HashWrapper>
             <HashTag>#밑반찬</HashTag>
             <HashTag>#밑반찬</HashTag>
@@ -44,18 +43,19 @@ const UserProfile = () => {
                 <IconsWrapper>
                     <IconBox>
                         <IconPerson src="/images/PersonGray.png"/>
-                        <QuantityText>1인분</QuantityText>
+                        <QuantityText>{userRecipeInfo.serving}인분</QuantityText>
                     </IconBox>
                     <IconBox>
                         <IconClock src="/images/ClockGray.png"/>
-                        <Min>20분이내</Min>
+                        <Min>{userRecipeInfo.cooktime}분</Min>
                         </IconBox>
                     <IconBox>
                         <IconStar src="/images/StarGray.png"/>
-                        <DifficultyText>아무나</DifficultyText>
+                        <DifficultyText>{userRecipeInfo.difficulty}</DifficultyText>
                     </IconBox>
                 </IconsWrapper>
             </ProfileBox>
+        )}
         </UserProfiles>
     );
 };
@@ -63,7 +63,7 @@ const UserProfile = () => {
 const UserProfiles = styled.div`
   width:1050px;
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 `;
 
 const FoodThumb = styled.img`

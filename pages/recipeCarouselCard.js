@@ -1,8 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
+
 const RecipeCarouselCard = ({ itemImg }) => {
   return (
     <div>
-      <img src={itemImg} alt="recipes" width={233} height={307} />
+      <Image src={itemImg} alt="recipes" width={233} height={307} />
     </div>
   );
 };

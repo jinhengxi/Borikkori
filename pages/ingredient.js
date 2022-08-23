@@ -1,44 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Igredient = () => {
+const Igredient = ({ingredient}) => {
+
   return (
     <Ingredient>
       <IngredientWrapper>
         <IngreTitle>Ingredient</IngreTitle>
         <IngredientBox>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
-          <IngredientOne>
-            <IngredientName>미역줄기</IngredientName>
-            <IngredientQuan>300g</IngredientQuan>
-          </IngredientOne>
+
+            {ingredient?.map(({ id, name, quantity})=>(
+              <IngredientOne key={id}>
+                <IngredientName>{name}</IngredientName>
+                <IngredientQuan>{quantity}</IngredientQuan>
+             </IngredientOne>
+            ))}
+
         </IngredientBox>
       </IngredientWrapper>
     </Ingredient>
@@ -67,37 +44,30 @@ const IngredientWrapper = styled.div`
 const IngreTitle = styled.p`
 font-weight: bold;
 font-size: 24px;
+margin-bottom: 50px;
 `;
 
 const IngredientBox = styled.div`
-justify-content: center;
   width: 1050px;
   display: flex;
   flex-wrap: wrap;
   padding: 10px 0;
-  margin-top: 50px;
-  box-shadow: 2px 5px 20px rgba(0,0,0, 0.25)
+  box-shadow: 2px 5px 10px #e6e4e1;
 `;
-
-const IngreRight = styled.div`
-
-`;
-const IngreLeft = styled.div`
-
-`;
-
 
 const IngredientOne = styled.div`
   width: 400px;
   height: 62px;
-  padding: 10px 80px;
+
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 `;
+
 
 const IngredientName = styled.span`
   text-align: center;
+  margin-left: 120px;
 `;
 
 const IngredientQuan = styled.span`

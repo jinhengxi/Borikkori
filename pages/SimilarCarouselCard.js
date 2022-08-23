@@ -1,10 +1,11 @@
 import React from 'react';
+import Image from 'next/image';
 
 
 const SimilarCarouselCard = ({itemImg}) => {
     return (
         <div>
-        <img
+        <Image
           src={itemImg}
           alt="simillars"
           width={233}
