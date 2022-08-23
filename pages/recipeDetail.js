@@ -3,17 +3,18 @@ import styled from 'styled-components'
 import CookingSteps from './CookingSteps'
 import DetailComment from './DetailComment'
 import Igredient from './ingredient'
-
 import RecipeCarousel from './RecipeCarousel'
 import SimilarCasousel from './similarCarousel'
 import UserProfile from './UserProfile'
+
+
 
 const RecipeDetail = () => {
 
   const [userRecipeInfo,setUserRecipeInfo] = useState();
 
   useEffect(() => {
-      fetch('data/recipeDetailData.json', {
+      fetch(`http://10.58.5.197:8000/recipe/detail/${id}`, {
         method: 'GET',
       })
         .then(res => res.json())
@@ -23,6 +24,8 @@ const RecipeDetail = () => {
         });
     }, []);
     
+console.log(userRecipeInfo);
+
   return (
     <RecipeDetailWrapper>
       {userRecipeInfo && (

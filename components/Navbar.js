@@ -231,7 +231,7 @@ const NavTopDiv = styled.div`
 `;
 
 const UserDiv = styled.div`
-  width: 160px;
+  width: 175px;
   font-size: 13px;
   color: rgb(149 151 149);
 `;

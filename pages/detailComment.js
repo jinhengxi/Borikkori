@@ -30,7 +30,7 @@ const DetailComment = () => {
 
 //댓글GET
   useEffect(() => {
-    fetch('data/commentData.json', {
+    fetch(`http://10.58.5.197:8000/recipe/detail/${id}/comment`, {
       method: 'GET',
     })
       .then(res => res.json())
