@@ -7,9 +7,23 @@ import { HiSearch } from 'react-icons/hi';
 const UserRecipe = () => {
   const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
+  const [recipeData, setRecipeData] = useState([]);
+  const [searchOption, setSearchOption] = useState('제목');
+  const [searchText, setSearchText] = useState('');
+
   const router = useRouter();
   const offset = (page - 1) * limit;
-  const [recipeData, setRecipeData] = useState([]);
+
+  const handleSearch = e => {
+    setSearchText(e.target.value);
+  };
+
+  const onSubmit = e => {
+    router.push({ query: { tag: searchOption, search: searchText } });
+
+    e.preventDefault();
+  };
+
   useEffect(() => {
     fetch('data/UserRecipe.json', {
       method: 'GET',
@@ -155,14 +169,20 @@ const UserRecipe = () => {
           setPage={setPage}
         />
       </RecipePaginate>
-      <RecipeSearch>
-        <SearchSelect>
-          <option>글제목</option>
-          <option>내용</option>
-          <option>작성자</option>
+      <RecipeSearch onSubmit={onSubmit}>
+        <SearchSelect onChange={e => setSearchOption(e.target.value)}>
+          {SEARCH_OPTIONS.map(data => (
+            <option key={data.id} value={data.name}>
+              {data.name}
+            </option>
+          ))}
         </SearchSelect>
         <SearchDiv>
-          <SearchInput placeholder="검색어를 입력해주세요" />
+          <SearchInput
+            placeholder="검색어를 입력해주세요"
+            value={searchText}
+            onChange={handleSearch}
+          />
           <SearchButton type="submit">
             <SearchIcon />
           </SearchButton>
@@ -376,6 +396,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchSelect = styled.select`
+  padding: 5px;
   width: 98px;
   height: 36px;
   border: 2px solid #795b8f;
@@ -461,5 +482,20 @@ const RECIPE_SORT = [
   {
     id: 3,
     name: '조회순',
+  },
+];
+
+const SEARCH_OPTIONS = [
+  {
+    id: 1,
+    name: '제목',
+  },
+  {
+    id: 2,
+    name: '내용',
+  },
+  {
+    id: 3,
+    name: '작성자',
   },
 ];
