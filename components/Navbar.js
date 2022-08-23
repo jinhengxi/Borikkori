@@ -206,7 +206,9 @@ const Nav = () => {
 
 export default Nav;
 
-const Navbar = styled.div``;
+const Navbar = styled.div`
+  width: 100%;
+`;
 
 const NavbarWrapper = styled.div`
   width: 100%;
