@@ -13,13 +13,15 @@ function AddRecipe() {
   const [coverImg, setCoverImg] = useState('');
   const [recipeInfo, setRecipeInfo] = useState({});
   const [writingRecipe, setWritingRecipe] = useState({});
-  const [ingredient, setIngredient] = useState([{ id: 0, name : '', quan:'' }]);
+  const [ingredient, setIngredient] = useState([{ id: 0, name: '', quan: '' }]);
   const [recipeItem, setRecipeItem] = useState({});
-  const [cookingStep, setCookingStep] = useState({});
+  const [cookingStep, setCookingStep] = useState([
+    { id: 0, step: 1, image: '', content: '' },
+  ]);
   const [hashTag, setHashTag] = useState([]);
 
   const handleLoadCoverImg = e => {
-    setCoverImg(e.target.files[0]);
+    setCoverImg(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleAddRecipeInfo = e => {
@@ -38,17 +40,34 @@ function AddRecipe() {
     });
   };
 
-  const handleAddIngredient = (e,id) => {
-    const { name, value } = e.target;
-    ingredient.map(ingredient => {
-      ingredient.id === id && setIngredient({
-        ...ingredient,
-        id,
-        [name]: value,
-      })
-    });
+  const handleNameIngredient = (e, id) => {
+    const { value } = e.target;
+    const inputItemsCopy = JSON.parse(JSON.stringify(ingredient));
+    inputItemsCopy[id].name = value;
+    setIngredient(inputItemsCopy);
   };
-  console.log(ingredient)
+
+  const handleQuanIngredient = (e, id) => {
+    const { value } = e.target;
+    const inputItemsCopy = JSON.parse(JSON.stringify(ingredient));
+    inputItemsCopy[id].quan = value;
+    setIngredient(inputItemsCopy);
+  };
+
+  const handleCookingStep = (e, id) => {
+    const { value } = e.target;
+    const inputItemsCopy = JSON.parse(JSON.stringify(cookingStep));
+    inputItemsCopy[id].content = value;
+    setCookingStep(inputItemsCopy);
+  };
+
+  const handCookingImg = (e, id) => {
+    const inputItemsCopy = cookingStep;
+    inputItemsCopy[id].image = URL.createObjectURL(e.target.files[0]);
+    setCookingStep(inputItemsCopy);
+  };
+  console.log(cookingStep);
+
   const handleAddHashTag = e => {
     const addHashTag = [...hashTag];
     addHashTag.push(e.target.value);
@@ -67,12 +86,18 @@ function AddRecipe() {
       <RecipeInfo handleAddRecipeInfo={handleAddRecipeInfo} />
       <WritingRecipe handleWritingRecipe={handleWritingRecipe} />
       <Ingredient
-        handleAddIngredient={handleAddIngredient}
+        handleNameIngredient={handleNameIngredient}
+        handleQuanIngredient={handleQuanIngredient}
         ingredient={ingredient}
         setIngredient={setIngredient}
       />
       <RecipeItem />
-      <CookingStep />
+      <CookingStep
+        handleCookingStep={handleCookingStep}
+        handCookingImg={handCookingImg}
+        cookingStep={cookingStep}
+        setCookingStep={setCookingStep}
+      />
       <HashTag
         handleAddHashTag={handleAddHashTag}
         handleRemoveHashTag={handleRemoveHashTag}

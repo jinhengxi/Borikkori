@@ -1,39 +1,43 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 
-function CookingStep() {
-  const [components, setComponents] = useState([{ id: 0, step: 1 }]);
-  const [imgFile, setImgFile] = useState();
+function CookingStep({
+  handleCookingStep,
+  handCookingImg,
+  cookingStep,
+  setCookingStep,
+}) {
 
   const imgRef = useRef();
-  const pushId = useRef(components.length);
-  const pushStep = useRef(components.length);
+  const pushId = useRef(cookingStep.length);
+  const pushStep = useRef(cookingStep.length);
 
   const handleFileUpload = () => {
     imgRef.current.click();
   };
 
-  const handleLoadImg = e => {
-    setImgFile(e.target.files[0]);
-  };
-
   const handleAddComponent = () => {
     pushStep.current += 1;
+    const addComponent = {
+      id: pushId.current,
+      step: pushStep.current,
+      image: '',
+      content: '',
+    };
     pushId.current += 1;
-    const addComponent = { id: pushId.current, step: pushStep.current };
-    setComponents(components.concat(addComponent));
+    setCookingStep(cookingStep.concat(addComponent));
   };
-
+  
   return (
     <Container>
       <CookingStepTitle>Cooking Steps</CookingStepTitle>
-      {components.map(component => (
-        <StepBox key={component.id}>
+      {cookingStep.map(step => (
+        <StepBox key={step.id}>
           <AddImg>
-            {imgFile ? (
+            {step.image ? (
               <Image
-                src={URL.createObjectURL(imgFile)}
+                src={step.image}
                 alt="RecipeStepImg"
                 width={400}
                 height={340}
@@ -42,15 +46,22 @@ function CookingStep() {
               <AddImgBtn onClick={handleFileUpload}>﹢</AddImgBtn>
             )}
             <FileInput
-              onChange={handleLoadImg}
+              onChange={e => handCookingImg(e, step.id)}
               type="file"
               accept="image/*"
               ref={imgRef}
             />
           </AddImg>
           <AddContent>
-            <CountStep>Step {component.step}</CountStep>
-            <StepContent placeholder="내용을 입력하세요." />
+            <CountStep>Step {step.step}</CountStep>
+            <StepContent
+              onChange={e => {
+                handleCookingStep(e, step.id);
+              }}
+              name="content"
+              type="text"
+              placeholder="내용을 입력하세요."
+            />
           </AddContent>
         </StepBox>
       ))}

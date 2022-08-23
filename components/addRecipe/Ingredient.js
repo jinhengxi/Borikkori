@@ -1,12 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 
-function Ingredient({ handleAddIngredient, ingredient, setIngredient }) {
-  const [inputValue, setInputValue] = useState({});
+function Ingredient({ handleNameIngredient,handleQuanIngredient, ingredient, setIngredient }) {
   const pushId = useRef(ingredient.length);
 
   const handleAddComponent = () => {
-    const addComponent = { id: pushId.current, name: '', quan : ''};
+    const addComponent = { id: pushId.current, name: '', quan: '' };
     setIngredient(ingredient.concat(addComponent));
     pushId.current += 1;
   };
@@ -16,30 +15,22 @@ function Ingredient({ handleAddIngredient, ingredient, setIngredient }) {
     setIngredient(removeComponent);
   };
 
-  const handleInput = e => {
-    const { name, value } = e.target;
-    setInputValue({
-      ...inputValue,
-      [name]: value,
-    });
-  };
-
   return (
     <Container>
       <IngredientTitle>Ingredient</IngredientTitle>
       <IngredientContent>
         {ingredient.map(ingredient => (
-          <IngredientInputBox onChange={(e)=>handleAddIngredient(e,ingredient.id)} key={ingredient.id}>
+          <IngredientInputBox key={ingredient.id}>
             <IngredientInput
-              onChange={handleInput}
+              onChange={e => handleNameIngredient(e, ingredient.id)}
               name="name"
-              type='text'
+              type="text"
               placeholder="예) 당근"
             />
             <IngredientInput
-              onChange={handleInput}
+              onChange={e => handleQuanIngredient(e, ingredient.id)}
               name="quan"
-              type='text'
+              type="text"
               placeholder="예) 1개"
             />
             <RemoveBtn

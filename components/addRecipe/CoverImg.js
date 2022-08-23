@@ -19,7 +19,7 @@ function CoverImg({handleLoadCoverImg,coverImg}) {
     <Container>
       {coverImg ? (
         <Image
-          src={URL.createObjectURL(coverImg)}
+          src={coverImg}
           alt="RecipeCoverImg"
           width={970}
           height={440}
