@@ -12,7 +12,7 @@
     },
     {
         "id": 1,
-        "userId": "tokkichef",
+        "userId": 1,
         "userIcon": "/images/userIcon.png",
         "userRank": "/images/userRank.png",
         "foodImage": "/images/Food.png",

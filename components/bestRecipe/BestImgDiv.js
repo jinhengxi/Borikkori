@@ -2,33 +2,41 @@ import React from 'react';
 import styled from 'styled-components';
 
 const BestImgDiv = ({ data }) => {
-  const { recipeName, recipeDesc, recipeImg, user, information } = data;
-  const { views, likes, comments } = information;
-  const { icon, rank, nickname } = user;
+  const {
+    title,
+    recipeDesc,
+    recipe_thumbnail,
+    user_thumbnail,
+    rating_mark_image,
+    user_name,
+    hit,
+    like_count,
+    comment_count,
+  } = data;
 
   return (
-    <BestImgWrapper recipeImg={recipeImg}>
+    <BestImgWrapper recipeImg={recipe_thumbnail}>
       <BestInfoDiv>
         <BestIconsWrapper>
           <Views>
             <InfoIcons src="/images/BestViews.png" />
-            <span>{views}</span>
+            <span>{hit}</span>
           </Views>
           <Likes>
             <InfoIcons src="/images/BestLikes.png" />
-            <span>{likes}</span>
+            <span>{like_count}</span>
           </Likes>
           <Comments>
             <CommentsIcon src="images/BestComments.png" />
-            <span>{comments}</span>
+            <span>{comment_count}</span>
           </Comments>
         </BestIconsWrapper>
         <UserInfo>
-          <UserIcon src={icon} />
-          <UserRank src={rank} />
-          <UserName>{nickname}</UserName>
+          <UserIcon src={user_thumbnail} />
+          <UserRank src={rating_mark_image} />
+          <UserName>{user_name}</UserName>
         </UserInfo>
-        <BestName>{recipeName}</BestName>
+        <BestName>{title}</BestName>
         <BestDesc>{recipeDesc}</BestDesc>
       </BestInfoDiv>
     </BestImgWrapper>
