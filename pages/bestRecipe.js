@@ -6,14 +6,16 @@ const BestRecipe = () => {
   const [bestRecipes, setBestRecipes] = useState();
 
   useEffect(() => {
-    fetch('data/Bestdata.json', {
+    fetch('http://10.58.5.197:8000/recipe/4/list?sort=4', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setBestRecipes(data);
+        setBestRecipes(data.result);
       });
   }, []);
+
+  console.log(bestRecipes);
 
   return (
     <BestWrapper>
@@ -40,6 +42,9 @@ const BestWrapper = styled.div`
 const BestTitle = styled.h1`
   margin: 29px 0;
   font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const BestImgWrapper = styled.div`
