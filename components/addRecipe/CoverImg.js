@@ -9,12 +9,6 @@ function CoverImg({handleLoadCoverImg,coverImg}) {
     imgRef.current.click();
   };
 
-  // 파일 삭제
-  // const handleRemoveImg = () => {
-  //   URL.revokeObjectURL(imgFile);
-  //   setImgFile('');
-  // };
-
   return (
     <Container>
       {coverImg ? (
