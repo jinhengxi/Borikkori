@@ -13,8 +13,8 @@ function RecipeItem({ handRecipeItem, recipeItem }) {
     document.body.style.overflow = 'hidden';
   };
 
-  const handleModalOff = () => {
-    setIsModal(false);
+  const handleModalOff = ()=>{
+    setIsModal(false)
     document.body.style.overflow = 'unset';
     setSearchText('');
     setSearchData('');

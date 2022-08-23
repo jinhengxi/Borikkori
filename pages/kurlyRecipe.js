@@ -96,8 +96,8 @@ const KurlyRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
-            onClick={() => router.push({ query: { main: data.name } })}
+            data={data.value}
+            onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
           </CategoryDiv>
@@ -107,9 +107,9 @@ const KurlyRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
-              router.push({ query: { ...router.query, sub: data.name } })
+              router.push({ query: { ...router.query, sub: data.value } })
             }
           >
             {data.name}
@@ -121,9 +121,9 @@ const KurlyRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
-                router.push({ query: { ...router.query, sort: data.name } })
+                router.push({ query: { ...router.query, sort: data.value } })
               }
             >
               {data.name}
@@ -134,21 +134,21 @@ const KurlyRecipe = () => {
       <RecipeList>
         {recipeData.map(recipe => (
           <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.foodImage} />
+            <RecipeImg src={recipe.recipe_thumbnail} />
 
-            <RecipeName>{recipe.foodTitle}</RecipeName>
+            <RecipeName>{recipe.title}</RecipeName>
             <RecipeInfo>
               <Views>
                 <InfoIcons src="/images/Views.png" />
-                {recipe.views}
+                {recipe.hit}
               </Views>
               <Likes>
                 <InfoIcons src="/images/Likes.png" />
-                {recipe.likes}
+                {recipe.like_count}
               </Likes>
               <Comments>
                 <InfoIcons src="/images/Comments.png" />
-                {recipe.comments}
+                {recipe.comment_count}
               </Comments>
             </RecipeInfo>
           </RecipeCard>
@@ -165,7 +165,7 @@ const KurlyRecipe = () => {
       <RecipeSearch onSubmit={onSubmit}>
         <SearchSelect onChange={e => setSearchOption(e.target.value)}>
           {SEARCH_OPTIONS.map(data => (
-            <option key={data.id} value={data.name}>
+            <option key={data.id} value={data.value}>
               {data.name}
             </option>
           ))}
@@ -375,26 +375,32 @@ const SearchIcon = styled(HiSearch)`
 const RECIPE_CATEGORIES = [
   {
     id: 1,
+    value: 1,
     name: '전체보기',
   },
   {
     id: 2,
+    value: 2,
     name: '한식',
   },
   {
     id: 3,
+    value: 3,
     name: '중식',
   },
   {
     id: 4,
+    value: 4,
     name: '일식',
   },
   {
     id: 5,
+    value: 5,
     name: '양식',
   },
   {
     id: 6,
+    value: 6,
     name: '그외',
   },
 ];
@@ -402,22 +408,27 @@ const RECIPE_CATEGORIES = [
 const RECIPE_SUBCATEGORIES = [
   {
     id: 1,
+    value: 1,
     name: '전체보기',
   },
   {
     id: 2,
+    value: 2,
     name: '메인요리',
   },
   {
     id: 3,
+    value: 3,
     name: '밑반찬',
   },
   {
     id: 4,
+    value: 4,
     name: '간식',
   },
   {
     id: 5,
+    value: 5,
     name: '안주',
   },
 ];
@@ -425,14 +436,17 @@ const RECIPE_SUBCATEGORIES = [
 const RECIPE_SORT = [
   {
     id: 1,
+    value: 1,
     name: '최신순',
   },
   {
     id: 2,
+    value: 2,
     name: '추천순',
   },
   {
     id: 3,
+    value: 3,
     name: '조회순',
   },
 ];
@@ -440,10 +454,17 @@ const RECIPE_SORT = [
 const SEARCH_OPTIONS = [
   {
     id: 1,
+    value: 1,
     name: '제목',
   },
   {
     id: 2,
+    value: 2,
     name: '내용',
+  },
+  {
+    id: 3,
+    value: 3,
+    name: '제목+내용',
   },
 ];

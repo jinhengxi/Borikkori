@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <RecoilRoot>
-        <Nav />
+        <Nav/>
         <Component {...pageProps} />
       </RecoilRoot>
     </ThemeProvider>

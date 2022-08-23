@@ -1,0 +1,46 @@
+{
+    "result":
+        {
+            "id"            : 1,
+            "tilte"         : "닭다리 살 오븐구이",
+            "intro"      : "닭다리 살 오븐구이는 손님이왔을때 하기 너무좋습니다",
+            "thumbnail"     : "/images/음식.jpg ",
+            "hit"           : 1000,
+            "like_count" : 22,
+            "comment_count" : 100,
+            "user_id"       : 1,
+            "name"          : "홍길동",
+            "user_thumbnail": "/images/프로필.png ",
+            "rating_id"  : 1,
+            "rating_name" : "더퍼플",
+            "rating_mark_image":"/images/Level.png",
+            "cooktime"      : 30,
+            "serving"       : 3,
+            "difficulty"    : "중급",
+            "ingredient"    : [
+                {
+                    "id"      : 1,
+                    "name"    : "닭다리살",
+                    "quantity": "500g"
+                },
+                {
+                    "id"      : 2,
+                    "name"    : "양파",
+                    "quantity": "1개"
+                },
+                {
+                    "id"      : 3,
+                    "name"    : "당근",
+                    "quantity": "1/2개"
+
+                },
+                {
+                    "id"      : 4,
+                    "name"    : "당근",
+                    "quantity": "1/2개"
+
+                }
+                
+            ]
+            }
+        }
