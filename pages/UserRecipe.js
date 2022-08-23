@@ -282,7 +282,7 @@ const RecipeImg = styled.img`
   margin-bottom: 10px;
   width: 271px;
   height: 271px;
-  background-size: cover;
+  object-fit: cover;
 `;
 
 const UserId = styled.div`
