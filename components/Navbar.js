@@ -1,7 +1,44 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
 const Nav = () => {
+  const router = useRouter();
+  const BestRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/bestRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/bestRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const KurlyRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/kurlyRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/kurlyRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const UserRecipe = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/UserRecipe' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/UserRecipe'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const Review = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/review' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/review'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
+  const KurlyTip = styled.span`
+    cursor: pointer;
+    color: ${router.pathname === '/kurlyTip' ? '#5f0080' : 'black'};
+    border-bottom: ${router.pathname === '/kurlyTip'
+      ? '1px solid #5f0080'
+      : 'none'};
+  `;
   return (
     <Navbar>
       <NavbarWrapper>
@@ -50,8 +87,8 @@ const Nav = () => {
           </KurlyDiv>
           <SearchDiv>
             <SearchInput placeholder="검색어를 입력해 주세요." />
-            <SearchIcon src="/assets/images/Search.png" />
-            <KirmuBtn>커뮤니티</KirmuBtn>
+            <SearchIcon src="/images/Search.png" />
+            <KirmuBtn onClick={() => router.push('/')}>커뮤니티</KirmuBtn>
           </SearchDiv>
           <IconDiv>
             <Icons>
@@ -148,11 +185,17 @@ const Nav = () => {
             <span>카테고리</span>
           </CategoryDiv>
           <MenuDiv>
-            <span>베스트</span>
-            <span>컬리의레시피</span>
-            <span>회원레시피</span>
-            <span>리뷰</span>
-            <span>컬리팁</span>
+            <BestRecipe onClick={() => router.push('/bestRecipe')}>
+              베스트
+            </BestRecipe>
+            <KurlyRecipe onClick={() => router.push('/kurlyRecipe')}>
+              컬리의레시피
+            </KurlyRecipe>
+            <UserRecipe onClick={() => router.push('/UserRecipe')}>
+              회원 레시피
+            </UserRecipe>
+            <Review onClick={() => router.push('/review')}>리뷰</Review>
+            <KurlyTip onClick={() => router.push('/kurlyTip')}>컬리팁</KurlyTip>
           </MenuDiv>
           <DeliveryBtn>샛별/낯 배송안내</DeliveryBtn>
         </NavBotDiv>
@@ -163,7 +206,9 @@ const Nav = () => {
 
 export default Nav;
 
-const Navbar = styled.div``;
+const Navbar = styled.div`
+  width: 100%;
+`;
 
 const NavbarWrapper = styled.div`
   width: 100%;
@@ -249,10 +294,10 @@ const SearchInput = styled.input`
 `;
 
 const SearchIcon = styled.img`
-  position: absolute;
+  position: relative;
   width: 18px;
   height: 18px;
-  right: 550px;
+  right: 35px;
 `;
 
 const KirmuBtn = styled.button`
@@ -279,6 +324,14 @@ const MenuDiv = styled.div`
   align-items: center;
   justify-content: space-around;
   font-weight: bold;
+
+  span {
+    cursor: pointer;
+    &:hover {
+      color: #5f0080;
+      border-bottom: 1px solid #5f0080;
+    }
+  }
 `;
 
 const DeliveryBtn = styled.button`

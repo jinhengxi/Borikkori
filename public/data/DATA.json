@@ -67,15 +67,5 @@
         "hoverImg": "/images/음식.jpeg",
         "age": 6,
         "like": false
-    },
-    {
-        "id": 7,
-        "name": "TIGER NOTE",
-        "price": "4,000",
-        "categoey": "CAR",
-        "itemImg": "https://img-cf.kurly.com/cdn-cgi/image/width=400,format=auto/shop/data/goods/1637921344209l0.jpg",
-        "hoverImg": "/images/음식.jpeg",
-        "age": 13,
-        "like": false
     }
 ]

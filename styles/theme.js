@@ -46,8 +46,8 @@ const colors = {
   gray: "#E0DDDA",
   lightGray: "#E6E4E1",
   purple: "#5F0080",
-  lightPuple:"#B69ACA",
-  neonPuple:"#D2BDFE"
+  lightPurple:"#B69ACA",
+  neonPurple:"#D2BDFE"
 };
 
 const borders = {

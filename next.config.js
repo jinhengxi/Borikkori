@@ -9,3 +9,4 @@ module.exports = {
     domains: ['i.pinimg.com', 'img-cf.kurly.com','*'],
   },
 };
+

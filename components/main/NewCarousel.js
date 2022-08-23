@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 
 import useFetch from '../../hooks/useFetch';
-import BestCarouselCard from './BestCarouselCard';
+import NewCarouselCard from './NewCarouselCard';
 
-function BestCarousel() {
-  const [bestRecipes] = useFetch('data/DATA.json');
+function NewCarousel() {
+  const [newRecipes] = useFetch('data/DATA.json');
 
   const settings = {
     dots: false,
@@ -16,14 +16,14 @@ function BestCarousel() {
   };
   return (
     <StyledSlider {...settings}>
-      {bestRecipes?.map(bestRecipe => (
-          <BestCarouselCard key={bestRecipe.id} bestRecipe={bestRecipe} />
+      {newRecipes?.map(newRecipe => (
+          <NewCarouselCard key={newRecipe.id} bestRecipe={newRecipe} />
       ))}
     </StyledSlider>
   );
 }
 
-export default BestCarousel;
+export default NewCarousel;
 
 const StyledSlider = styled(Slider)`
   .slick-list {
@@ -39,19 +39,20 @@ const StyledSlider = styled(Slider)`
 
   .slick-arrow {
     &::before {
-      font-size: 50px;
+      font-size: 30px;
     }
   }
 
   .slick-prev {
-    top: 45%;
-    left: 35px;
+    top: 35%;
+    left: 30px;
     z-index: 1;
   }
 
   .slick-next {
-    top: 45%;
-    right: 60px;
+    top: 35%;
+    right: 35px;
     z-index: 1;
   }
 `;
+

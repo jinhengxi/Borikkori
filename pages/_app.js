@@ -4,6 +4,7 @@ import Nav from '../components/Navbar';
 
 import GlobalStyle from '../styles/global-styles';
 import theme from '../styles/theme';
+import Nav from '../components/Navbar';
 
 function MyApp({ Component, pageProps }) {
   return (
