@@ -1,19 +1,71 @@
+import { useRef } from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 
-function CookingStep() {
+function CookingStep({
+  handleCookingStep,
+  handCookingImg,
+  cookingStep,
+  setCookingStep,
+}) {
+
+  const imgRef = useRef();
+  const pushId = useRef(cookingStep.length);
+  const pushStep = useRef(cookingStep.length);
+
+  const handleFileUpload = () => {
+    imgRef.current.click();
+  };
+
+  const handleAddComponent = () => {
+    pushStep.current += 1;
+    const addComponent = {
+      id: pushId.current,
+      step: pushStep.current,
+      image: '',
+      content: '',
+    };
+    pushId.current += 1;
+    setCookingStep(cookingStep.concat(addComponent));
+  };
+  
   return (
     <Container>
       <CookingStepTitle>Cooking Steps</CookingStepTitle>
-      <StepBox>
-        <AddImg>
-          <AddImgBtn>﹢</AddImgBtn>
-        </AddImg>
-        <AddContent>
-          <CountStep>Step 1</CountStep>
-          <StepContent placeholder="내용을 입력하세요." />
-        </AddContent>
-      </StepBox>
-      <AddBtn>﹢추가</AddBtn>
+      {cookingStep.map(step => (
+        <StepBox key={step.id}>
+          <AddImg>
+            {step.image ? (
+              <Image
+                src={step.image}
+                alt="RecipeStepImg"
+                width={400}
+                height={340}
+              />
+            ) : (
+              <AddImgBtn onClick={handleFileUpload}>﹢</AddImgBtn>
+            )}
+            <FileInput
+              onChange={e => handCookingImg(e, step.id)}
+              type="file"
+              accept="image/*"
+              ref={imgRef}
+            />
+          </AddImg>
+          <AddContent>
+            <CountStep>Step {step.step}</CountStep>
+            <StepContent
+              onChange={e => {
+                handleCookingStep(e, step.id);
+              }}
+              name="content"
+              type="text"
+              placeholder="내용을 입력하세요."
+            />
+          </AddContent>
+        </StepBox>
+      ))}
+      <AddBtn onClick={handleAddComponent}>﹢추가</AddBtn>
     </Container>
   );
 }
@@ -37,6 +89,7 @@ const CookingStepTitle = styled.div`
 const StepBox = styled.div`
   width: 100%;
   height: 340px;
+  margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid ${props => props.theme.colors.gray};
   ${props => props.theme.flex.flexBox()};
@@ -91,7 +144,8 @@ const StepContent = styled.textarea`
 const AddBtn = styled.button`
   width: 128px;
   height: 50px;
-  margin: 30px auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
   color: white;
   border: none;
   border-radius: 50px;
@@ -101,4 +155,8 @@ const AddBtn = styled.button`
   &:active {
     background-color: ${props => props.theme.colors.neonPurple};
   }
+`;
+
+const FileInput = styled.input`
+  display: none;
 `;

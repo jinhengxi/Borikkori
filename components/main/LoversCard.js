@@ -33,7 +33,7 @@ const LoversCards = styled.div`
   height: 130px;
   margin: 0 25px;
   background-color: #fbfbfb;
-  box-shadow: 1px 2px 5px 1px gray;
+  box-shadow: 1px 1px 5px 1px ${props => props.theme.colors.lightGray};
   border-radius: 15%;
 `;
 

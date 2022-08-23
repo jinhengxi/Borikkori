@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-function RecipeInfo() {
+function RecipeInfo({handleAddRecipeInfo}) {
   return (
-    <Container>
+    <Container onChange={handleAddRecipeInfo}>
       <LeftInfo>
         <RecipeInfoTitle>요리정보</RecipeInfoTitle>
-        <DropBox>
-          <Select name="people">
+        <DropBox >
+          <Select name="people" >
             <option value="none">인원</option>
             <option value="1person">1명</option>
             <option value="2people">2명</option>
