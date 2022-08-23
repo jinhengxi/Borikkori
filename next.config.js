@@ -6,6 +6,7 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['localhost'],
+    domains: ['i.pinimg.com', 'img-cf.kurly.com','*'],
   },
 };
+
