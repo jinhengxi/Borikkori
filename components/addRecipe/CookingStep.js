@@ -7,8 +7,8 @@ function CookingStep({
   handCookingImg,
   cookingStep,
   setCookingStep,
+  arrImg
 }) {
-
   const imgRef = useRef();
   const pushId = useRef(cookingStep.length);
   const pushStep = useRef(cookingStep.length);
@@ -22,22 +22,25 @@ function CookingStep({
     const addComponent = {
       id: pushId.current,
       step: pushStep.current,
-      image: '',
       content: '',
     };
     pushId.current += 1;
     setCookingStep(cookingStep.concat(addComponent));
   };
-  
+
+  const disabled =
+    arrImg[pushId.current - 1] !== '' &&
+    cookingStep[pushId.current - 1].addComponent !== '';
+
   return (
     <Container>
       <CookingStepTitle>Cooking Steps</CookingStepTitle>
       {cookingStep.map(step => (
         <StepBox key={step.id}>
           <AddImg>
-            {step.image ? (
+            {arrImg.length !== step.id ? (
               <Image
-                src={step.image}
+                src={arrImg[step.id]}
                 alt="RecipeStepImg"
                 width={400}
                 height={340}
@@ -65,7 +68,9 @@ function CookingStep({
           </AddContent>
         </StepBox>
       ))}
-      <AddBtn onClick={handleAddComponent}>﹢추가</AddBtn>
+      <AddBtn onClick={handleAddComponent} disabled={!disabled}>
+        ﹢추가
+      </AddBtn>
     </Container>
   );
 }
@@ -154,6 +159,11 @@ const AddBtn = styled.button`
 
   &:active {
     background-color: ${props => props.theme.colors.neonPurple};
+  }
+
+  &:disabled {
+    background-color: ${props => props.theme.colors.lightGray};
+    cursor: default;
   }
 `;
 

@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-function LoversCard() {
+function LoversCard({lover}) {
   return (
     <Container>
       <LoversCards>
         <CardContent>
           <Image
-            src="/images/음식.jpg"
+            src={lover.thumbnail}
             alt="ProfileImg"
             width={73}
             height={73}
           />
           <CardNickName>
-            <Nickname>tokkichef</Nickname>
-            <Image src="/images/grade.png" alt="Grade" width={10} height={10} />
+            <Nickname>{lover.name}</Nickname>
+            <Image src={lover.rating_mark_image} alt="Grade" width={10} height={10} />
           </CardNickName>
         </CardContent>
       </LoversCards>

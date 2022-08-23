@@ -4,12 +4,12 @@ import useFetch from '../../hooks/useFetch';
 import LoversCard from "./LoversCard"
 
 function Lovers() {
-  const [lovers] = useFetch('data/DATA.json');
+  const [lovers] = useFetch('http://10.58.5.197:8000/user/list?sort=3');
 
   return (
     <Container>
     {lovers?.map(lover => (
-        <LoversCard key={lover.id} bestRecipe={lover} />
+        <LoversCard key={lover.id} lover={lover} />
     ))}
   </Container>
   )

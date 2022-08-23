@@ -5,7 +5,7 @@ import useFetch from '../../hooks/useFetch';
 import BestCarouselCard from './BestCarouselCard';
 
 function BestCarousel() {
-  const [bestRecipes] = useFetch('data/DATA.json');
+  const [bestRecipes] = useFetch('http://10.58.5.197:8000/recipe/4/list?sort=3');
 
   const settings = {
     dots: false,
@@ -14,6 +14,8 @@ function BestCarousel() {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
+
+
   return (
     <StyledSlider {...settings}>
       {bestRecipes?.map(bestRecipe => (

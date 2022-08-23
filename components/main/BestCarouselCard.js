@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-function BestCarouselCard() {
+function BestCarouselCard({bestRecipe}) {
   return (
     <Container>
       <BestCardImgOpacity>
         <Image
-          src="/images/음식.jpg"
+          src={bestRecipe.recipe_thumbnail}
           alt="bestRecipeImg"
           width={233}
           height={307}
         />
       </BestCardImgOpacity>
       <CardProfile>
-        <Image src="/images/음식.jpg" alt="ProfileImg" width={44} height={44} />
+        <Image src={bestRecipe.user_thumbnauil} alt="ProfileImg" width={44} height={44} />
         &nbsp;&nbsp;
-        <Image src="/images/grade.png" alt="Grade" width={17} height={17} />
-        <Nickname>tokkichef</Nickname>
+        <Image src={bestRecipe.rating_mark_image} alt="Grade" width={17} height={17} />
+        <Nickname>{bestRecipe.user_name}</Nickname>
       </CardProfile>
       <CardContent>
-        <Title>요리제목</Title>
+        <Title>{bestRecipe.title}</Title>
         <Content>
-          한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명
+          {bestRecipe.intro}
         </Content>
       </CardContent>
     </Container>
