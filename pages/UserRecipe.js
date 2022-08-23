@@ -12,6 +12,7 @@ const UserRecipe = () => {
   const [searchText, setSearchText] = useState('');
 
   const router = useRouter();
+  console.log(router);
   const offset = (page - 1) * limit;
 
   const handleSearch = e => {
@@ -25,14 +26,14 @@ const UserRecipe = () => {
   };
 
   useEffect(() => {
-    fetch('data/UserRecipe.json', {
+    fetch(`http://10.58.5.197:8000/recipe/4/list?main=${router.query.main}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setRecipeData(data);
+        setRecipeData(data.result);
       });
-  }, []);
+  }, [router.query]);
 
   const CategoryDiv = styled.p`
     width: 65px;
@@ -96,7 +97,7 @@ const UserRecipe = () => {
         {RECIPE_CATEGORIES.map(data => (
           <CategoryDiv
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() => router.push({ query: { main: data.value } })}
           >
             {data.name}
@@ -107,7 +108,7 @@ const UserRecipe = () => {
         {RECIPE_SUBCATEGORIES.map(data => (
           <CategoryBtn
             key={data.id}
-            data={data.name}
+            data={data.value}
             onClick={() =>
               router.push({ query: { ...router.query, sub: data.value } })
             }
@@ -121,7 +122,7 @@ const UserRecipe = () => {
           {RECIPE_SORT.map(data => (
             <FilterBtn
               key={data.id}
-              data={data.name}
+              data={data.value}
               onClick={() =>
                 router.push({ query: { ...router.query, sort: data.value } })
               }
@@ -322,6 +323,9 @@ const RecipeName = styled.p`
   font-weight: 600;
   font-size: 22px;
   margin: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const RecipeInfo = styled.div`
