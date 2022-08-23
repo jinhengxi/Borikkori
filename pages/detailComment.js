@@ -6,6 +6,29 @@ import SubComment from './subComment';
 const DetailComment = () => {
 
   const [commentDataList,setCommentDataList] = useState();  
+  const [subCommentDataList,setSubCommentDataList] = useState();
+  const [input, setInput] = useState('');
+  const [bChecked, setChecked] = useState(false);
+  const [heartState,setHeartState] = useState(false);
+  const [talk,setTalk] = useState(false);
+  const [heartId, setHeartId] = useState();
+  const [commentId, setCommentId] = useState();
+
+  const checkHandler = () => {
+    setChecked(!bChecked);
+  };
+  
+  const heartHandler = (id)=> {
+    setHeartState(!heartState)
+    setHeartId(id)
+  };
+  
+  const talkHandler = (id) => {
+    setTalk(!talk)
+    setCommentId(id)
+  };
+
+//댓글GET
   useEffect(() => {
     fetch('data/commentData.json', {
       method: 'GET',
@@ -16,39 +39,24 @@ const DetailComment = () => {
       });
   }, []);
 
-;
+//대댓글GET
+   useEffect(() => {
+    fetch('data/subComment.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSubCommentDataList(data.result);
+      });
+  }, [setTalk]);
 
-
-  const [input, setInput] = useState('');
-  const [bChecked, setChecked] = useState(false);
-  const [heartState,setHeartState] = useState(false);
-  const [talk,setTalk] = useState(false);
-  const [heartId, setHeartId] = useState();
-  const [commentId, setCommentId] = useState();
-  // const [talkToggle, setTalkToggle] = useState(); 
-
-
-const checkHandler = () => {
-  setChecked(!bChecked);
-};
-
-const heartHandler = (id)=> {
-  setHeartState(!heartState)
-  setHeartId(id)
-};
-
-
-const talkHandler = (id) => {
-  setTalk(!talk)
-  setCommentId(id)
-};
-
+//POST 댓글업로드
 const commentUpload = (input, bChecked) => {
   fetch(``, {
     method: 'POST',
     body: JSON.stringify({
-      btnCheck: bChecked,
-      input:input
+      tag: bChecked,
+      content:input
     }),
   })
     .then((res) => {
@@ -62,45 +70,47 @@ const commentUpload = (input, bChecked) => {
     });
 };
 
-//좋아요 POST
-// const likeAction = ( xx) => {
-//   fetch(``, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       likeAction:xx
-//     }),
-//   })
-//     .then((res) => {
-//       if (res.ok) {
-//         return res.json();
-//       }
-//     })
-//     .then((data) => {
-//       if (data) {
-//       }
+//POST 좋아요
+const likeAction = (heartState) => {
+  fetch(``, {
+    method: 'POST',
+    body: JSON.stringify({
+      likeAction:heartState
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((data) => {
+      if (data) {
+      }
+    });
+};
+
+
+const DeleteComment= (id) => {
+  fetch(``, {
+    method: 'DELETE',
+    headers:{Authorization: localStorage.getItem("token")}
+  })
+    .then(() => {
+      alert('삭제 되었습니다.')
+    });
+};
+
+
+// const handleDelete = async (id) => {
+//   try {
+//     await axios.delete(`http://localhost:8080/todos/${id}`, {
+//       headers: { Authorization: localStorage.getItem("token") },
 //     });
+//     alert("삭제완료");
+//   } catch (error) {
+//     alert(error);
+//   }
 // };
-
-//대댓글 
-// const commentAction = ( xx) => {
-//   fetch(``, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       likeAction:xx
-//     }),
-//   })
-//     .then((res) => {
-//       if (res.ok) {
-//         return res.json();
-//       }
-//     })
-//     .then((data) => {
-//       if (data) {
-//       }
-//     });
-// };
-
-
     return (
       <CommentWrapper>
         {commentDataList &&  <Comment>
@@ -119,36 +129,43 @@ const commentUpload = (input, bChecked) => {
                  <Date>{created_at}</Date>
                </CommentTextBox>
                </CommentTop>
+               <CommentAndDeleteBox>
                <CommentContent>
               {content}
                </CommentContent> 
+               {localStorage.getItem('token')? <DeleteBtn src='/images/DeleteGray.png' onClick={()=>DeleteComment()}/> : '' }
+               </CommentAndDeleteBox>
                <CommentIconBox>
                  <HeartIconBox>
-                   <HeartIcon src= {liked ? '/images/HeartPurple.png': '/images/HeartGray.png'  } 
+                 {localStorage.getItem('token')? <HeartIcon src= {liked ? '/images/HeartPurple.png': '/images/HeartGray.png'  } 
                     onClick={ () => { heartHandler(id) } }
-                    />
+                    /> : <HeartIcon src= '/images/HeartGray.png'
+                    onClick={ () => { heartHandler(id) } }
+                    />}
+
                    <HeartNum>100</HeartNum>
                  </HeartIconBox>
                  <ComIconBox>
-                   <ComIcon  value={talk} src={id === commentId ?'/images/TalkBlue.png' : '/images/TalkGray.png' } onClick={()=>{ talkHandler(id);}}/>
+                   <ComIcon  value={talk} src={id === commentId  && talk === true ?'/images/TalkBlue.png' : '/images/TalkGray.png' } onClick={()=>{ talkHandler(id);}}/>
                    <ComNum>100</ComNum>
                  </ComIconBox>
                </CommentIconBox>
-               {id === commentId ?  <SubComment/>: '' }
+               {id === commentId && talk === true ?  <SubComment subCommentDataList={subCommentDataList}/>: '' }
                </ComWrap>
-          ))}     
-       
+          ))}      
         </CommentBox>
         <Upload>
         <LavelSelectBox>
-          <CommentCheck type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)}/>  
+        {localStorage.getItem('token')?<CommentCheck type="checkbox" checked={bChecked} onChange={(e) => checkHandler(e)}/>  :
+        <CommentCheck type="checkbox" disabled="disabled" checked={bChecked} onChange={(e) => checkHandler(e)}/>  }
+          
           <Labels>질문</Labels>
           </LavelSelectBox>
-          <WriteCommentBox>
-            <CommentContainer id="story" name="story" rows="5" cols="33" value={input} onChange={e =>{
+          <WriteCommentBox onSubmit={() => commentUpload()}>
+          {localStorage.getItem('token')? <CommentContainer id="story" name="story" rows="5" cols="33" value={input} onChange={e =>{
               setInput(e.target.value);
-            }} placeholder="댓글내용을 입력하시오."/>
-            <CommentBtn onClick={()=>{commentUpload()}}>등록</CommentBtn>
+            }} placeholder="댓글내용을 입력하세요."/> :<CommentContainer id="story" name="story" rows="5" cols="33" disabled="disabled" value={input} placeholder="댓글을 작성하려면 로그인하세요."/> }
+            {localStorage.getItem('token')?<CommentBtn type='submit'>등록</CommentBtn>: <CommentBtn type='submit' disabled="disabled">등록</CommentBtn>}
           </WriteCommentBox>
           </Upload>
       </Comment>}
@@ -172,7 +189,7 @@ margin-bottom: 50px;
 `;
 
 const ComWrap= styled.div`
-
+margin-top:20px;
 `;
 
 
@@ -194,6 +211,11 @@ border-radius: 100%;
 cursor: pointer;
 `;
 
+const CommentAndDeleteBox = styled.div`
+display:flex;
+justify-content: space-between;
+`;
+
 const CommentTextBox= styled.div`
     width: 100%;
     display: flex;
@@ -205,6 +227,13 @@ const CommentTextBox= styled.div`
 const Left= styled.div`
 display: flex;
 align-items: center;
+`;
+
+
+const DeleteBtn= styled.img`
+width:18px;
+height:18px;
+cursor: pointer;
 `;
 
 const Lavel= styled.div`
@@ -244,6 +273,7 @@ const CommentContent= styled.div`
 margin-left: 84px;
 font-size: 20px;
 line-height: 28px;
+width: 850px;
 `;
 
 
@@ -313,7 +343,7 @@ const Labels = styled.label`
     font-size: 18px;
 `;
 
-const WriteCommentBox= styled.div`
+const WriteCommentBox= styled.form`
 display: flex;
 justify-content: space-between;
 `;
@@ -327,6 +357,7 @@ padding: 18px;
 border-style: none;
 background-color: #F7F7F7;
 border-radius: 3px;
+resize: none;
 :focus {
     background-color: white;
     border-style: none;

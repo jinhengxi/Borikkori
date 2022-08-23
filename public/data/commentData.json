@@ -5,7 +5,7 @@
             "user_id": 1,
             "user_name"     : "홍길동",
             "user_thumbnail": "/images/프로필.png",
-            "content"          : "1번댓들 내용~~~~",
+            "content"          : "1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~1번댓들 내용~~~~",
             "created_at"     :"2022-01-01",
             "parent_comment_id": "",
             "tag":false,
