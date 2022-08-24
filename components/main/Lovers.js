@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 import useFetch from '../../hooks/useFetch';
 import LoversCard from "./LoversCard"
+import { BASE_URL } from '../../config';
 
 function Lovers() {
-  const [lovers] = useFetch('http://10.58.5.197:8000/user/list?sort=3');
+  const [lovers] = useFetch(`${BASE_URL}/user/list`);
 
   return (
     <Container>

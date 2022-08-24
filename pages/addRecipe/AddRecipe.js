@@ -9,6 +9,7 @@ import WritingRecipe from '../../components/addRecipe/WritingRecipe';
 import RecipeItem from '../../components/addRecipe/RecipeItem';
 import CookingStep from '../../components/addRecipe/CookingStep';
 import HashTag from '../../components/addRecipe/HashTag';
+import { BASE_URL } from '../../config';
 
 function AddRecipe() {
   const [coverImg, setCoverImg] = useState('');
@@ -56,7 +57,7 @@ function AddRecipe() {
 
     await axios({
       method: 'POST',
-      url: 'http://10.58.5.197:8000/recipe/4/write',
+      url: `${BASE_URL}/recipe/4/write`,
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization:
