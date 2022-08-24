@@ -1,16 +1,17 @@
 import { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
-
+import Nav from '../components/Navbar';
 import GlobalStyle from '../styles/global-styles';
 import theme from '../styles/theme';
-import Nav from '../components/Navbar';
+
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <RecoilRoot>
-      <Nav/>
+        <Nav/>
         <Component {...pageProps} />
       </RecoilRoot>
     </ThemeProvider>

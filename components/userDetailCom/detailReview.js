@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-// export const getStaticProps = async ({ params }) => {
-//   const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/wrecipe`);
-//   const post = await res.json();
-//   return { props: { post } };
-// };
+
+export const getStaticProps = async ({ params }) => {
+  const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/wrecipe`);
+  const post = await res.json();
+  return { props: { post } };
+};
+
 
 
 const DetailReview = ({post}) => {
@@ -33,38 +35,6 @@ const DetailReview = ({post}) => {
           </PostDetailWrapper>
         </UserPostCard>
       ))}
-      {/* <UserPostCard >
- <UserPostImg src='/images/음식2.jpeg'/>
- <PostDetailWrapper>
-     <PostTitle>[후기]안동찜닭 황금레시피</PostTitle>
-     <PostContent>닭볶음탕도 너무 좋지만 아이와 함께 먹기에는 찜닭이 최고지요!</PostContent>
-     <PostDate>2022.08.19</PostDate>
- </PostDetailWrapper>
- </UserPostCard>
- <UserPostCard >
- <UserPostImg src='images/음식2.jpeg'/>
- <PostDetailWrapper>
-     <PostTitle>[후기]안동찜닭 황금레시피</PostTitle>
-     <PostContent>닭볶음탕도 너무 좋지만 아이와 함께 먹기에는 찜닭이 최고지요!</PostContent>
-     <PostDate>2022.08.19</PostDate>
- </PostDetailWrapper>
- </UserPostCard>
- <UserPostCard >
- <UserPostImg src='images/음식2.jpeg'/>
- <PostDetailWrapper>
-     <PostTitle>[후기]안동찜닭 황금레시피</PostTitle>
-     <PostContent>닭볶음탕도 너무 좋지만 아이와 함께 먹기에는 찜닭이 최고지요!</PostContent>
-     <PostDate>2022.08.19</PostDate>
- </PostDetailWrapper>
- </UserPostCard>
- <UserPostCard >
- <UserPostImg src='images/음식2.jpeg'/>
- <PostDetailWrapper>
-     <PostTitle>[후기]안동찜닭 황금레시피</PostTitle>
-     <PostContent>닭볶음탕도 너무 좋지만 아이와 함께 먹기에는 찜닭이 최고지요!</PostContent>
-     <PostDate>2022.08.19</PostDate>
- </PostDetailWrapper>
- </UserPostCard> */}
     </UserPostWrapper>
   );
 };

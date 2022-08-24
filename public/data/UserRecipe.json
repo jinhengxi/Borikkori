@@ -1,0 +1,101 @@
+[
+    {
+        "id": 0,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/Food.png",
+        "title": "제육볶음",
+        "hit" : 200,
+        "like_count" : 30,
+        "comment_count": 25
+    },
+    {
+        "id": 1,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/음식.jpg",
+        "title": "김치찌개",
+        "hit" : 135,
+        "like_count" : 25,
+        "comment_count": 14
+    },
+    {
+        "id": 2,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/음식.jpg",
+        "title": "닭갈비",
+        "hit" : 236,
+        "like_count" : 12,
+        "comment_count": 23
+    },
+    {
+        "id": 3,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/Food.png",
+        "title": "생선구이",
+        "hit" : 535,
+        "like_count" : 22,
+        "comment_count": 13
+    },
+    {
+        "id": 4,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/음식.jpg",
+        "title": "닭도리탕",
+        "hit" : 554,
+        "like_count" : 22,
+        "comment_count": 123
+    },
+    {
+        "id": 5,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/Food.png",
+        "title": "평양냉면",
+        "hit" : 343,
+        "like_count" : 65,
+        "comment_count": 12
+    },
+    {
+        "id": 6,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/음식.jpg",
+        "title": "제육볶음",
+        "hit" : 354,
+        "like_count" : 12,
+        "comment_count": 34
+    },
+    {
+        "id": 7,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/Food.png",
+        "title": "감자탕",
+        "hit" : 552,
+        "like_count" : 124,
+        "comment_count": 23
+    },
+    {
+        "id": 8,
+        "user_name": "tokkichef",
+        "user_thumbnail": "/images/userIcon.png",
+        "rating_mark_image": "/images/userRank.png",
+        "recipe_thumbnail": "/images/음식.jpg",
+        "title": "떡갈비",
+        "hit" : 125,
+        "like_count" : 22,
+        "comment_count": 43
+    }
+]

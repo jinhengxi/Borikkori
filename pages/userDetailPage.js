@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import DetailPost from '../components/userDetailCom/detailPost';
 import DetailReview from '../components/userDetailCom/detailReview';
 
+<<<<<<< HEAD
 export const getStaticPaths = async () => {
   const res = await fetch(`http://10.58.5.197:8000/user`);
   const post = await res.json();
@@ -18,6 +19,23 @@ export const getStaticProps = async ({ params }) => {
   const post = await res.json();
   return { props: { post } };
 };
+=======
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`http://10.58.5.197:8000/user`);
+//   const post = await res.json();
+//   const posts = post.result;
+//   const paths = posts.map((post) => ({
+//     params: { id: post.id.toString() },
+//   }));
+//   return { paths, fallback: false };
+// };
+
+// export const getStaticProps = async ({ params }) => {
+//   const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/info`);
+//   const post = await res.json();
+//   return { props: { post } };
+// };
+>>>>>>> 3547dfdebb01b64e9dab88c62b3de5d706a99cfb
 
 const UserDetailPage = ({post}) => {
  

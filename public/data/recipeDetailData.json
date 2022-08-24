@@ -1,0 +1,116 @@
+{
+    "result":
+        {
+            "id"            : 1,
+            "tilte"         : "닭다리 살 오븐구이",
+            "intro"      : "닭다리 살 오븐구이는 손님이왔을때 하기 너무좋습니다",
+            "thumbnail"     : "닭다리 살 오븐구이 사진 AWS S3 URL주소:https://~~~ ",
+            "hit"           : 1000,
+            "like_count" : 22,
+            "comment_count" : 100,
+            "user_id"       : 1,
+            "name"          : "홍길동",
+            "user_thumbnail": "홍길동 프로필 사진 AWS S3 URL주소:https://~~~ ",
+            "rating_id"  : 1,
+            "rating_name" : "더퍼플",
+            "rating_mark_image":"https://~~~~",
+            "cooktime"      : 30,
+            "serving"       : 3,
+            "difficulty"    : "중급",
+            "ingredient"    : [
+                {
+                    "id"      : 1,
+                    "name"    : "닭다리살",
+                    "quantity": "500g"
+                },
+                {
+                    "id"      : 2,
+                    "name"    : "양파",
+                    "quantity": "1개"
+                },
+                {
+                    "id"      : 3,
+                    "name"    : "당근",
+                    "quantity": "1/2개"
+                }
+            ],
+            "product"       : [
+                {
+                    "id"   : 1,
+                    "name" : "닭다리",
+                    "price": 5000,
+                    "image": "https://~~~~"
+                },
+                {
+                    "id"   : 2,
+                    "name" : "양파",
+                    "price": 2000,
+                    "image": "https://~~~~"
+                },
+                {
+                    "id"   : 3,
+                    "name" : "당근",
+                    "price": 1200,
+                    "image": "https://~~~~"
+                },
+                {
+                    "id"   : 4,
+                    "name" : "간장",
+                    "price": 2000,
+                    "image": "https://~~~~"
+                },
+                {
+                    "id"   : 5,
+                    "name" : "고춧가루",
+                    "price": 4000,
+                    "image": "https://~~~~"
+                },
+                {
+                    "id"   : 6,
+                    "name" : "맛술",
+                    "price": 1000,
+                    "image": "https://~~~~"
+                }
+            ],
+            "content"       : [
+                {
+                    "id": 1,
+                    "step":1,
+                    "content": "~~~~~~~~",
+                    "image":"https://~~~~"
+                },
+                {
+                    "id": 2,
+                    "step":2,
+                    "content": "~~~~~~~~",
+                    "image":"https://~~~~"
+                },
+                {
+                    "id": 3,
+                    "step":3,
+                    "content": "~~~~~~~~",
+                    "image":"https://~~~~"
+                },
+                {
+                    "id": 4,
+                    "step":4,
+                    "content": "~~~~~~~~",
+                    "image":"https://~~~~"
+                }
+            ],
+            "hash_tag"      : [
+                {
+                    "id"  : 1,
+                    "name": "닭다리"
+                },
+                {
+                    "id"  : 2,
+                    "name": "오븐"
+                },
+                {
+                    "id"  : 3,
+                    "name": "구이"
+                }
+            ]
+        }
+}
