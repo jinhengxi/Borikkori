@@ -1,32 +1,48 @@
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import styled from 'styled-components'
-import DetailPost from './detailPost';
-import DetailReview from './detailReview';
+import DetailPost from '../components/userDetailCom/detailPost';
+import DetailReview from '../components/userDetailCom/detailReview';
 
+export const getStaticPaths = async () => {
+  const res = await fetch(`http://10.58.5.197:8000/user`);
+  const post = await res.json();
+  const posts = post.result;
+  const paths = posts.map((post) => ({
+    params: { id: post.id.toString() },
+  }));
+  return { paths, fallback: false };
+};
 
-const UserDetailPage = () => {
+export const getStaticProps = async ({ params }) => {
+  const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/info`);
+  const post = await res.json();
+  return { props: { post } };
+};
+
+const UserDetailPage = ({post}) => {
  
   const [categoryList,setCategoryList] = useState(true);
-  const [userInfoList, setUserInfoList] = useState();
-
-  useEffect(() => {
-    fetch('data/Userdata.json', {
-      method: 'GET',
-    })
-    .then(res => res.json())
-    .then(data => {
-        setUserInfoList(data.result);
-      });
-  }, []);
+  // const [userInfoList, setUserInfoList] = useState();
 
 
-  const activeReview = () => {
-    setCategoryList(true);
-  };
+  // useEffect(() => {
+  //   fetch('data/Userdata.json', {
+  //     method: 'GET',
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //       setUserInfoList(data.result);
+  //     });
+  // }, []);
 
-  const activeRecipe = () => {
-    setCategoryList(false);
-  };
+
+  // const activeReview = () => {
+  //   setCategoryList(true);
+  // };
+
+  // const activeRecipe = () => {
+  //   setCategoryList(false);
+  // };
 
 
   return (
@@ -55,7 +71,7 @@ const UserDetailPage = () => {
       작성후기({userInfoList.review_count})
        </UserReview>
       </UserCategory>
-    {categoryList=== true?  <DetailPost/> : <DetailReview/> }
+    {categoryList=== true?  <DetailPost post={post}/> : <DetailReview post={post}/> }
       </DetailWrapper>
       )}
   

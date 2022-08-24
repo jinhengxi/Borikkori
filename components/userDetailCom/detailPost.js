@@ -1,12 +1,29 @@
 import { useState,useEffect } from 'react';
 import styled from 'styled-components'
 
-const DetailPost = () => {
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`http://10.58.5.197:8000/user`);
+//   const post = await res.json();
+//   const posts = post.result;
+//   const paths = posts.map((post) => ({
+//     params: { id: post.id.toString() },
+//   }));
+//   return { paths, fallback: false };
+// };
+
+// export const getStaticProps = async ({ params }) => {
+//   const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/wreview`);
+//   const post = await res.json();
+//   return { props: { post } };
+// };
+
+
+const DetailPost = ({post}) => {
   
     const [userDetailPost, setUserDetailPost] = useState();
 
     useEffect(() => {
-        fetch('data/UserDetailData.json', {
+        fetch(`http://10.58.5.197:8000/user/${post.id}/wrecipe`, {
           method: 'GET',
         })
           .then(res => res.json())
@@ -14,7 +31,6 @@ const DetailPost = () => {
             setUserDetailPost(data);
           });
       }, []);
-
 
   return (
     <UserPostWrapper> 
