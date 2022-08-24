@@ -25,7 +25,7 @@ const DetailReview = ({post}) => {
 
   return (
     <UserPostWrapper>
-      {post?.map(({ id, title, content, itemImg, date }) => (
+      {userDetailPost?.map(({ id, title, content, itemImg, date }) => (
         <UserPostCard key={id}>
           <UserPostImg src={itemImg} />
           <PostDetailWrapper>
