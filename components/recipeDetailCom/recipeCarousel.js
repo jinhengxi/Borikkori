@@ -6,9 +6,10 @@ import { GrPrevious, GrNext } from 'react-icons/gr';
 import RecipeCarouselCard from './recipeCarouselCard';
 
 const RecipeCarousel = ({posts}) => {
+  console.log(posts)
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
