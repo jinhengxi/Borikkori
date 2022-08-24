@@ -1,49 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import SimilarCarouselCard from './similarCarouselCard';
 import { GrPrevious, GrNext } from 'react-icons/gr';
 import { BASE_URL } from '../../config';
 
+const SimilarCarousels = ({ posts }) => {
+  const [simillar, setSimillar] = useState();
 
-const SimilarCarousels = ({posts}) => {
-    const [simillar, setSimillar] = useState();
+  useEffect(() => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/similitube`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSimillar(data);
+      });
+  }, [posts]);
 
-    useEffect(() => {
-        fetch(`${BASE_URL}/recipe/detail/${posts.id}/similitube`, {
-          method: 'GET',
-        })
-          .then(res => res.json())
-          .then(data => {
-            setSimillar(data);
-          });
-      }, [posts]);
+  console.log(simillar);
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        nextArrow: <GrNext />,
-        prevArrow: <GrPrevious />,
-      };
-      
-    return (
-        <SimilarRecipe>
-            <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
-        <SimilarCarousel>
-        <StyledSlider  {...settings}>
-            {simillar?.map(({id, name,thumbnail}) => (
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <GrNext />,
+    prevArrow: <GrPrevious />,
+  };
+
+  return (
+    <SimilarRecipe>
+      <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
+      <SimilarCarousel>
+        <StyledSlider {...settings}>
+          {simillar?.map(({ id, name, thumbnail }) => (
             <SimillarCard key={id}>
-                <SimilarCarouselCard itemImg={thumbnail}/>
-                <CardTitle>{title}</CardTitle>
-                </SimillarCard>
-            ))}
-            </StyledSlider>
-        </SimilarCarousel>
+              <SimilarCarouselCard itemImg={thumbnail} />
+              <CardTitle>{title}</CardTitle>
+            </SimillarCard>
+          ))}
+        </StyledSlider>
+      </SimilarCarousel>
     </SimilarRecipe>
-    );
+  );
 };
 
 const StyledSlider = styled(Slider)`
@@ -63,7 +64,8 @@ const StyledSlider = styled(Slider)`
     }
   }
 
-  .slick-prev, .slick-next{
+  .slick-prev,
+  .slick-next {
     font-size: 0;
     line-height: 0;
     position: absolute;
@@ -81,11 +83,10 @@ const StyledSlider = styled(Slider)`
 `;
 
 const SimilarRecipe = styled.div`
-  width:1050px;
+  width: 1050px;
   margin-top: 100px;
   margin-bottom: 150px;
 `;
-
 
 const SimillarCard = styled.div`
   width: 223px;
@@ -94,25 +95,23 @@ const SimillarCard = styled.div`
   cursor: pointer;
 `;
 
-
 const CardTitle = styled.div`
-    width: 230px;
-    margin-top: 13px;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 24px;
+  width: 230px;
+  margin-top: 13px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
   cursor: pointer;
 `;
 
 const SimilarRecipeTitle = styled.div`
-font-weight: bold;
-font-size: 24px;
-margin-bottom: 50px;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 50px;
 `;
 
 const SimilarCarousel = styled.div`
-width: 100%;
-
+  width: 100%;
 `;
 
 export default SimilarCarousels;
