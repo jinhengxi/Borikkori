@@ -23,7 +23,7 @@ const DetailPost = ({post}) => {
     const [userDetailPost, setUserDetailPost] = useState();
 
     useEffect(() => {
-        fetch(`http://10.58.5.197:8000/user/${post.id}/info`, {
+        fetch(`http://10.58.5.197:8000/user/${post.id}/wrecipe`, {
           method: 'GET',
         })
           .then(res => res.json())
