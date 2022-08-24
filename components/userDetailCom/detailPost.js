@@ -15,7 +15,7 @@ const DetailPost = ({ post }) => {
         setUserDetailPost(data.result);
       });
   }, []);
-  console.log(userDetailPost)
+
   return (
     <UserPostWrapper>
       {userDetailPost &&

@@ -5,24 +5,6 @@ import DetailReview from '../../components/userDetailCom/detailReview';
 
 import { BASE_URL } from '../../config';
 
-
-// export const getStaticPaths = async () => {
-//   const res = await fetch(`${BASE_URL}/user`);
-//   const post = await res.json();
-//   const posts = post.result;
-//   const paths = posts.map((post) => ({
-//     params: { id: post.id.toString() },
-//   }));
-//   return { paths, fallback: false };
-// };
-
-// export const getStaticProps = async ({ params }) => {
-//   const res = await fetch(`${BASE_URL}/user/${params?.id}/info`);
-//   const post = await res.json();
-//   return { props: { post } };
-// };
-
-
 const UserDetailPage = () => {
  
   const [categoryList, setCategoryList] = useState(true);

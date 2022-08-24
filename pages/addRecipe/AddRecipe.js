@@ -58,7 +58,7 @@ function AddRecipe() {
       data: formData,
     })
       .then(res => {
-        if (res.status === 201) {
+        if (res.status === 200) {
           alert('발행 완료');
           router.push('/UserRecipe');
         }

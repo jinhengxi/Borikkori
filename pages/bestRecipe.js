@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BestImgDiv from '../components/bestRecipe/BestImgDiv';
@@ -7,7 +6,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const BestRecipe = () => {
   const [bestRecipes, setBestRecipes] = useState();
-  const router = useRouter();
 
   const fetchData = () => {
     fetch('http://10.58.2.86:8000/recipe/4/list?sort=4', {

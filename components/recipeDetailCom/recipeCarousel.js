@@ -6,7 +6,6 @@ import { GrPrevious, GrNext } from 'react-icons/gr';
 import RecipeCarouselCard from './recipeCarouselCard';
 
 const RecipeCarousel = ({posts}) => {
-
   const settings = {
     dots: false,
     infinite: true,
@@ -22,9 +21,9 @@ const RecipeCarousel = ({posts}) => {
       <RecipeItemsTitle>Recipe Items</RecipeItemsTitle>
       <RecipeBox>
         <StyledSlider {...settings}>
-          {posts?.map(({ id, name, itemImg, price }) => (
+          {posts?.map(({ id, name, image, price }) => (
             <RecipeCard key={id}>
-              <RecipeCarouselCard itemImg={itemImg} />
+              <RecipeCarouselCard itemImg={image} />
               <RecipeTitle>{name}</RecipeTitle>
               <RecipePrice>{price}원</RecipePrice>
             </RecipeCard>

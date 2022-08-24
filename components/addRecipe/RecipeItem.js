@@ -175,15 +175,6 @@ const AddBtn = styled.button`
   }
 `;
 
-// const RemoveBtn = styled(AddBtn)`
-//   background-color: #999999;
-//   font-size: 30px;
-
-//   &:active {
-//     background-color: ${props => props.theme.colors.gray};
-//   }
-// `;
-
 const ItemInfo = styled.div`
   margin-top: 20px;
   ${props => props.theme.flex.flexBox('column')};

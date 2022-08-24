@@ -5,7 +5,6 @@ import { BASE_URL } from '../../config';
 const SubComment = ({ subCommentDataList, posts }) => {
   const [subInput, setSubInput] = useState();
 
-  //대댓글 POST
   const subCommentAction = id => {
     fetch(`${BASE_URL}/reipe/detail/${posts.id}/recomment`, {
       method: 'POST',

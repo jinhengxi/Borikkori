@@ -5,7 +5,6 @@ import Igredient from '../../components/recipeDetailCom/ingredient';
 import RecipeCarousel from '../../components/recipeDetailCom/recipeCarousel';
 import SimilarCasousel from '../../components/recipeDetailCom/similarCarousel';
 import UserProfile from '../../components/recipeDetailCom/UserProfile';
-import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../config';
 
 export const getStaticPaths = async () => {
@@ -26,40 +25,6 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const RecipeDetail = ({posts}) => {
-  console.log(posts)
-
-  // const [userRecipeInfo, setUserRecipeInfo] = useState();
-
-  // useEffect(() => {
-  //   fetch(
-  //     `http://10.58.5.197:8000/recipe/detail/${window.location.search.replace(
-  //       '?id=',
-  //       ''
-  //     )}`,
-  //     {
-  //       method: 'GET',
-  //     }
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUserRecipeInfo(data.result);
-  //     });
-  // }, []);
-
-  //목데이터
-  // useEffect(() => {
-  //   fetch(
-  //     `data/recipeDetailData.json`,
-  //     {
-  //       method: 'GET',
-  //     }
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setUserRecipeInfo(data.result);
-  //     });
-  // }, []);
-
   return (
     <RecipeDetailWrapper>
       {posts && (

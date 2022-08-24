@@ -27,7 +27,6 @@ const DetailComment = ({ posts }) => {
     setCommentId(id);
   };
 
-  //댓글GET
   useEffect(() => {
     fetch(`${BASE_URL}/recipe/detail/${posts.id}/comment`, {
       method: 'GET',
@@ -48,7 +47,6 @@ const DetailComment = ({ posts }) => {
       });
   };
 
-  //POST 댓글업로드
   const commentUpload = (input, bChecked) => {
     fetch(`${BASE_URL}/recipe/detail/${posts.id}/commnet`, {
       method: 'POST',
@@ -68,25 +66,6 @@ const DetailComment = ({ posts }) => {
       });
   };
 
-  // const CommentCheck = (commentId) => {
-  //   fetch(``, {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       tag: bChecked,
-  //       content:commentId
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //     })
-  //     .then((data) => {
-  //       if (data) {
-  //       }
-  //     });
-  // };
-  //POST 좋아요
   const likeAction = id => {
     fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}/like`, {
       method: 'POST',
@@ -114,16 +93,6 @@ const DetailComment = ({ posts }) => {
     });
   };
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     await axios.delete(`http://localhost:8080/todos/${id}`, {
-  //       headers: { Authorization: localStorage.getItem("token") },
-  //     });
-  //     alert("삭제완료");
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
   return (
     <CommentWrapper>
       {commentDataList && (
