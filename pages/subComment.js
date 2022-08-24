@@ -7,7 +7,7 @@ const SubComment = ({subCommentDataList}) => {
   
 //대댓글 POST
 const subCommentAction = (subInput) => {
-  fetch(`http://10.58.5.197:8000/recipe/detail/${id}/similitude `, {
+  fetch(`http://10.58.5.197:8000/recipe/5/recommnet/<int:comment_id>`, {
     method: 'POST',
     body: JSON.stringify({
      content:subInput

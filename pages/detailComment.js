@@ -30,7 +30,7 @@ const DetailComment = () => {
 
 //댓글GET
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/${id}/comment`, {
+    fetch(`http://10.58.5.197:8000/recipe/detail/5/comment`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -39,6 +39,7 @@ const DetailComment = () => {
       });
   }, []);
 
+  console.log(commentDataList);
 //대댓글GET
    useEffect(() => {
     fetch('data/subComment.json', {
@@ -52,7 +53,7 @@ const DetailComment = () => {
 
 //POST 댓글업로드
 const commentUpload = (input, bChecked) => {
-  fetch(``, {
+  fetch(`http://10.58.5.197:8000/recipe/5/recommnet/${commentId}`, {
     method: 'POST',
     body: JSON.stringify({
       tag: bChecked,
@@ -70,6 +71,24 @@ const commentUpload = (input, bChecked) => {
     });
 };
 
+const CommentCheck = (commentId) => {
+  fetch(``, {
+    method: 'POST',
+    body: JSON.stringify({
+      tag: bChecked,
+      content:commentId
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })
+    .then((data) => {
+      if (data) {
+      }
+    });
+};
 //POST 좋아요
 const likeAction = (heartState) => {
   fetch(``, {

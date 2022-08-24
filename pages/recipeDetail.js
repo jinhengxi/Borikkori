@@ -14,7 +14,7 @@ const RecipeDetail = () => {
   const [userRecipeInfo,setUserRecipeInfo] = useState();
 
   useEffect(() => {
-      fetch(`http://10.58.5.197:8000/recipe/detail/${id}`, {
+      fetch(`http://10.58.5.197:8000/recipe/detail/5`, {
         method: 'GET',
       })
         .then(res => res.json())
