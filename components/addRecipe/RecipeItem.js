@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { useState } from 'react';
 
+import { BASE_URL } from '../../config';
+
 function RecipeItem({ handRecipeItem, recipeItem }) {
   const [isModal, setIsModal] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -26,7 +28,7 @@ function RecipeItem({ handRecipeItem, recipeItem }) {
 
   const onSubmit = e => {
     e.preventDefault();
-    fetch(`http://10.58.5.197:8000/product/list?search=${searchText}`, {
+    fetch(`${BASE_URL}/product/list?search=${searchText}`, {
       method: 'GET',
     })
       .then(res => res.json())

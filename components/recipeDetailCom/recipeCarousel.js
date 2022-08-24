@@ -5,18 +5,7 @@ import { GrPrevious, GrNext } from 'react-icons/gr';
 
 import RecipeCarouselCard from './recipeCarouselCard';
 
-const RecipeCarousel = () => {
-  const [recipeItems, setRecipeItems] = useState();
-
-  useEffect(() => {
-    fetch('data/DATADATA.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setRecipeItems(data);
-      });
-  }, []);
+const RecipeCarousel = ({posts}) => {
 
   const settings = {
     dots: false,
@@ -33,7 +22,7 @@ const RecipeCarousel = () => {
       <RecipeItemsTitle>Recipe Items</RecipeItemsTitle>
       <RecipeBox>
         <StyledSlider {...settings}>
-          {recipeItems?.map(({ id, name, itemImg, price }) => (
+          {posts?.map(({ id, name, itemImg, price }) => (
             <RecipeCard key={id}>
               <RecipeCarouselCard itemImg={itemImg} />
               <RecipeTitle>{name}</RecipeTitle>

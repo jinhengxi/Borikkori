@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import CookingSteps from '../components/recipeDetailCom/cookingSteps';
-import DetailComment from '../components/recipeDetailCom/detailComment';
-import Igredient from '../components/recipeDetailCom/ingredient';
-import RecipeCarousel from '../components/recipeDetailCom/recipeCarousel';
-import SimilarCasousel from '../components/recipeDetailCom/similarCarousel';
-import UserProfile from '../components/recipeDetailCom/UserProfile';
+import CookingSteps from '../../components/recipeDetailCom/cookingSteps';
+import DetailComment from '../../components/recipeDetailCom/detailComment';
+import Igredient from '../../components/recipeDetailCom/ingredient';
+import RecipeCarousel from '../../components/recipeDetailCom/recipeCarousel';
+import SimilarCasousel from '../../components/recipeDetailCom/similarCarousel';
+import UserProfile from '../../components/recipeDetailCom/UserProfile';
 import React, { useState, useEffect } from 'react';
+import { BASE_URL } from '../../config';
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`http://10.58.5.197:8000/recipe/detail`);
+  const res = await fetch(`${BASE_URL}/recipe/4/list`);
   const post = await res.json();
   const posts = post.result;
   const paths = posts.map((post) => ({
@@ -18,12 +19,14 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const res = await fetch(`http://10.58.5.197:8000/recipe/detail/${params?.id}`);
+  const res = await fetch(`${BASE_URL}/recipe/detail/${params?.id}`);
   const post = await res.json();
-  return { props: { post } };
+  const posts = await post.result;
+  return { props: { posts } };
 };
 
-const RecipeDetail = ({post}) => {
+const RecipeDetail = ({posts}) => {
+  console.log(posts)
 
   // const [userRecipeInfo, setUserRecipeInfo] = useState();
 
@@ -57,18 +60,16 @@ const RecipeDetail = ({post}) => {
   //     });
   // }, []);
 
-console.log(post);
-
   return (
     <RecipeDetailWrapper>
-      {userRecipeInfo && (
+      {posts && (
         <>
-          <UserProfile userRecipeInfo={userRecipeInfo} />
-          <Igredient ingredient={userRecipeInfo.ingredient} />
-          <RecipeCarousel product={userRecipeInfo.product} />
-          <CookingSteps content={userRecipeInfo.content} />
-          <DetailComment />
-          <SimilarCasousel />
+          <UserProfile posts={posts} />
+          <Igredient posts={posts.ingredient} />
+          <RecipeCarousel posts={posts.product} />
+          <CookingSteps posts={posts.content} />
+          <DetailComment posts={posts}/>
+          <SimilarCasousel posts={posts}/>
         </>
       )}
     </RecipeDetailWrapper>

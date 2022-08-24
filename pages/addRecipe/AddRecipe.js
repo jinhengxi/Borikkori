@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 import CoverImg from '../../components/addRecipe/CoverImg';
 import RecipeInfo from '../../components/addRecipe/RecipeInfo';
@@ -26,18 +27,9 @@ function AddRecipe() {
   const [arrImg2, setArrimg2] = useState([]);
   const [hashTag, setHashTag] = useState([]);
 
-  // console.log(
-  //   coverImg,
-  //   recipeInfo,
-  //   writingRecipe,
-  //   ingredient,
-  //   recipeItem,
-  //   cookingStep,
-  //   hashTag
-  // );
+  const router = useRouter();
 
   const sendCommentToServer = async () => {
-    
     const formData = new FormData();
     formData.append('title', writingRecipe.title);
     formData.append('intro', writingRecipe.content);
@@ -48,10 +40,10 @@ function AddRecipe() {
     formData.append('main_category_id', recipeInfo.country);
     formData.append('sub_category_id', recipeInfo.situation);
     formData.append('ingredient', JSON.stringify(ingredient));
-    formData.append('product', JSON.stringify(recipeItem.item));
+    formData.append('product', JSON.stringify(recipeItem));
     formData.append('content', JSON.stringify(cookingStep));
-    for (let i = 0; i < arrImg.length; i++) { 
-      formData.append("content_image", arrImg[i]);
+    for (let i = 0; i < arrImg.length; i++) {
+      formData.append('content_image', arrImg[i]);
     }
     formData.append('hash_tag', hashTag);
 
@@ -68,6 +60,7 @@ function AddRecipe() {
       .then(res => {
         if (res.status === 201) {
           alert('발행 완료');
+          router.push('/UserRecipe');
         }
       })
       .catch(error => {
@@ -115,12 +108,6 @@ function AddRecipe() {
     inputItemsCopy[id].content = value;
     setCookingStep(inputItemsCopy);
   };
-
-  // const handCookingImg = (e, id) => {
-  //   const inputItemsCopy = cookingStep;
-  //   inputItemsCopy[id].image = e.target.files[0];
-  //   setCookingStep(inputItemsCopy);
-  // };
 
   const handCookingImg = e => {
     setArrimg(arrImg.concat(e.target.files[0]));
