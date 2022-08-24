@@ -1,80 +1,81 @@
-import { useState} from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import DetailPost from '../../components/userDetailCom/detailPost';
 import DetailReview from '../../components/userDetailCom/detailReview';
 
-
-export const getStaticPaths = async () => {
-  const res = await fetch(`http://10.58.5.197:8000/user`);
-  const post = await res.json();
-  const posts = post.result;
-  const paths = posts.map((post) => ({
-    params: { id: post.id.toString() },
-  }));
-  return { paths, fallback: false };
-};
-
-export const getStaticProps = async ({ params }) => {
-  const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/info`);
-  const post = await res.json();
-  return { props: { post } };
-};
+import { BASE_URL } from '../../config';
 
 
-const UserDetailPage = ({post}) => {
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${BASE_URL}/user`);
+//   const post = await res.json();
+//   const posts = post.result;
+//   const paths = posts.map((post) => ({
+//     params: { id: post.id.toString() },
+//   }));
+//   return { paths, fallback: false };
+// };
+
+// export const getStaticProps = async ({ params }) => {
+//   const res = await fetch(`${BASE_URL}/user/${params?.id}/info`);
+//   const post = await res.json();
+//   return { props: { post } };
+// };
+
+
+const UserDetailPage = () => {
  
-  const [categoryList,setCategoryList] = useState(true);
+  const [categoryList, setCategoryList] = useState(true);
   
-  // const [userInfoList, setUserInfoList] = useState();
+  const [posts, setPosts] = useState();
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/user/${window.location.pathname.slice(-1)}/info`, {
+      method: 'GET',
+    })
+    .then(res => res.json())
+    .then(data => {
+      setPosts(data.result);
+      });
+  }, []);
 
 
-  // useEffect(() => {
-  //   fetch('data/Userdata.json', {
-  //     method: 'GET',
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => {
-  //       setUserInfoList(data.result);
-  //     });
-  // }, []);
+  const activeReview = () => {
+    setCategoryList(true);
+  };
 
-
-  // const activeReview = () => {
-  //   setCategoryList(true);
-  // };
-
-  // const activeRecipe = () => {
-  //   setCategoryList(false);
-  // };
+  const activeRecipe = () => {
+    setCategoryList(false);
+  };
 
 
   return (
     
     <UserDetail>
-      {post && (
+      {posts && (
       <DetailWrapper>
       <ProfileBox>
           <ProfileImgWrapper>
   <ProfileImg src='/images/UserProfile.png'/>
   </ProfileImgWrapper>
   <ProfileTextBox>
-  <UserId>{post.name}</UserId>
+  <UserId>{posts.name}</UserId>
   <LevelBox>
-  <LevelLogo src={post.rating_mark_image}/>
-  <UserLevel>{post.rating_name}</UserLevel>
+  <LevelLogo src={posts.rating_mark_image}/>
+  <UserLevel>{posts.rating_name}</UserLevel>
   </LevelBox>
   </ProfileTextBox>
       </ProfileBox>
       <UserCategory>
   
        <UserRecipe active={categoryList} onClick={activeReview} >
-      작성레시피({post.recipe_count})
+      작성레시피({posts.recipe_count})
        </UserRecipe>
        <UserReview active={categoryList} onClick={activeRecipe}>
-      작성후기({post.review_count})
+      작성후기({posts.review_count})
        </UserReview>
       </UserCategory>
-    {categoryList=== true?  <DetailPost post={post}/> : <DetailReview post={post}/> }
+    {categoryList=== true?  <DetailPost post={posts}/> : <DetailReview post={posts}/> }
       </DetailWrapper>
       )}
   

@@ -1,40 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-
-export const getStaticProps = async ({ params }) => {
-  const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/wrecipe`);
-  const post = await res.json();
-  return { props: { post } };
-};
-
-
+import { BASE_URL } from '../../config';
 
 const DetailReview = ({post}) => {
   const [userDetailPost, setUserDetailPost] = useState();
 
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/user/${post.id}/wreview`, {
+    fetch(`${BASE_URL}/user/${post.id}/wreview`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setUserDetailPost(data);
+        setUserDetailPost(data.result);
       });
   }, []);
 
   return (
     <UserPostWrapper>
-      {userDetailPost?.map(({ id, title, content, itemImg, date }) => (
-        <UserPostCard key={id}>
-          <UserPostImg src={itemImg} />
-          <PostDetailWrapper>
-            <PostTitle>{title}</PostTitle>
-            <PostContent>{content}</PostContent>
-            <PostDate>{date}</PostDate>
-          </PostDetailWrapper>
-        </UserPostCard>
-      ))}
+      {userDetailPost &&
+        userDetailPost?.map(({ id, title, content, itemImg, date }) => (
+          <UserPostCard key={id}>
+            <UserPostImg src={itemImg} />
+            <PostDetailWrapper>
+              <PostTitle>{title}</PostTitle>
+              <PostContent>{content}</PostContent>
+              <PostDate>{date}</PostDate>
+            </PostDetailWrapper>
+          </UserPostCard>
+        ))}
     </UserPostWrapper>
   );
 };
