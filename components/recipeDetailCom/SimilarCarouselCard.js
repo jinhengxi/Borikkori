@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 
-const SimilarCarouselCard = ({itemImg}) => {
+const similarCarouselCard = ({itemImg}) => {
     return (
         <div>
         <Image
@@ -16,4 +16,4 @@ const SimilarCarouselCard = ({itemImg}) => {
 };
 
 
-export default SimilarCarouselCard;
+export default similarCarouselCard;

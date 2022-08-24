@@ -4,7 +4,7 @@ import DetailComment from '../../components/recipeDetailCom/detailComment';
 import Igredient from '../../components/recipeDetailCom/ingredient';
 import RecipeCarousel from '../../components/recipeDetailCom/recipeCarousel';
 import SimilarCasousel from '../../components/recipeDetailCom/similarCarousel';
-import UserProfile from '../../components/recipeDetailCom/UserProfile';
+import UserProfile from '../../components/recipeDetailCom/userProfile';
 import { BASE_URL } from '../../config';
 
 export const getStaticPaths = async () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const UserProfile = ({ posts, hash }) => {
+const userProfile = ({ posts, hash }) => {
   return (
     <UserProfiles>
       {posts && (
@@ -216,4 +216,4 @@ const IconStar = styled.img`
 const QuantityText = styled.div``;
 const Min = styled.div``;
 const DifficultyText = styled.div``;
-export default UserProfile;
+export default userProfile;
