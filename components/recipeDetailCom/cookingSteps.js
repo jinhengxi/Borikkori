@@ -9,7 +9,7 @@ const CookingSteps = ({ posts }) => {
           <CookingTitle>Cooking steps</CookingTitle>
           <CookWrapper>
             <StepBox>
-              <StepImg src={post.image} />
+              <StepImg src={post.image[0]} />
               <StepWrapper>
                 <Step>Step {post.step}</Step>
                 <StepContent>{post.content}</StepContent>

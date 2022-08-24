@@ -38,8 +38,8 @@ const BestRecipe = () => {
           {bestRecipes?.map(data => (
             <Link
               key={data.id}
-              href="/recipeDetail"
-              as={`recipeDetail/${data.id}`}
+              href="/recipeDetail/[id]"
+              as={`/recipeDetail/${data.id}`}
             >
               <BestImgDiv data={data} />
             </Link>
