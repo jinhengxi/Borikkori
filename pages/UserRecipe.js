@@ -24,7 +24,7 @@ const UserRecipe = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/4/list${window.location.search}`, {
+    fetch(`http://10.58.2.86:8000/recipe/4/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())

@@ -30,7 +30,7 @@ const DetailComment = () => {
 
   //댓글GET
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/comment`, {
+    fetch(`http://10.58.2.86:8000/recipe/detail/5/comment`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -41,7 +41,7 @@ const DetailComment = () => {
 
   //대댓글GET
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/recomment/${commentId}`, {
+    fetch(`http://10.58.2.86:8000/recipe/detail/5/recomment/${commentId}`, {
       method: 'GET',
     })
       .then(res => res.json())
