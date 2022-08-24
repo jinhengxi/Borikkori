@@ -1,9 +1,9 @@
 import { useState} from 'react';
 import styled from 'styled-components'
-import DetailPost from '../components/userDetailCom/detailPost';
-import DetailReview from '../components/userDetailCom/detailReview';
+import DetailPost from '../../components/userDetailCom/detailPost';
+import DetailReview from '../../components/userDetailCom/detailReview';
 
-<<<<<<< HEAD
+
 export const getStaticPaths = async () => {
   const res = await fetch(`http://10.58.5.197:8000/user`);
   const post = await res.json();
@@ -19,27 +19,12 @@ export const getStaticProps = async ({ params }) => {
   const post = await res.json();
   return { props: { post } };
 };
-=======
-// export const getStaticPaths = async () => {
-//   const res = await fetch(`http://10.58.5.197:8000/user`);
-//   const post = await res.json();
-//   const posts = post.result;
-//   const paths = posts.map((post) => ({
-//     params: { id: post.id.toString() },
-//   }));
-//   return { paths, fallback: false };
-// };
 
-// export const getStaticProps = async ({ params }) => {
-//   const res = await fetch(`http://10.58.5.197:8000/user/${params?.id}/info`);
-//   const post = await res.json();
-//   return { props: { post } };
-// };
->>>>>>> 3547dfdebb01b64e9dab88c62b3de5d706a99cfb
 
 const UserDetailPage = ({post}) => {
  
   const [categoryList,setCategoryList] = useState(true);
+  
   // const [userInfoList, setUserInfoList] = useState();
 
 
@@ -66,27 +51,27 @@ const UserDetailPage = ({post}) => {
   return (
     
     <UserDetail>
-      {userInfoList && (
+      {post && (
       <DetailWrapper>
       <ProfileBox>
           <ProfileImgWrapper>
   <ProfileImg src='/images/UserProfile.png'/>
   </ProfileImgWrapper>
   <ProfileTextBox>
-  <UserId>{userInfoList.name}</UserId>
+  <UserId>{post.name}</UserId>
   <LevelBox>
-  <LevelLogo src={userInfoList.rating_mark_image}/>
-  <UserLevel>{userInfoList.rating_name}</UserLevel>
+  <LevelLogo src={post.rating_mark_image}/>
+  <UserLevel>{post.rating_name}</UserLevel>
   </LevelBox>
   </ProfileTextBox>
       </ProfileBox>
       <UserCategory>
   
        <UserRecipe active={categoryList} onClick={activeReview} >
-      작성레시피({userInfoList.recipe_count})
+      작성레시피({post.recipe_count})
        </UserRecipe>
        <UserReview active={categoryList} onClick={activeRecipe}>
-      작성후기({userInfoList.review_count})
+      작성후기({post.review_count})
        </UserReview>
       </UserCategory>
     {categoryList=== true?  <DetailPost post={post}/> : <DetailReview post={post}/> }
