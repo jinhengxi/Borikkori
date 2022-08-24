@@ -4,7 +4,8 @@ import DetailComment from '../components/recipeDetailCom/detailComment';
 import Igredient from '../components/recipeDetailCom/ingredient';
 import RecipeCarousel from '../components/recipeDetailCom/recipeCarousel';
 import SimilarCasousel from '../components/recipeDetailCom/similarCarousel';
-import UserProfile from '../components/UserProfile';
+import UserProfile from '../components/recipeDetailCom/UserProfile';
+import React, { useState, useEffect } from 'react';
 
 export const getStaticPaths = async () => {
   const res = await fetch(`http://10.58.5.197:8000/recipe/detail`);
@@ -23,6 +24,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 const RecipeDetail = ({post}) => {
+
   // const [userRecipeInfo, setUserRecipeInfo] = useState();
 
   // useEffect(() => {
@@ -41,6 +43,21 @@ const RecipeDetail = ({post}) => {
   //     });
   // }, []);
 
+  //목데이터
+  // useEffect(() => {
+  //   fetch(
+  //     `data/recipeDetailData.json`,
+  //     {
+  //       method: 'GET',
+  //     }
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setUserRecipeInfo(data.result);
+  //     });
+  // }, []);
+
+console.log(post);
 
   return (
     <RecipeDetailWrapper>
