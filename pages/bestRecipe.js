@@ -1,13 +1,26 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BestImgDiv from '../components/bestRecipe/BestImgDiv';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const BestRecipe = () => {
   const [bestRecipes, setBestRecipes] = useState();
   const router = useRouter();
+
+  const fetchData = () => {
+    fetch('http://10.58.2.86:8000/recipe/4/list?sort=4', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setBestRecipes([...bestRecipes, ...data.result]);
+      });
+  };
+
   useEffect(() => {
-    fetch('http://10.58.5.197:8000/recipe/4/list?sort=4', {
+    fetch('http://10.58.2.86:8000/recipe/4/list?sort=4', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -16,23 +29,23 @@ const BestRecipe = () => {
       });
   }, []);
 
-  console.log(bestRecipes);
-
   return (
     <BestWrapper>
       <BestTitle>BEST</BestTitle>
 
-      <BestImgWrapper>
-        {bestRecipes?.map(data => (
-          <BestImgDiv
-            key={data.id}
-            data={data}
-            onClick={() =>
-              router.push({ pathname: `/recipeDetail`, query: { id: data.id } })
-            }
-          />
-        ))}
-      </BestImgWrapper>
+      <InfiniteScroll dataLength={6} next={fetchData} hasMore={true}>
+        <BestImgWrapper>
+          {bestRecipes?.map(data => (
+            <Link
+              key={data.id}
+              href="/recipeDetail"
+              as={`recipeDetail/${data.id}`}
+            >
+              <BestImgDiv data={data} />
+            </Link>
+          ))}
+        </BestImgWrapper>
+      </InfiniteScroll>
     </BestWrapper>
   );
 };
