@@ -8,8 +8,6 @@ import { BASE_URL } from '../../config';
 const SimilarCarousels = ({ posts }) => {
   const [simillar, setSimillar] = useState();
 
-  console.log(simillar)
-
   useEffect(() => {
     fetch(`${BASE_URL}/recipe/detail/${posts.id}/similitube`, {
       method: 'GET',
@@ -32,7 +30,7 @@ const SimilarCarousels = ({ posts }) => {
 
   return (
     <Container>
-      {(simillar && simillar.length > 0) && (
+      {simillar && simillar.length > 0 && (
         <SimilarRecipe>
           <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
           <SimilarCarousel>
@@ -51,7 +49,7 @@ const SimilarCarousels = ({ posts }) => {
   );
 };
 
-const Container = styled.div``
+const Container = styled.div``;
 
 const StyledSlider = styled(Slider)`
   .slick-list {
