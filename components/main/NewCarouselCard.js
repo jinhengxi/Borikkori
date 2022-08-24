@@ -17,7 +17,7 @@ function NewCarouselCard({ newRecipe }) {
           <ImgInfo>
             <Image src="/images/heart.png" alt="heart" width={12} height={11} />
             <HeartData>10</HeartData>
-            <Image src="/images/chat.png" alt="heart" width={13} height={11} />
+            <Image src="/images/chat.png" alt="chat" width={13} height={11} />
             <ChatData>10</ChatData>
           </ImgInfo>
         </ImgContainer>
