@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SubComment from './subComment';
+import { BASE_URL } from '../../config';
 
-const DetailComment = () => {
+const DetailComment = ({ posts }) => {
   const [commentDataList, setCommentDataList] = useState();
   const [subCommentDataList, setSubCommentDataList] = useState();
   const [input, setInput] = useState('');
@@ -11,8 +12,6 @@ const DetailComment = () => {
   const [talk, setTalk] = useState(false);
   const [heartId, setHeartId] = useState();
   const [commentId, setCommentId] = useState();
-
-  console.log(commentDataList);
 
   const checkHandler = () => {
     setChecked(!bChecked);
@@ -30,7 +29,11 @@ const DetailComment = () => {
 
   //댓글GET
   useEffect(() => {
+<<<<<<< HEAD:pages/detailComment.js
     fetch(`http://10.58.2.86:8000/recipe/detail/5/comment`, {
+=======
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/comment`, {
+>>>>>>> 01dd57acde25e4d0e9f616d832fbd4730e890df8:components/recipeDetailCom/detailComment.js
       method: 'GET',
     })
       .then(res => res.json())
@@ -39,20 +42,25 @@ const DetailComment = () => {
       });
   }, []);
 
+<<<<<<< HEAD:pages/detailComment.js
   //대댓글GET
   useEffect(() => {
     fetch(`http://10.58.2.86:8000/recipe/detail/5/recomment/${commentId}`, {
+=======
+  const handleComment = id => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/recomment/${id}`, {
+>>>>>>> 01dd57acde25e4d0e9f616d832fbd4730e890df8:components/recipeDetailCom/detailComment.js
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
         setSubCommentDataList(data.result);
       });
-  }, [setTalk, commentId]);
+  };
 
   //POST 댓글업로드
   const commentUpload = (input, bChecked) => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/commnet`, {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/commnet`, {
       method: 'POST',
       body: JSON.stringify({
         tag: bChecked,
@@ -70,9 +78,27 @@ const DetailComment = () => {
       });
   };
 
+  // const CommentCheck = (commentId) => {
+  //   fetch(``, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       tag: bChecked,
+  //       content:commentId
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //     })
+  //     .then((data) => {
+  //       if (data) {
+  //       }
+  //     });
+  // };
   //POST 좋아요
-  const likeAction = heartState => {
-    fetch(``, {
+  const likeAction = id => {
+    fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}/like`, {
       method: 'POST',
       body: JSON.stringify({
         likeAction: heartState,
@@ -90,7 +116,7 @@ const DetailComment = () => {
   };
 
   const DeleteComment = id => {
-    fetch(``, {
+    fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}`, {
       method: 'DELETE',
       headers: { Authorization: localStorage.getItem('token') },
     }).then(() => {
@@ -135,7 +161,12 @@ const DetailComment = () => {
                         {tag ? <Lavel2>질문</Lavel2> : <Lavel>댓글</Lavel>}
                         <UserId>{user_name}</UserId>
                       </Left>
-                      <Date>{created_at}</Date>
+                      <Date>
+                        {(created_at + 3240 * 10000)
+                          .toString()
+                          .replace('T', ' ')
+                          .replace(/\..*/, '')}
+                      </Date>
                     </CommentTextBox>
                   </CommentTop>
                   <CommentAndDeleteBox>
@@ -167,6 +198,7 @@ const DetailComment = () => {
                           src="/images/HeartGray.png"
                           onClick={() => {
                             heartHandler(id);
+                            likeAction(id);
                           }}
                         />
                       )}
@@ -183,6 +215,7 @@ const DetailComment = () => {
                         }
                         onClick={() => {
                           talkHandler(id);
+                          handleComment(id);
                         }}
                       />
                       <ComNum>{counter}</ComNum>
@@ -192,6 +225,7 @@ const DetailComment = () => {
                     <SubComment
                       subCommentDataList={subCommentDataList}
                       commentId={commentId}
+                      posts={posts}
                     />
                   ) : (
                     ''
@@ -220,7 +254,7 @@ const DetailComment = () => {
               <Labels>질문</Labels>
             </LavelSelectBox>
             <WriteCommentBox onSubmit={() => commentUpload()}>
-              {!localStorage.getItem('token') ? (
+              {localStorage.getItem('token') ? (
                 <CommentContainer
                   id="story"
                   name="story"

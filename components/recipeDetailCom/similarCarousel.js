@@ -3,23 +3,21 @@ import styled from 'styled-components';
 import Slider from "react-slick";
 import SimilarCarouselCard from './similarCarouselCard';
 import { GrPrevious, GrNext } from 'react-icons/gr';
+import { BASE_URL } from '../../config';
 
 
-const SimilarCarousels = () => {
-
+const SimilarCarousels = ({posts}) => {
     const [simillar, setSimillar] = useState();
 
     useEffect(() => {
-        fetch('data/DATADATA.json', {
+        fetch(`${BASE_URL}/recipe/detail/${posts.id}/similitube`, {
           method: 'GET',
         })
           .then(res => res.json())
           .then(data => {
             setSimillar(data);
           });
-      }, []);
-    
- ;
+      }, [posts]);
 
     const settings = {
         dots: false,
@@ -36,10 +34,10 @@ const SimilarCarousels = () => {
             <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
         <SimilarCarousel>
         <StyledSlider  {...settings}>
-            {simillar?.map(({id, name,itemImg}) => (
+            {simillar?.map(({id, name,thumbnail}) => (
             <SimillarCard key={id}>
-                <SimilarCarouselCard itemImg={itemImg}/>
-                <CardTitle>{name}</CardTitle>
+                <SimilarCarouselCard itemImg={thumbnail}/>
+                <CardTitle>{title}</CardTitle>
                 </SimillarCard>
             ))}
             </StyledSlider>

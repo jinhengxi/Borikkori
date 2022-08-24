@@ -1,42 +1,48 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
-function NewCarouselCard({newRecipe}) {
+function NewCarouselCard({ newRecipe }) {
   return (
-    <Container>
-      <ImgContainer>
-        <Image
-          src={newRecipe.recipe_thumbnail}
-          alt="bestRecipeImg"
-          width={234}
-          height={154}
-        />
-        <ImgInfoFake />
-        <ImgInfo>
-          <Image src="/images/heart.png" alt="heart" width={12} height={11} />
-          <HeartData>10</HeartData>
-          <Image src="/images/chat.png" alt="heart" width={13} height={11} />
-          <ChatData>10</ChatData>
-        </ImgInfo>
-      </ImgContainer>
-      <NewContent>
-        <Profile>
+    <Link href="/recipeDetail/[id]" as={`/recipeDetail/${newRecipe.id}`}>
+      <Container>
+        <ImgContainer>
           <Image
-            src={newRecipe.user_thumbnauil}
-            alt="ProfileImg"
-            width={25}
-            height={25}
+            src={newRecipe.recipe_thumbnail}
+            alt="bestRecipeImg"
+            width={234}
+            height={154}
           />
-          &nbsp;
-          <Image src={newRecipe.rating_mark_image} alt="Grade" width={12} height={12} />
-          <Nickname>{newRecipe.user_name}</Nickname>
-        </Profile>
-        <Title>{newRecipe.title}</Title>
-        <Content>
-          {newRecipe.intro}
-        </Content>
-      </NewContent>
-    </Container>
+          <ImgInfoFake />
+          <ImgInfo>
+            <Image src="/images/heart.png" alt="heart" width={12} height={11} />
+            <HeartData>10</HeartData>
+            <Image src="/images/chat.png" alt="chat" width={13} height={11} />
+            <ChatData>10</ChatData>
+          </ImgInfo>
+        </ImgContainer>
+        <NewContent>
+          <Profile>
+            <Image
+              src={newRecipe.user_thumbnauil}
+              alt="ProfileImg"
+              width={25}
+              height={25}
+            />
+            &nbsp;
+            <Image
+              src={newRecipe.rating_mark_image}
+              alt="Grade"
+              width={12}
+              height={12}
+            />
+            <Nickname>{newRecipe.user_name}</Nickname>
+          </Profile>
+          <Title>{newRecipe.title}</Title>
+          <Content>{newRecipe.intro}</Content>
+        </NewContent>
+      </Container>
+    </Link>
   );
 }
 
