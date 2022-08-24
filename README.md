@@ -15,6 +15,10 @@
 | 프론트엔드 | 김형겸, 김형석, 손가영 |
 | 백엔드     | 임한구                 |
 ​
+##백엔드 github
+​
+https://github.com/nicholas019/maketkurly-borikkori-backend
+​
 ## 기술 스택
 ​
 FrontEnd - HTML/CSS, JavaScript, React.js, Next.js, React-query, Recoil, Styled-components
