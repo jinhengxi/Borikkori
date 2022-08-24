@@ -1,30 +1,42 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
-function BestCarouselCard({bestRecipe}) {
+
+function BestCarouselCard({ bestRecipe }) {
   return (
-    <Container>
-      <BestCardImgOpacity>
-        <Image
-          src={bestRecipe.recipe_thumbnail}
-          alt="bestRecipeImg"
-          width={233}
-          height={307}
-        />
-      </BestCardImgOpacity>
-      <CardProfile>
-        <Image src={bestRecipe.user_thumbnauil} alt="ProfileImg" width={44} height={44} />
-        &nbsp;&nbsp;
-        <Image src={bestRecipe.rating_mark_image} alt="Grade" width={17} height={17} />
-        <Nickname>{bestRecipe.user_name}</Nickname>
-      </CardProfile>
-      <CardContent>
-        <Title>{bestRecipe.title}</Title>
-        <Content>
-          {bestRecipe.intro}
-        </Content>
-      </CardContent>
-    </Container>
+    <Link href="/[id]" as={`/${bestRecipe.id}`}>
+      <Container>
+        <BestCardImgOpacity>
+          <Image
+            src={bestRecipe.recipe_thumbnail}
+            alt="bestRecipeImg"
+            width={233}
+            height={307}
+          />
+        </BestCardImgOpacity>
+        <CardProfile>
+          <Image
+            src={bestRecipe.user_thumbnauil}
+            alt="ProfileImg"
+            width={44}
+            height={44}
+          />
+          &nbsp;&nbsp;
+          <Image
+            src={bestRecipe.rating_mark_image}
+            alt="Grade"
+            width={17}
+            height={17}
+          />
+          <Nickname>{bestRecipe.user_name}</Nickname>
+        </CardProfile>
+        <CardContent>
+          <Title>{bestRecipe.title}</Title>
+          <Content>{bestRecipe.intro}</Content>
+        </CardContent>
+      </Container>
+    </Link>
   );
 }
 
