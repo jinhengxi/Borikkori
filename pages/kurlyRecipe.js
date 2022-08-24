@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Pagination from '../components/Pagination';
 import { HiSearch } from 'react-icons/hi';
+import Link from 'next/link';
 
 const KurlyRecipe = () => {
   const [limit, setLimit] = useState(10);
@@ -133,25 +134,31 @@ const KurlyRecipe = () => {
       </RecipeFilter>
       <RecipeList>
         {recipeData.map(recipe => (
-          <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.recipe_thumbnail} />
+          <Link
+            key={recipe.id}
+            href="/recipeDetail"
+            as={`recipeDetail/${recipe.id}`}
+          >
+            <RecipeCard key={recipe.id}>
+              <RecipeImg src={recipe.recipe_thumbnail} />
 
-            <RecipeName>{recipe.title}</RecipeName>
-            <RecipeInfo>
-              <Views>
-                <InfoIcons src="/images/Views.png" />
-                {recipe.hit}
-              </Views>
-              <Likes>
-                <InfoIcons src="/images/Likes.png" />
-                {recipe.like_count}
-              </Likes>
-              <Comments>
-                <InfoIcons src="/images/Comments.png" />
-                {recipe.comment_count}
-              </Comments>
-            </RecipeInfo>
-          </RecipeCard>
+              <RecipeName>{recipe.title}</RecipeName>
+              <RecipeInfo>
+                <Views>
+                  <InfoIcons src="/images/Views.png" />
+                  {recipe.hit}
+                </Views>
+                <Likes>
+                  <InfoIcons src="/images/Likes.png" />
+                  {recipe.like_count}
+                </Likes>
+                <Comments>
+                  <InfoIcons src="/images/Comments.png" />
+                  {recipe.comment_count}
+                </Comments>
+              </RecipeInfo>
+            </RecipeCard>
+          </Link>
         ))}
       </RecipeList>
       <RecipePaginate>
