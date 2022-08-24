@@ -31,7 +31,7 @@ const SimilarCarousels = ({ posts }) => {
   };
 
   return (
-    <div>
+    <Container>
       {(simillar && simillar.length > 0) && (
         <SimilarRecipe>
           <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
@@ -47,9 +47,11 @@ const SimilarCarousels = ({ posts }) => {
           </SimilarCarousel>
         </SimilarRecipe>
       )}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div``
 
 const StyledSlider = styled(Slider)`
   .slick-list {
