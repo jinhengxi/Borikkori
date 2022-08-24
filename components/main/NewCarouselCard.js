@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 function NewCarouselCard({ newRecipe }) {
   return (
-    <Link href="/[id]" as={`/${newRecipe.id}`}>
+    <Link href="/recipeDetail/[id]" as={`/recipeDetail/${newRecipe.id}`}>
       <Container>
         <ImgContainer>
           <Image

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Igredient = ({ingredient}) => {
+const Igredient = ({posts}) => {
 
   return (
     <Ingredient>
@@ -9,7 +9,7 @@ const Igredient = ({ingredient}) => {
         <IngreTitle>Ingredient</IngreTitle>
         <IngredientBox>
 
-            {ingredient?.map(({ id, name, quantity})=>(
+            {posts?.map(({ id, name, quantity})=>(
               <IngredientOne key={id}>
                 <IngredientName>{name}</IngredientName>
                 <IngredientQuan>{quantity}</IngredientQuan>

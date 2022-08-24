@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SubComment from './subComment';
+import { BASE_URL } from '../../config';
 
-const DetailComment = () => {
+const DetailComment = ({ posts }) => {
   const [commentDataList, setCommentDataList] = useState();
   const [subCommentDataList, setSubCommentDataList] = useState();
   const [input, setInput] = useState('');
@@ -11,7 +12,6 @@ const DetailComment = () => {
   const [talk, setTalk] = useState(false);
   const [heartId, setHeartId] = useState();
   const [commentId, setCommentId] = useState();
-
 
   const checkHandler = () => {
     setChecked(!bChecked);
@@ -29,7 +29,7 @@ const DetailComment = () => {
 
   //댓글GET
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/comment`, {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/comment`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -38,59 +38,57 @@ const DetailComment = () => {
       });
   }, []);
 
-
-  useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/recomment/${commentId}`, {
+  const handleComment = id => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/recomment/${id}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
         setSubCommentDataList(data.result);
       });
-  }, [setTalk, commentId]);
+  };
 
-//POST 댓글업로드
-const commentUpload = (input, bChecked) => {
-  fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/commnet`, {
-    method: 'POST',
-    body: JSON.stringify({
-      tag: bChecked,
-      content: input,
-    }),
-  })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
+  //POST 댓글업로드
+  const commentUpload = (input, bChecked) => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/commnet`, {
+      method: 'POST',
+      body: JSON.stringify({
+        tag: bChecked,
+        content: input,
+      }),
     })
-    .then(data => {
-      if (data) {
-      }
-    });
-  
-  }
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then(data => {
+        if (data) {
+        }
+      });
+  };
 
-// const CommentCheck = (commentId) => {
-//   fetch(``, {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       tag: bChecked,
-//       content:commentId
-//     }),
-//   })
-//     .then((res) => {
-//       if (res.ok) {
-//         return res.json();
-//       }
-//     })
-//     .then((data) => {
-//       if (data) {
-//       }
-//     });
-// };
+  // const CommentCheck = (commentId) => {
+  //   fetch(``, {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       tag: bChecked,
+  //       content:commentId
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //     })
+  //     .then((data) => {
+  //       if (data) {
+  //       }
+  //     });
+  // };
   //POST 좋아요
-  const likeAction = id  => {
-    fetch(`http://10.58.5.197:8000/recipe/${post.id}/comment/${id}/like`, {
+  const likeAction = id => {
+    fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}/like`, {
       method: 'POST',
       body: JSON.stringify({
         likeAction: heartState,
@@ -108,7 +106,7 @@ const commentUpload = (input, bChecked) => {
   };
 
   const DeleteComment = id => {
-    fetch(``, {
+    fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}`, {
       method: 'DELETE',
       headers: { Authorization: localStorage.getItem('token') },
     }).then(() => {
@@ -153,7 +151,12 @@ const commentUpload = (input, bChecked) => {
                         {tag ? <Lavel2>질문</Lavel2> : <Lavel>댓글</Lavel>}
                         <UserId>{user_name}</UserId>
                       </Left>
-                      <Date>{created_at}</Date>
+                      <Date>
+                        {(created_at + 3240 * 10000)
+                          .toString()
+                          .replace('T', ' ')
+                          .replace(/\..*/, '')}
+                      </Date>
                     </CommentTextBox>
                   </CommentTop>
                   <CommentAndDeleteBox>
@@ -202,6 +205,7 @@ const commentUpload = (input, bChecked) => {
                         }
                         onClick={() => {
                           talkHandler(id);
+                          handleComment(id);
                         }}
                       />
                       <ComNum>{counter}</ComNum>
@@ -211,6 +215,7 @@ const commentUpload = (input, bChecked) => {
                     <SubComment
                       subCommentDataList={subCommentDataList}
                       commentId={commentId}
+                      posts={posts}
                     />
                   ) : (
                     ''
@@ -239,7 +244,7 @@ const commentUpload = (input, bChecked) => {
               <Labels>질문</Labels>
             </LavelSelectBox>
             <WriteCommentBox onSubmit={() => commentUpload()}>
-              {!localStorage.getItem('token') ? (
+              {localStorage.getItem('token') ? (
                 <CommentContainer
                   id="story"
                   name="story"

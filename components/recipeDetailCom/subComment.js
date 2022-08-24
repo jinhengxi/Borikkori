@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { BASE_URL } from '../../config';
 
-const SubComment = ({ subCommentDataList}) => {
+const SubComment = ({ subCommentDataList, posts }) => {
   const [subInput, setSubInput] = useState();
-
 
   //대댓글 POST
   const subCommentAction = id => {
-    fetch(`http://10.58.5.197:8000/reipe/detail/${post.id}/recomment/${id}`, {
+    fetch(`${BASE_URL}/reipe/detail/${posts.id}/recomment`, {
       method: 'POST',
       body: JSON.stringify({
         content: subInput,
+        recomment_id: id,
       }),
     })
       .then(res => {
@@ -25,7 +26,7 @@ const SubComment = ({ subCommentDataList}) => {
   };
 
   const DeleteSubComment = id => {
-    fetch(``, {
+    fetch(`${BASE_URL}/reipe/detail/${posts.id}/recomment/${id}`, {
       method: 'DELETE',
       headers: { Authorization: localStorage.getItem('token') },
     }).then(() => {
@@ -74,7 +75,11 @@ const SubComment = ({ subCommentDataList}) => {
         {localStorage.getItem('token') ? (
           <SubUpLoadBtn type="submit">등록</SubUpLoadBtn>
         ) : (
-          <SubUpLoadBtn type="submit" disabled="disabled" onClick={()=>subCommentAction(id)}>
+          <SubUpLoadBtn
+            type="submit"
+            disabled="disabled"
+            onClick={() => subCommentAction(id)}
+          >
             등록
           </SubUpLoadBtn>
         )}

@@ -1,7 +1,7 @@
 import { useState} from 'react';
 import styled from 'styled-components'
-import DetailPost from '../components/userDetailCom/detailPost';
-import DetailReview from '../components/userDetailCom/detailReview';
+import DetailPost from '../../components/userDetailCom/detailPost';
+import DetailReview from '../../components/userDetailCom/detailReview';
 
 // export const getStaticPaths = async () => {
 //   const res = await fetch(`http://10.58.5.197:8000/user`);

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 function LoversCard({ lover }) {
   return (
-    <Link href="/[id]" as={`/${lover.id}`}>
+    <Link href="/userDetailPage/[id]" as={`/userDetailPage/${lover.id}`}>
       <Container>
         <LoversCards>
           <CardContent>

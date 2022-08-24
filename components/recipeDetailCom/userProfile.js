@@ -1,39 +1,39 @@
 import styled from 'styled-components';
 
-const UserProfile = ({userRecipeInfo}) => {
+const UserProfile = ({posts}) => {
 
     return (
         <UserProfiles>
-             {userRecipeInfo && (
+             {posts && (
                 <ProfileBox>
                 <IdBox>
-                <FoodThumb src={userRecipeInfo.thumbnail}/>   
+                <FoodThumb src={posts.thumbnail}/>   
                 <InfoBox>
-                    <ProfileImg src={userRecipeInfo.user_thumbnail}/>
+                    <ProfileImg src={posts.user_thumbnail}/>
                     <UserInfoBox>
-                    <Level src={userRecipeInfo.rating_mark_image}/>
-                    <UserId>{userRecipeInfo.name}</UserId>
+                    <Level src={posts.rating_mark_image}/>
+                    <UserId>{posts.name}</UserId>
                     </UserInfoBox>
                     </InfoBox>
                 </IdBox>
             <ActionIcons>
                 <WatchBox>
                     <WatchIcon src="/images/FaceGray.png"/>
-                    <Num>{userRecipeInfo.hit}</Num>
+                    <Num>{posts.hit}</Num>
                 </WatchBox>
                 <HeartBox>
                     <HeartIcon src="/images/HeartGray.png"/>
-                    <Num>{userRecipeInfo.like_count}</Num>
+                    <Num>{posts.like_count}</Num>
                 </HeartBox>
                 <CommentBox>
                     <CommentIcon src="/images/TalkGray.png"/>
-                    <Num>{userRecipeInfo.comment_count}</Num>
+                    <Num>{posts.comment_count}</Num>
                     </CommentBox>
             </ActionIcons>
 
              <ContentWrapper>
-                <CookTitle>{userRecipeInfo.tilte}</CookTitle>
-                <CookContent>{userRecipeInfo.intro}</CookContent>
+                <CookTitle>{posts.tilte}</CookTitle>
+                <CookContent>{posts.intro}</CookContent>
            <HashWrapper>
             <HashTag>#밑반찬</HashTag>
             <HashTag>#밑반찬</HashTag>
@@ -43,15 +43,15 @@ const UserProfile = ({userRecipeInfo}) => {
                 <IconsWrapper>
                     <IconBox>
                         <IconPerson src="/images/PersonGray.png"/>
-                        <QuantityText>{userRecipeInfo.serving}인분</QuantityText>
+                        <QuantityText>{posts.serving}인분</QuantityText>
                     </IconBox>
                     <IconBox>
                         <IconClock src="/images/ClockGray.png"/>
-                        <Min>{userRecipeInfo.cooktime}분</Min>
+                        <Min>{posts.cooktime}분</Min>
                         </IconBox>
                     <IconBox>
                         <IconStar src="/images/StarGray.png"/>
-                        <DifficultyText>{userRecipeInfo.difficulty}</DifficultyText>
+                        <DifficultyText>{posts.difficulty}</DifficultyText>
                     </IconBox>
                 </IconsWrapper>
             </ProfileBox>

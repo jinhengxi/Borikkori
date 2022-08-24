@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 function BestCarouselCard({ bestRecipe }) {
   return (
-    <Link href="/[id]" as={`/${bestRecipe.id}`}>
+    <Link href="/recipeDetail/[id]" as={`/recipeDetail/${bestRecipe.id}`}>
       <Container>
         <BestCardImgOpacity>
           <Image
