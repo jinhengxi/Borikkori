@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BestImgDiv = ({ data }) => {
+const BestImgDiv = ({ data, onClick }) => {
   const {
     title,
     intro,
@@ -15,7 +15,7 @@ const BestImgDiv = ({ data }) => {
   } = data;
 
   return (
-    <BestImgWrapper recipeImg={recipe_thumbnail}>
+    <BestImgWrapper recipeImg={recipe_thumbnail} onClick={onClick}>
       <BestInfoDiv>
         <BestIconsWrapper>
           <Views>
