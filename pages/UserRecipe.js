@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Pagination from '../components/Pagination';
 import { HiSearch } from 'react-icons/hi';
+import Link from 'next/link';
 
 const UserRecipe = () => {
   const [limit, setLimit] = useState(9);
@@ -130,34 +131,42 @@ const UserRecipe = () => {
           ))}
         </FilterWrapper>
         <WriterWrapper>
-          <WriteBtn>글쓰기</WriteBtn>
+          <WriteBtn onClick={() => router.push('/addRecipe/AddRecipe')}>
+            글쓰기
+          </WriteBtn>
         </WriterWrapper>
       </RecipeFilter>
       <RecipeList>
         {recipeData.slice(offset, offset + limit).map(recipe => (
-          <RecipeCard key={recipe.id}>
-            <RecipeImg src={recipe.recipe_thumbnail} />
-            <RecipeName>{recipe.title}</RecipeName>
-            <UserId>
-              <UserIcon src={recipe.user_thumbnail} />
-              <UserRank src={recipe.rating_mark_image} />
-              <UserProfile>{recipe.user_name}</UserProfile>
-            </UserId>
-            <RecipeInfo>
-              <Views>
-                <InfoIcons src="/images/Views.png" />
-                {recipe.hit}
-              </Views>
-              <Likes>
-                <InfoIcons src="/images/Likes.png" />
-                {recipe.like_count}
-              </Likes>
-              <Comments>
-                <InfoIcons src="/images/Comments.png" />
-                {recipe.comment_count}
-              </Comments>
-            </RecipeInfo>
-          </RecipeCard>
+          <Link
+            key={recipe.id}
+            href="/recipeDetail"
+            as={`recipeDetail/${recipe.id}`}
+          >
+            <RecipeCard key={recipe.id}>
+              <RecipeImg src={recipe.recipe_thumbnail} />
+              <RecipeName>{recipe.title}</RecipeName>
+              <UserId>
+                <UserIcon src={recipe.user_thumbnail} />
+                <UserRank src={recipe.rating_mark_image} />
+                <UserProfile>{recipe.user_name}</UserProfile>
+              </UserId>
+              <RecipeInfo>
+                <Views>
+                  <InfoIcons src="/images/Views.png" />
+                  {recipe.hit}
+                </Views>
+                <Likes>
+                  <InfoIcons src="/images/Likes.png" />
+                  {recipe.like_count}
+                </Likes>
+                <Comments>
+                  <InfoIcons src="/images/Comments.png" />
+                  {recipe.comment_count}
+                </Comments>
+              </RecipeInfo>
+            </RecipeCard>
+          </Link>
         ))}
       </RecipeList>
       <RecipePaginate>
