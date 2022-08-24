@@ -18,8 +18,6 @@ const SimilarCarousels = ({ posts }) => {
       });
   }, [posts]);
 
-  console.log(simillar);
-
   const settings = {
     dots: false,
     infinite: true,
@@ -31,21 +29,27 @@ const SimilarCarousels = ({ posts }) => {
   };
 
   return (
-    <SimilarRecipe>
-      <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
-      <SimilarCarousel>
-        <StyledSlider {...settings}>
-          {simillar?.map(({ id, name, thumbnail }) => (
-            <SimillarCard key={id}>
-              <SimilarCarouselCard itemImg={thumbnail} />
-              <CardTitle>{title}</CardTitle>
-            </SimillarCard>
-          ))}
-        </StyledSlider>
-      </SimilarCarousel>
-    </SimilarRecipe>
+    <Container>
+      {simillar && simillar.length > 0 && (
+        <SimilarRecipe>
+          <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
+          <SimilarCarousel>
+            <StyledSlider {...settings}>
+              {simillar?.map(({ id, title, thumbnail }) => (
+                <SimillarCard key={id}>
+                  <SimilarCarouselCard itemImg={thumbnail} />
+                  <CardTitle>{title}</CardTitle>
+                </SimillarCard>
+              ))}
+            </StyledSlider>
+          </SimilarCarousel>
+        </SimilarRecipe>
+      )}
+    </Container>
   );
 };
+
+const Container = styled.div``;
 
 const StyledSlider = styled(Slider)`
   .slick-list {
