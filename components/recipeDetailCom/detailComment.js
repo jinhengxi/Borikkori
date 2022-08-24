@@ -29,7 +29,11 @@ const DetailComment = ({ posts }) => {
 
   //댓글GET
   useEffect(() => {
+<<<<<<< HEAD:pages/detailComment.js
+    fetch(`http://10.58.2.86:8000/recipe/detail/5/comment`, {
+=======
     fetch(`${BASE_URL}/recipe/detail/${posts.id}/comment`, {
+>>>>>>> 01dd57acde25e4d0e9f616d832fbd4730e890df8:components/recipeDetailCom/detailComment.js
       method: 'GET',
     })
       .then(res => res.json())
@@ -38,8 +42,14 @@ const DetailComment = ({ posts }) => {
       });
   }, []);
 
+<<<<<<< HEAD:pages/detailComment.js
+  //대댓글GET
+  useEffect(() => {
+    fetch(`http://10.58.2.86:8000/recipe/detail/5/recomment/${commentId}`, {
+=======
   const handleComment = id => {
     fetch(`${BASE_URL}/recipe/detail/${posts.id}/recomment/${id}`, {
+>>>>>>> 01dd57acde25e4d0e9f616d832fbd4730e890df8:components/recipeDetailCom/detailComment.js
       method: 'GET',
     })
       .then(res => res.json())
