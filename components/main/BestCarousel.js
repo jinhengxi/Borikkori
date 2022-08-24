@@ -3,9 +3,10 @@ import Slider from 'react-slick';
 
 import useFetch from '../../hooks/useFetch';
 import BestCarouselCard from './BestCarouselCard';
+import { BASE_URL } from '../../config';
 
 function BestCarousel() {
-  const [bestRecipes] = useFetch('http://10.58.5.197:8000/recipe/4/list?sort=3');
+  const [bestRecipes] = useFetch(`${BASE_URL}/recipe/4/list?sort=3`);
 
   const settings = {
     dots: false,

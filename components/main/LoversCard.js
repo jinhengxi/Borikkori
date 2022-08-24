@@ -1,24 +1,32 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
-function LoversCard({lover}) {
+function LoversCard({ lover }) {
   return (
-    <Container>
-      <LoversCards>
-        <CardContent>
-          <Image
-            src={lover.thumbnail}
-            alt="ProfileImg"
-            width={73}
-            height={73}
-          />
-          <CardNickName>
-            <Nickname>{lover.name}</Nickname>
-            <Image src={lover.rating_mark_image} alt="Grade" width={10} height={10} />
-          </CardNickName>
-        </CardContent>
-      </LoversCards>
-    </Container>
+    <Link href="/[id]" as={`/${lover.id}`}>
+      <Container>
+        <LoversCards>
+          <CardContent>
+            <Image
+              src={lover.thumbnail}
+              alt="ProfileImg"
+              width={73}
+              height={73}
+            />
+            <CardNickName>
+              <Nickname>{lover.name}</Nickname>
+              <Image
+                src={lover.rating_mark_image}
+                alt="Grade"
+                width={10}
+                height={10}
+              />
+            </CardNickName>
+          </CardContent>
+        </LoversCards>
+      </Container>
+    </Link>
   );
 }
 
