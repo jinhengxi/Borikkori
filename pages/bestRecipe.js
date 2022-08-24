@@ -1,19 +1,22 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import BestImgDiv from '../components/bestRecipe/BestImgDiv';
 
 const BestRecipe = () => {
   const [bestRecipes, setBestRecipes] = useState();
-
+  const router = useRouter();
   useEffect(() => {
-    fetch('data/Bestdata.json', {
+    fetch('http://10.58.5.197:8000/recipe/4/list?sort=4', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setBestRecipes(data);
+        setBestRecipes(data.result);
       });
   }, []);
+
+  console.log(bestRecipes);
 
   return (
     <BestWrapper>
@@ -21,7 +24,13 @@ const BestRecipe = () => {
 
       <BestImgWrapper>
         {bestRecipes?.map(data => (
-          <BestImgDiv key={data.id} data={data} />
+          <BestImgDiv
+            key={data.id}
+            data={data}
+            onClick={() =>
+              router.push({ pathname: `/recipeDetail`, query: { id: data.id } })
+            }
+          />
         ))}
       </BestImgWrapper>
     </BestWrapper>

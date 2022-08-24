@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-function NewCarouselCard() {
+function NewCarouselCard({newRecipe}) {
   return (
     <Container>
       <ImgContainer>
         <Image
-          src="/images/음식.jpg"
+          src={newRecipe.recipe_thumbnail}
           alt="bestRecipeImg"
           width={234}
           height={154}
@@ -22,18 +22,18 @@ function NewCarouselCard() {
       <NewContent>
         <Profile>
           <Image
-            src="/images/음식.jpg"
+            src={newRecipe.user_thumbnauil}
             alt="ProfileImg"
             width={25}
             height={25}
           />
           &nbsp;
-          <Image src="/images/grade.png" alt="Grade" width={12} height={12} />
-          <Nickname>tokkichef</Nickname>
+          <Image src={newRecipe.rating_mark_image} alt="Grade" width={12} height={12} />
+          <Nickname>{newRecipe.user_name}</Nickname>
         </Profile>
-        <Title>글제목</Title>
+        <Title>{newRecipe.title}</Title>
         <Content>
-          한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명한줄설명
+          {newRecipe.intro}
         </Content>
       </NewContent>
     </Container>

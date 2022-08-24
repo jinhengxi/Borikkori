@@ -18,20 +18,20 @@ const KurlyRecipe = () => {
   };
 
   const onSubmit = e => {
-    router.push({ query: { tag: searchOption, search: searchText } });
+    router.push({ query: { main: 1, tag: searchOption, search: searchText } });
 
     e.preventDefault();
   };
   const [recipeData, setRecipeData] = useState([]);
   useEffect(() => {
-    fetch('data/UserRecipe.json', {
+    fetch(`http://10.58.5.197:8000/recipe/3/list${window.location.search}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setRecipeData(data);
+        setRecipeData(data.result);
       });
-  }, []);
+  }, [router.query]);
 
   const CategoryDiv = styled.p`
     width: 65px;

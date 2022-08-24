@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import CoverImg from '../../components/addRecipe/CoverImg';
 import RecipeInfo from '../../components/addRecipe/RecipeInfo';
@@ -13,15 +14,68 @@ function AddRecipe() {
   const [coverImg, setCoverImg] = useState('');
   const [recipeInfo, setRecipeInfo] = useState({});
   const [writingRecipe, setWritingRecipe] = useState({});
-  const [ingredient, setIngredient] = useState([{ id: 0, name: '', quan: '' }]);
-  const [recipeItem, setRecipeItem] = useState({});
-  const [cookingStep, setCookingStep] = useState([
-    { id: 0, step: 1, image: '', content: '' },
+  const [ingredient, setIngredient] = useState([
+    { id: 0, name: '', quantity: '' },
   ]);
+  const [recipeItem, setRecipeItem] = useState([]);
+  const [cookingStep, setCookingStep] = useState([
+    { id: 0, step: 1, content: '' },
+  ]);
+  const [arrImg, setArrimg] = useState([]);
+  const [arrImg2, setArrimg2] = useState([]);
   const [hashTag, setHashTag] = useState([]);
 
+  // console.log(
+  //   coverImg,
+  //   recipeInfo,
+  //   writingRecipe,
+  //   ingredient,
+  //   recipeItem,
+  //   cookingStep,
+  //   hashTag
+  // );
+
+  const sendCommentToServer = async () => {
+    
+    const formData = new FormData();
+    formData.append('title', writingRecipe.title);
+    formData.append('intro', writingRecipe.content);
+    formData.append('thumbnail', coverImg);
+    formData.append('cooktime', recipeInfo.minute);
+    formData.append('serving', recipeInfo.people);
+    formData.append('difficulty', recipeInfo.difficulty);
+    formData.append('main_category_id', recipeInfo.country);
+    formData.append('sub_category_id', recipeInfo.situation);
+    formData.append('ingredient', JSON.stringify(ingredient));
+    formData.append('product', JSON.stringify(recipeItem.item));
+    formData.append('content', JSON.stringify(cookingStep));
+    for (let i = 0; i < arrImg.length; i++) { 
+      formData.append("content_image", arrImg[i]);
+    }
+    formData.append('hash_tag', hashTag);
+
+    await axios({
+      method: 'POST',
+      url: 'http://10.58.5.197:8000/recipe/4/write',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
+      data: formData,
+    })
+      .then(res => {
+        if (res.status === 201) {
+          alert('발행 완료');
+        }
+      })
+      .catch(error => {
+        alert(`에러가 발생했습니다. (${error})`);
+      });
+  };
+
   const handleLoadCoverImg = e => {
-    setCoverImg(URL.createObjectURL(e.target.files[0]));
+    setCoverImg(e.target.files[0]);
   };
 
   const handleAddRecipeInfo = e => {
@@ -50,7 +104,7 @@ function AddRecipe() {
   const handleQuanIngredient = (e, id) => {
     const { value } = e.target;
     const inputItemsCopy = JSON.parse(JSON.stringify(ingredient));
-    inputItemsCopy[id].quan = value;
+    inputItemsCopy[id].quantity = value;
     setIngredient(inputItemsCopy);
   };
 
@@ -61,12 +115,21 @@ function AddRecipe() {
     setCookingStep(inputItemsCopy);
   };
 
-  const handCookingImg = (e, id) => {
-    const inputItemsCopy = cookingStep;
-    inputItemsCopy[id].image = URL.createObjectURL(e.target.files[0]);
-    setCookingStep(inputItemsCopy);
+  // const handCookingImg = (e, id) => {
+  //   const inputItemsCopy = cookingStep;
+  //   inputItemsCopy[id].image = e.target.files[0];
+  //   setCookingStep(inputItemsCopy);
+  // };
+
+  const handCookingImg = e => {
+    setArrimg(arrImg.concat(e.target.files[0]));
+    setArrimg2(arrImg2.concat(URL.createObjectURL(e.target.files[0])));
   };
-  console.log(cookingStep);
+
+  const handRecipeItem = item => {
+    setRecipeItem(recipeItem.concat(item));
+    alert('저장완료');
+  };
 
   const handleAddHashTag = e => {
     const addHashTag = [...hashTag];
@@ -91,12 +154,13 @@ function AddRecipe() {
         ingredient={ingredient}
         setIngredient={setIngredient}
       />
-      <RecipeItem />
+      <RecipeItem handRecipeItem={handRecipeItem} recipeItem={recipeItem} />
       <CookingStep
         handleCookingStep={handleCookingStep}
         handCookingImg={handCookingImg}
         cookingStep={cookingStep}
         setCookingStep={setCookingStep}
+        arrImg={arrImg2}
       />
       <HashTag
         handleAddHashTag={handleAddHashTag}
@@ -105,7 +169,7 @@ function AddRecipe() {
       />
       <Btns>
         <CancelBtn>취소</CancelBtn>
-        <SaveBtn>발행</SaveBtn>
+        <SaveBtn onClick={sendCommentToServer}>발행</SaveBtn>
       </Btns>
     </Container>
   );

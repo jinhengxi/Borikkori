@@ -5,8 +5,7 @@ import useFetch from '../../hooks/useFetch';
 import NewCarouselCard from './NewCarouselCard';
 
 function NewCarousel() {
-  const [newRecipes] = useFetch('data/DATA.json');
-
+  const [newRecipes] = useFetch('http://10.58.5.197:8000/recipe/4/list?sort=1');
   const settings = {
     dots: false,
     infinite: true,
@@ -17,7 +16,7 @@ function NewCarousel() {
   return (
     <StyledSlider {...settings}>
       {newRecipes?.map(newRecipe => (
-          <NewCarouselCard key={newRecipe.id} bestRecipe={newRecipe} />
+          <NewCarouselCard key={newRecipe.id} newRecipe={newRecipe} />
       ))}
     </StyledSlider>
   );

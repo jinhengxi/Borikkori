@@ -9,17 +9,11 @@ function CoverImg({handleLoadCoverImg,coverImg}) {
     imgRef.current.click();
   };
 
-  // 파일 삭제
-  // const handleRemoveImg = () => {
-  //   URL.revokeObjectURL(imgFile);
-  //   setImgFile('');
-  // };
-
   return (
     <Container>
       {coverImg ? (
         <Image
-          src={coverImg}
+          src={URL.createObjectURL(coverImg)}
           alt="RecipeCoverImg"
           width={970}
           height={440}

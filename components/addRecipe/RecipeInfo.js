@@ -8,24 +8,23 @@ function RecipeInfo({handleAddRecipeInfo}) {
         <DropBox >
           <Select name="people" >
             <option value="none">인원</option>
-            <option value="1person">1명</option>
-            <option value="2people">2명</option>
-            <option value="3people">3명</option>
-            <option value="4people">4명</option>
+            <option value="1">1명</option>
+            <option value="2">2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
           </Select>
           <Select name="minute">
             <option value="none">시간</option>
-            <option value="10minute">10분이내</option>
-            <option value="20minute">20분이내</option>
-            <option value="30minute">30분이내</option>
-            <option value="40minute">40분이상</option>
+            <option value="10">10분이내</option>
+            <option value="20">20분이내</option>
+            <option value="30">30분이내</option>
+            <option value="40">40분이상</option>
           </Select>
           <Select name="difficulty">
             <option value="none">난이도</option>
-            <option value="1star">★</option>
-            <option value="2star">★★</option>
-            <option value="3star">★★★</option>
-            <option value="4star">★★★★</option>
+            <option value="초급">초급</option>
+            <option value="중급">중급</option>
+            <option value="고급">고급</option>
           </Select>
         </DropBox>
       </LeftInfo>
@@ -34,18 +33,18 @@ function RecipeInfo({handleAddRecipeInfo}) {
         <DropBox>
           <Select name="country">
             <option value="none">종류별</option>
-            <option value="korea">한식</option>
-            <option value="japan">일식</option>
-            <option value="china">중식</option>
-            <option value="america">양식</option>
-            <option value="etc">그 외</option>
+            <option value="한식">한식</option>
+            <option value="일식">일식</option>
+            <option value="중식">중식</option>
+            <option value="양식">양식</option>
+            <option value="그외">그 외</option>
           </Select>
           <Select name="situation">
             <option value="none">상황별</option>
-            <option value="maindish">메인요리</option>
-            <option value="sidedish">밑반찬</option>
-            <option value="snack">간식</option>
-            <option value="munchies">안주</option>
+            <option value="메인요리">메인요리</option>
+            <option value="밑반찬">밑반찬</option>
+            <option value="간식">간식</option>
+            <option value="안주">안주</option>
           </Select>
         </DropBox>
       </RightInfo>

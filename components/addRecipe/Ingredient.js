@@ -5,7 +5,7 @@ function Ingredient({ handleNameIngredient,handleQuanIngredient, ingredient, set
   const pushId = useRef(ingredient.length);
 
   const handleAddComponent = () => {
-    const addComponent = { id: pushId.current, name: '', quan: '' };
+    const addComponent = { id: pushId.current, name: '', quantity: '' };
     setIngredient(ingredient.concat(addComponent));
     pushId.current += 1;
   };
@@ -29,7 +29,7 @@ function Ingredient({ handleNameIngredient,handleQuanIngredient, ingredient, set
             />
             <IngredientInput
               onChange={e => handleQuanIngredient(e, ingredient.id)}
-              name="quan"
+              name="quantity"
               type="text"
               placeholder="예) 1개"
             />
