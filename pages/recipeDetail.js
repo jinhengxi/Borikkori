@@ -1,31 +1,63 @@
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CookingSteps from './CookingSteps';
-import DetailComment from './DetailComment';
-import Igredient from './ingredient';
+import CookingSteps from '../components/recipeDetailCom/cookingSteps';
+import DetailComment from '../components/recipeDetailCom/detailComment';
+import Igredient from '../components/recipeDetailCom/ingredient';
+import RecipeCarousel from '../components/recipeDetailCom/recipeCarousel';
+import SimilarCasousel from '../components/recipeDetailCom/similarCarousel';
+import UserProfile from '../components/recipeDetailCom/UserProfile';
+import React, { useState, useEffect } from 'react';
 
-import RecipeCarousel from './RecipeCarousel';
-import SimilarCasousel from './similarCarousel';
-import UserProfile from './UserProfile';
+export const getStaticPaths = async () => {
+  const res = await fetch(`http://10.58.5.197:8000/recipe/detail`);
+  const post = await res.json();
+  const posts = post.result;
+  const paths = posts.map((post) => ({
+    params: { id: post.id.toString() },
+  }));
+  return { paths, fallback: false };
+};
 
-const RecipeDetail = () => {
-  const [userRecipeInfo, setUserRecipeInfo] = useState();
+export const getStaticProps = async ({ params }) => {
+  const res = await fetch(`http://10.58.5.197:8000/recipe/detail/${params?.id}`);
+  const post = await res.json();
+  return { props: { post } };
+};
 
-  useEffect(() => {
-    fetch(
-      `http://10.58.5.197:8000/recipe/detail/${window.location.search.replace(
-        '?id=',
-        ''
-      )}`,
-      {
-        method: 'GET',
-      }
-    )
-      .then(res => res.json())
-      .then(data => {
-        setUserRecipeInfo(data.result);
-      });
-  }, []);
+const RecipeDetail = ({post}) => {
+
+  // const [userRecipeInfo, setUserRecipeInfo] = useState();
+
+  // useEffect(() => {
+  //   fetch(
+  //     `http://10.58.5.197:8000/recipe/detail/${window.location.search.replace(
+  //       '?id=',
+  //       ''
+  //     )}`,
+  //     {
+  //       method: 'GET',
+  //     }
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setUserRecipeInfo(data.result);
+  //     });
+  // }, []);
+
+  //목데이터
+  // useEffect(() => {
+  //   fetch(
+  //     `data/recipeDetailData.json`,
+  //     {
+  //       method: 'GET',
+  //     }
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setUserRecipeInfo(data.result);
+  //     });
+  // }, []);
+
+console.log(post);
 
   return (
     <RecipeDetailWrapper>
@@ -33,8 +65,8 @@ const RecipeDetail = () => {
         <>
           <UserProfile userRecipeInfo={userRecipeInfo} />
           <Igredient ingredient={userRecipeInfo.ingredient} />
-          <RecipeCarousel />
-          <CookingSteps />
+          <RecipeCarousel product={userRecipeInfo.product} />
+          <CookingSteps content={userRecipeInfo.content} />
           <DetailComment />
           <SimilarCasousel />
         </>

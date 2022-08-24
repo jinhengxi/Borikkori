@@ -36,10 +36,10 @@ const SimilarCarousels = () => {
             <SimilarRecipeTitle>Similar recipes</SimilarRecipeTitle>
         <SimilarCarousel>
         <StyledSlider  {...settings}>
-            {simillar?.map(({id, name,itemImg}) => (
+            {simillar?.map(({id, name,thumbnail}) => (
             <SimillarCard key={id}>
-                <SimilarCarouselCard itemImg={itemImg}/>
-                <CardTitle>{name}</CardTitle>
+                <SimilarCarouselCard itemImg={thumbnail}/>
+                <CardTitle>{title}</CardTitle>
                 </SimillarCard>
             ))}
             </StyledSlider>

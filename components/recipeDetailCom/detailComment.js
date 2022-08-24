@@ -12,7 +12,6 @@ const DetailComment = () => {
   const [heartId, setHeartId] = useState();
   const [commentId, setCommentId] = useState();
 
-  console.log(commentDataList);
 
   const checkHandler = () => {
     setChecked(!bChecked);
@@ -30,7 +29,7 @@ const DetailComment = () => {
 
   //댓글GET
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/comment`, {
+    fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/comment`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -39,9 +38,9 @@ const DetailComment = () => {
       });
   }, []);
 
-  //대댓글GET
+
   useEffect(() => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/recomment/${commentId}`, {
+    fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/recomment/${commentId}`, {
       method: 'GET',
     })
       .then(res => res.json())
@@ -50,29 +49,48 @@ const DetailComment = () => {
       });
   }, [setTalk, commentId]);
 
-  //POST 댓글업로드
-  const commentUpload = (input, bChecked) => {
-    fetch(`http://10.58.5.197:8000/recipe/detail/5/commnet`, {
-      method: 'POST',
-      body: JSON.stringify({
-        tag: bChecked,
-        content: input,
-      }),
+//POST 댓글업로드
+const commentUpload = (input, bChecked) => {
+  fetch(`http://10.58.5.197:8000/recipe/detail/${post.id}/commnet`, {
+    method: 'POST',
+    body: JSON.stringify({
+      tag: bChecked,
+      content: input,
+    }),
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then(data => {
-        if (data) {
-        }
-      });
-  };
+    .then(data => {
+      if (data) {
+      }
+    });
+  
+  }
 
+// const CommentCheck = (commentId) => {
+//   fetch(``, {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       tag: bChecked,
+//       content:commentId
+//     }),
+//   })
+//     .then((res) => {
+//       if (res.ok) {
+//         return res.json();
+//       }
+//     })
+//     .then((data) => {
+//       if (data) {
+//       }
+//     });
+// };
   //POST 좋아요
-  const likeAction = heartState => {
-    fetch(``, {
+  const likeAction = id  => {
+    fetch(`http://10.58.5.197:8000/recipe/${post.id}/comment/${id}/like`, {
       method: 'POST',
       body: JSON.stringify({
         likeAction: heartState,
@@ -167,6 +185,7 @@ const DetailComment = () => {
                           src="/images/HeartGray.png"
                           onClick={() => {
                             heartHandler(id);
+                            likeAction(id);
                           }}
                         />
                       )}

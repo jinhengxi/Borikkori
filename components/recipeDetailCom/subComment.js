@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const SubComment = ({ subCommentDataList, commentId }) => {
+const SubComment = ({ subCommentDataList}) => {
   const [subInput, setSubInput] = useState();
 
+
   //대댓글 POST
-  const subCommentAction = subInput => {
-    fetch(`http://10.58.5.197:8000/reipe/detail/5/recomment/${commentId}`, {
+  const subCommentAction = id => {
+    fetch(`http://10.58.5.197:8000/reipe/detail/${post.id}/recomment/${id}`, {
       method: 'POST',
       body: JSON.stringify({
         content: subInput,
@@ -73,7 +74,7 @@ const SubComment = ({ subCommentDataList, commentId }) => {
         {localStorage.getItem('token') ? (
           <SubUpLoadBtn type="submit">등록</SubUpLoadBtn>
         ) : (
-          <SubUpLoadBtn type="submit" disabled="disabled">
+          <SubUpLoadBtn type="submit" disabled="disabled" onClick={()=>subCommentAction(id)}>
             등록
           </SubUpLoadBtn>
         )}
