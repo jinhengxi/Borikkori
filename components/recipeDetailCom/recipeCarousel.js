@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
 import { GrPrevious, GrNext } from 'react-icons/gr';
@@ -6,7 +5,6 @@ import { GrPrevious, GrNext } from 'react-icons/gr';
 import RecipeCarouselCard from './recipeCarouselCard';
 
 const RecipeCarousel = ({posts}) => {
-  console.log(posts)
   const settings = {
     dots: false,
     infinite: false,

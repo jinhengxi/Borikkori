@@ -29,7 +29,7 @@ const RecipeDetail = ({posts}) => {
     <RecipeDetailWrapper>
       {posts && (
         <>
-          <UserProfile posts={posts} />
+          <UserProfile posts={posts} hash={posts.hash_tag} />
           <Igredient posts={posts.ingredient} />
           <RecipeCarousel posts={posts.product} />
           <CookingSteps posts={posts.content} />
