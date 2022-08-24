@@ -63,7 +63,7 @@ const Nav = () => {
           <KurlyDiv>
             <KurlyLogo src="/images/borikkori.png" />
             <span>
-              <Market>마켓컬리</Market> | 뷰티컬리
+              <Market>보리꼬리</Market> | 뷰티꼬리
             </span>
           </KurlyDiv>
           <SearchDiv>
