@@ -68,6 +68,10 @@ function AddRecipe() {
       });
   };
 
+  const back = ()=>{
+    router.push('/UserRecipe');
+  }
+
   const handleLoadCoverImg = e => {
     setCoverImg(e.target.files[0]);
   };
@@ -156,7 +160,7 @@ function AddRecipe() {
         hashTag={hashTag}
       />
       <Btns>
-        <CancelBtn>취소</CancelBtn>
+        <CancelBtn onClick={back}>취소</CancelBtn>
         <SaveBtn onClick={sendCommentToServer}>발행</SaveBtn>
       </Btns>
     </Container>
