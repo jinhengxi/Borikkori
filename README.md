@@ -16,7 +16,7 @@
 | 백엔드     | 임한구                 |
 
 ​
-##백엔드 github
+백엔드 - github
 ​
 https://github.com/nicholas019/maketkurly-borikkori-backend
 ​
