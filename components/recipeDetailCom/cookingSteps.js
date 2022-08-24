@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const CookingSteps = () => {
+const CookingSteps = ({content}) => {
     return (
         <CookingStep>
           <CookingTitle>Cooking steps</CookingTitle>
           <CookWrapper>
           <StepBox>
-            <StepImg src='/images/음식.jpg'/>
+            <StepImg src={content}/>
             <StepWrapper>
               <Step>Step 1</Step>
               <StepContent>먼저 가지를 먹기좋게 썰어주어요,저처럼 동글하게 썰어도 좋고, 손가락 만하게 썰어도 OK!</StepContent>

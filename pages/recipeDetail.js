@@ -65,8 +65,8 @@ console.log(post);
         <>
           <UserProfile userRecipeInfo={userRecipeInfo} />
           <Igredient ingredient={userRecipeInfo.ingredient} />
-          <RecipeCarousel />
-          <CookingSteps />
+          <RecipeCarousel product={userRecipeInfo.product} />
+          <CookingSteps content={userRecipeInfo.content} />
           <DetailComment />
           <SimilarCasousel />
         </>
