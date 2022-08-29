@@ -70,6 +70,7 @@ https://www.youtube.com/watch?v=Bk5nmkSkW0U&t=2
 |------|---|
 |설명|- 각 음식 종류별, 상황별 필터링 적용 <br> - 제목, 내용, 제목 + 내용별 검색 기능 구현<br> - path parameter를 통해 해당 레시피의 디테일 페이지로 routing 구현<br>|
 
+
 ||컬리의 레시피|
 |------|---|
 |설명|- 각 음식 종류별, 상황별 필터링 적용 <br> - 제목, 내용, 제목 + 내용별 검색 기능 구현<br> - path parameter를 통해 해당 레시피의 디테일 페이지로 routing 구현<br>|
