@@ -40,7 +40,7 @@ https://github.com/nicholas019/maketkurly-borikkori-backend
   <img width="800" src="https://postfiles.pstatic.net/MjAyMjA4MjlfMTQ1/MDAxNjYxNzUwNDg5MTI1.NF18v70g3vdFFuIskoEokEoW3BOw4teU2T_dqTfHwo8g.PFZcS4amPboVLk0bWBSqoCVyluNJaDCS88yq7IaT-m0g.JPEG.ka0son/%EC%BB%AC%EB%A6%AC%EB%B3%B8%EC%84%A0_HACKFESTA_%EB%B3%B4%EB%A6%AC%EA%BC%AC%EB%A6%AC.pdf_page_5.jpg?type=w773"/>
 ​
 ## 데모 영상
-https://www.youtube.com/watch?v=Bk5nmkSkW0U&t=2
+<iframe width="950" height="534" src="https://www.youtube.com/embed/Bk5nmkSkW0U" title="마켓컬리 해커톤   보리꼬리팀 시연 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ​
 
