@@ -8,7 +8,7 @@ const BestRecipe = () => {
   const [bestRecipes, setBestRecipes] = useState();
 
   const fetchData = () => {
-    fetch('http://10.58.2.86:8000/recipe/4/list?sort=4', {
+    fetch('http://10.58.6.89:8000/recipe/4/list?sort=4', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -18,7 +18,7 @@ const BestRecipe = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.2.86:8000/recipe/4/list?sort=4', {
+    fetch('http://10.58.6.89:8000/recipe/4/list?sort=4', {
       method: 'GET',
     })
       .then(res => res.json())

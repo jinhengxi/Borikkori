@@ -46,6 +46,10 @@ const Container = styled.div`
   margin-top: 10px;
   ${props => props.theme.flex.flexBox('column')};
   background-color: #f4f3f2;
+
+  img{
+    object-fit: cover;
+  }
 `;
 
 const Explanation = styled.div`

@@ -9,6 +9,7 @@ module.exports = {
       'img.hankyung.com',
       'borikkori.s3.ap-northeast-2.amazonaws.com',
       'branchtimeprofileimages.s3.us-east-2.amazonaws.com',
+      '9tschool.net',
     ],
   },
 };

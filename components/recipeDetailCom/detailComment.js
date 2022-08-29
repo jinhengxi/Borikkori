@@ -47,12 +47,16 @@ const DetailComment = ({ posts }) => {
       });
   };
 
-  const commentUpload = (input, bChecked) => {
-    fetch(`${BASE_URL}/recipe/detail/${posts.id}/commnet`, {
+  const commentUpload = () => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/comment`, {
       method: 'POST',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
       body: JSON.stringify({
-        tag: bChecked,
         content: input,
+        tag: bChecked,
       }),
     })
       .then(res => {
@@ -69,6 +73,10 @@ const DetailComment = ({ posts }) => {
   const likeAction = id => {
     fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}/like`, {
       method: 'POST',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
       body: JSON.stringify({
         likeAction: heartState,
       }),
@@ -87,7 +95,10 @@ const DetailComment = ({ posts }) => {
   const DeleteComment = id => {
     fetch(`${BASE_URL}/recipe/${posts.id}/comment/${id}`, {
       method: 'DELETE',
-      headers: { Authorization: localStorage.getItem('token') },
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
     }).then(() => {
       alert('삭제 되었습니다.');
     });
@@ -130,7 +141,7 @@ const DetailComment = ({ posts }) => {
                   </CommentTop>
                   <CommentAndDeleteBox>
                     <CommentContent>{content}</CommentContent>
-                    {localStorage.getItem('token') ? (
+                    {!localStorage.getItem('token') ? (
                       <DeleteBtn
                         src="/images/DeleteGray.png"
                         onClick={() => DeleteComment()}
@@ -141,7 +152,7 @@ const DetailComment = ({ posts }) => {
                   </CommentAndDeleteBox>
                   <CommentIconBox>
                     <HeartIconBox>
-                      {localStorage.getItem('token') ? (
+                      {!localStorage.getItem('token') ? (
                         <HeartIcon
                           src={
                             liked
@@ -195,7 +206,7 @@ const DetailComment = ({ posts }) => {
           </CommentBox>
           <Upload>
             <LavelSelectBox>
-              {localStorage.getItem('token') ? (
+              {!localStorage.getItem('token') ? (
                 <CommentCheck
                   type="checkbox"
                   checked={bChecked}
@@ -212,8 +223,8 @@ const DetailComment = ({ posts }) => {
 
               <Labels>질문</Labels>
             </LavelSelectBox>
-            <WriteCommentBox onSubmit={() => commentUpload()}>
-              {localStorage.getItem('token') ? (
+            <WriteCommentBox onSubmit={commentUpload}>
+              {!localStorage.getItem('token') ? (
                 <CommentContainer
                   id="story"
                   name="story"

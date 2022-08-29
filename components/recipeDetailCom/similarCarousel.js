@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import SimilarCarouselCard from './similarCarouselCard';
+import SimilarCarouselCard from './similarCarouselCard'
 import { GrPrevious, GrNext } from 'react-icons/gr';
 import { BASE_URL } from '../../config';
 
@@ -14,7 +14,7 @@ const SimilarCarousels = ({ posts }) => {
     })
       .then(res => res.json())
       .then(data => {
-        setSimillar(data);
+        setSimillar(data.result);
       });
   }, [posts]);
 

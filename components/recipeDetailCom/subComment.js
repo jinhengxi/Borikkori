@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BASE_URL } from '../../config';
 
-const SubComment = ({ subCommentDataList, posts }) => {
+const SubComment = ({ subCommentDataList, posts, commentId }) => {
   const [subInput, setSubInput] = useState();
 
-  const subCommentAction = id => {
-    fetch(`${BASE_URL}/reipe/detail/${posts.id}/recomment`, {
+  console.log(subInput)
+
+  const subCommentAction = () => {
+    fetch(`${BASE_URL}/recipe/detail/${posts.id}/recomment/${commentId}`, {
       method: 'POST',
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
       body: JSON.stringify({
         content: subInput,
-        recomment_id: id,
       }),
     })
       .then(res => {
@@ -27,7 +32,10 @@ const SubComment = ({ subCommentDataList, posts }) => {
   const DeleteSubComment = id => {
     fetch(`${BASE_URL}/reipe/detail/${posts.id}/recomment/${id}`, {
       method: 'DELETE',
-      headers: { Authorization: localStorage.getItem('token') },
+      headers: {
+        Authorization:
+          'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.MrVqp5dnDsVI9Oy4uOJdNkAjvza09ytMSTFGQnDsM_w',
+      },
     }).then(() => {
       alert('삭제 되었습니다.');
     });
@@ -43,7 +51,7 @@ const SubComment = ({ subCommentDataList, posts }) => {
               <SubUserId>{user_name}</SubUserId>
               <CommentAndDeleteBox>
                 <SubComments>{content}</SubComments>
-                {localStorage.getItem('token') ? (
+                {!localStorage.getItem('token') ? (
                   <DeleteBtn
                     src="/images/DeleteGray.png"
                     onClick={() => DeleteSubComment()}
@@ -56,8 +64,8 @@ const SubComment = ({ subCommentDataList, posts }) => {
           </SubCommentWrapper>
         </SubCommentBox>
       ))}
-      <UpLoadBox onSubmit={() => subCommentAction()}>
-        {localStorage.getItem('token') ? (
+      <UpLoadBox onSubmit={subCommentAction}>
+        {!localStorage.getItem('token') ? (
           <CommentUpLoadInput
             value={subInput}
             onChange={e => {
@@ -71,7 +79,7 @@ const SubComment = ({ subCommentDataList, posts }) => {
             value={subInput}
           />
         )}
-        {localStorage.getItem('token') ? (
+        {!localStorage.getItem('token') ? (
           <SubUpLoadBtn type="submit">등록</SubUpLoadBtn>
         ) : (
           <SubUpLoadBtn

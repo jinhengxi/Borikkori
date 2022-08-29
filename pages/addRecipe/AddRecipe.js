@@ -26,7 +26,7 @@ function AddRecipe() {
   const [arrImg, setArrimg] = useState([]);
   const [arrImg2, setArrimg2] = useState([]);
   const [hashTag, setHashTag] = useState([]);
-
+  
   const router = useRouter();
 
   const sendCommentToServer = async () => {
@@ -94,7 +94,7 @@ function AddRecipe() {
 
   const handleNameIngredient = (e, id) => {
     const { value } = e.target;
-    const inputItemsCopy = JSON.parse(JSON.stringify(ingredient));
+    const inputItemsCopy = ingredient;
     inputItemsCopy[id].name = value;
     setIngredient(inputItemsCopy);
   };

@@ -78,6 +78,7 @@ const ProfileBox = styled.div``;
 const ProfileImg = styled.img`
   width: 160px;
   height: 160px;
+  border-radius: 50%;
 `;
 
 const IdBox = styled.div`

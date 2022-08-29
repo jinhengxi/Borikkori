@@ -33,8 +33,8 @@ const RecipeDetail = ({posts}) => {
           <Igredient posts={posts.ingredient} />
           <RecipeCarousel posts={posts.product} />
           <CookingSteps posts={posts.content} />
-          <DetailComment posts={posts}/>
           <SimilarCasousel posts={posts}/>
+          <DetailComment posts={posts}/>
         </>
       )}
     </RecipeDetailWrapper>

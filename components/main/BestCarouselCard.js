@@ -17,7 +17,7 @@ function BestCarouselCard({ bestRecipe }) {
         </BestCardImgOpacity>
         <CardProfile>
           <Image
-            src={bestRecipe.user_thumbnauil}
+            src={bestRecipe.user_thumbnail}
             alt="ProfileImg"
             width={44}
             height={44}

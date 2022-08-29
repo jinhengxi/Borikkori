@@ -24,7 +24,7 @@ function NewCarouselCard({ newRecipe }) {
         <NewContent>
           <Profile>
             <Image
-              src={newRecipe.user_thumbnauil}
+              src={newRecipe.user_thumbnail}
               alt="ProfileImg"
               width={25}
               height={25}
